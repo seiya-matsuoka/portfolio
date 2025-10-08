@@ -3,6 +3,7 @@ import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   {
@@ -23,10 +24,13 @@ export default [
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...tseslint.configs.recommended.rules,
+
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       // React Hooks
       'react-hooks/rules-of-hooks': 'error',
