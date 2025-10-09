@@ -7,7 +7,7 @@ export function Header() {
         </a>
         <nav className="flex items-center gap-3">
           <a
-            href="seiya.matsuoka0413@gmail.com"
+            href="mailto:seiya.matsuoka0413@gmail.com"
             className="text-sm underline decoration-transparent hover:decoration-current"
           >
             Email
