@@ -10,10 +10,10 @@ export type Project = {
   tech: string[];
   repoUrl: string; // GitHub
   liveUrl?: string; // デモURL
-  thumb?: string; // /サムネイル画像（16:9） / 形式：images/projects/<slug>/thumb.webp
+  thumb?: string; // /サムネイル画像（16:9（1200×675 or 1600×900）） / 形式：images/projects/<slug>/thumb.webp
   description?: string; //モーダル用の詳しい説明
   features?: string[]; //主要機能・要点
-  images?: string[]; //追加スクショ
+  images?: string[]; //追加スクショ（16:9（1200×675 or 1600×900）） / 形式：images/projects/<slug>/1.webp, 2.webp ...
   updatedAt?: string;
 };
 
@@ -82,6 +82,8 @@ export const projects: Project[] = [
     tech: ['JavaScript', 'React', 'Vite'],
     repoUrl: 'https://github.com/seiya-matsuoka/color-picker-palette',
     liveUrl: 'https://seiya-matsuoka.github.io/color-picker-palette/',
+    thumb: 'public/images/projects/color-picker-palette/thumb.png',
+    images: ['public/images/projects/color-picker-palette/01.png'],
   },
   {
     slug: 'reflex-tester-app',
