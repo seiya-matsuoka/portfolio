@@ -11,6 +11,9 @@ export type Project = {
   repoUrl: string; // GitHub
   liveUrl?: string; // デモURL
   thumb?: string; // /サムネイル画像（16:9） / 形式：images/projects/<slug>/thumb.webp
+  description?: string; //モーダル用の詳しい説明
+  features?: string[]; //主要機能・要点
+  images?: string[]; //追加スクショ
   updatedAt?: string;
 };
 
@@ -56,6 +59,8 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Canvas', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/shape-trace-game',
     liveUrl: 'https://seiya-matsuoka.github.io/shape-trace-game/',
+    description: 'TODO：追記\n' + 'TODO：追記', //TODO：追記
+    features: ['TODO：追記', 'TODO：追記'], //TODO：追記
   },
   {
     slug: 'total-match-game',
