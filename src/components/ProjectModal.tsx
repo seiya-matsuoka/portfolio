@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { Project } from '../data/projects';
 
 type Props = {
@@ -71,6 +71,7 @@ export function ProjectModal({ project, onClose }: Props) {
   };
 
   const titleId = `proj-modal-title-${project.slug}`;
+  const bodyText = project.description ?? project.summary;
 
   return (
     <div
@@ -117,8 +118,24 @@ export function ProjectModal({ project, onClose }: Props) {
 
         {/* 本文 */}
         <div className="space-y-4 p-4">
-          <p className="text-sm leading-7 text-slate-700 md:text-base">{project.summary}</p>
+          {/* 概要 */}
+          <p className="text-sm leading-7 whitespace-pre-line text-slate-700 md:text-base">
+            {bodyText}
+          </p>
 
+          {/* 機能リスト */}
+          {project.features?.length ? (
+            <div>
+              <h3 className="mb-1 text-sm font-semibold text-slate-800">主要機能</h3>
+              <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700">
+                {project.features.map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {/* 技術タグ */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] text-slate-700">
               {project.kind}
@@ -133,6 +150,7 @@ export function ProjectModal({ project, onClose }: Props) {
             ))}
           </div>
 
+          {/* CTA */}
           <div className="flex items-center gap-2">
             {project.liveUrl && (
               <a
@@ -141,7 +159,7 @@ export function ProjectModal({ project, onClose }: Props) {
                 rel="noreferrer noopener"
                 className="rounded-md border border-transparent bg-indigo-600 px-3 py-1.5 text-sm text-white hover:bg-indigo-700"
               >
-                Open App {/* 別候補：Live */}
+                Open App
               </a>
             )}
             <a
