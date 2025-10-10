@@ -39,6 +39,7 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/quick-reaction-game',
     liveUrl: 'https://seiya-matsuoka.github.io/quick-reaction-game/',
+    updatedAt: '2025-10-07',
   },
   {
     slug: 'json-diff-viewer',
@@ -49,6 +50,7 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Next.js', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/json-diff-viewer',
     // liveUrl: 'https://...', // TODO：追記
+    updatedAt: '2025-09-25',
   },
   {
     slug: 'shape-trace-game',
@@ -61,6 +63,7 @@ export const projects: Project[] = [
     liveUrl: 'https://seiya-matsuoka.github.io/shape-trace-game/',
     description: 'TODO：追記\n' + 'TODO：追記', //TODO：追記
     features: ['TODO：追記', 'TODO：追記'], //TODO：追記
+    updatedAt: '2025-09-29',
   },
   {
     slug: 'total-match-game',
@@ -71,6 +74,7 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/total-match-game',
     liveUrl: 'https://seiya-matsuoka.github.io/total-match-game/',
+    updatedAt: '2025-10-05',
   },
 
   {
@@ -84,6 +88,7 @@ export const projects: Project[] = [
     liveUrl: 'https://seiya-matsuoka.github.io/color-picker-palette/',
     thumb: 'images/projects/color-picker-palette/thumb.png',
     images: ['images/projects/color-picker-palette/01.png'],
+    updatedAt: '2025-09-15',
   },
   {
     slug: 'reflex-tester-app',
@@ -94,5 +99,6 @@ export const projects: Project[] = [
     tech: ['JavaScript (Vanilla)'],
     repoUrl: 'https://github.com/seiya-matsuoka/reflex-tester-app',
     liveUrl: 'https://seiya-matsuoka.github.io/reflex-tester-app/',
+    updatedAt: '2025-09-14',
   },
 ];
