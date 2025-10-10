@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Project } from '../data/projects';
 
 type Props = {
@@ -11,6 +11,40 @@ export function ProjectModal({ project, onClose }: Props) {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const scrollYRef = useRef(0);
+
+  // ギャラリー（thumb + images）
+  const gallery = useMemo(() => {
+    const arr: string[] = [];
+    if (project.thumb) arr.push(project.thumb);
+    if (project.images?.length) arr.push(...project.images);
+    return arr;
+  }, [project.thumb, project.images]);
+
+  const [idx, setIdx] = useState(0);
+  const hasGallery = gallery.length > 0;
+
+  useEffect(() => {
+    setIdx(0);
+  }, [project.slug]);
+
+  const go = (next: number) => {
+    if (!hasGallery) return;
+    const len = gallery.length;
+    setIdx(((next % len) + len) % len);
+  };
+  const prev = () => go(idx - 1);
+  const next = () => go(idx + 1);
+
+  // プリロード
+  useEffect(() => {
+    if (!hasGallery) return;
+    const preload = (i: number) => {
+      const img = new Image();
+      img.src = gallery[((i % gallery.length) + gallery.length) % gallery.length];
+    };
+    preload(idx + 1);
+    preload(idx - 1);
+  }, [idx, hasGallery, gallery]);
 
   // フォーカス復帰元を保持
   useLayoutEffect(() => {
@@ -37,10 +71,13 @@ export function ProjectModal({ project, onClose }: Props) {
     };
   }, []);
 
-  // ESCで閉じる
+  // キー操作（ESC / Tab / ← →）
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+
       if (e.key === 'Tab') {
         const root = dialogRef.current;
         if (!root) return;
@@ -63,7 +100,8 @@ export function ProjectModal({ project, onClose }: Props) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx]);
 
   // オーバーレイの外側クリックで閉じる
   const onOverlayClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -100,19 +138,72 @@ export function ProjectModal({ project, onClose }: Props) {
           </button>
         </div>
 
-        {/* メディア */}
-        <div className="aspect-[16/9] w-full overflow-hidden bg-slate-100">
-          {project.thumb ? (
-            <img
-              src={project.thumb}
-              alt={`${project.title} preview`}
-              className="h-full w-full object-cover"
-              loading="eager"
-            />
-          ) : (
-            <div className="grid h-full w-full place-items-center text-sm text-slate-400">
-              Preview
-            </div>
+        {/* メディア：ギャラリー or プレースホルダー */}
+        <div
+          className="relative w-full overflow-hidden bg-slate-100"
+          aria-roledescription="carousel"
+          aria-label="Project previews"
+        >
+          <div className="relative aspect-[16/9] w-full">
+            {hasGallery ? (
+              gallery.map((src, i) => (
+                <img
+                  key={`${src}-${i}`}
+                  src={src}
+                  alt={`${project.title} preview ${i + 1}`}
+                  className={`absolute inset-0 h-full w-full object-cover ${
+                    i === idx ? 'opacity-100' : 'opacity-0'
+                  } transition-opacity duration-200`}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  aria-hidden={i === idx ? 'false' : 'true'}
+                />
+              ))
+            ) : (
+              <div className="absolute inset-0 grid h-full w-full place-items-center text-sm text-slate-400">
+                Preview
+              </div>
+            )}
+          </div>
+
+          {/* コントロール */}
+          {gallery.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={prev}
+                className="absolute top-1/2 left-2 -translate-y-1/2 rounded-md bg-white/80 px-2 py-1 text-sm shadow hover:bg-white"
+                aria-label="前の画像"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md bg-white/80 px-2 py-1 text-sm shadow hover:bg-white"
+                aria-label="次の画像"
+              >
+                →
+              </button>
+
+              {/* ドットナビ */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-2 grid place-items-center">
+                <div className="pointer-events-auto inline-flex items-center gap-1 rounded-full bg-white/80 px-2 py-1">
+                  {gallery.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => go(i)}
+                      className={`h-2.5 w-2.5 rounded-full ${
+                        i === idx ? 'bg-slate-900' : 'bg-slate-400'
+                      }`}
+                      aria-label={`画像 ${i + 1} を表示`}
+                      aria-current={i === idx ? 'true' : 'false'}
+                    />
+                  ))}
+                </div>
+              </div>
+            </>
           )}
         </div>
 
