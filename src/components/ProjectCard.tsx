@@ -1,4 +1,4 @@
-import React from 'react';
+import type { MouseEventHandler } from 'react';
 import type { Project } from '../data/projects';
 
 type Props = {
@@ -24,7 +24,7 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 export function ProjectCard({ project, onOpen }: Props) {
   const handleOpen = () => onOpen(project.slug);
 
-  const onCtaClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+  const onCtaClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     // モーダルと干渉させない
     e.stopPropagation();
   };
