@@ -22,6 +22,29 @@ function useQueryParam(name: string) {
 
 type StatusOption = 'ALL' | ProjectStatus;
 
+// URL <-> 状態 のヘルパ
+const STATUS_SET = new Set<StatusOption>(['ALL', 'DONE', 'WIP', 'ARCHIVED']);
+const ALL_KINDS: ProjectKind[] = Array.from(new Set(all.map((p) => p.kind)));
+
+function parseStatusFromURL(sp: URLSearchParams): StatusOption {
+  const s = sp.get('status')?.toUpperCase() as StatusOption | undefined;
+  return s && STATUS_SET.has(s) ? s : 'ALL';
+}
+
+function parseKindsFromURL(sp: URLSearchParams, validKinds: ProjectKind[]): Set<ProjectKind> {
+  const raw = sp.get('kind');
+  if (!raw) return new Set();
+  const want = raw.split(',').map((s) => s.trim());
+  const filtered = want.filter((x): x is ProjectKind => validKinds.includes(x as ProjectKind));
+  return new Set(filtered);
+}
+
+function equalSet<A>(a: Set<A>, b: Set<A>) {
+  if (a.size !== b.size) return false;
+  for (const v of a) if (!b.has(v)) return false;
+  return true;
+}
+
 export default function App() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const selectedProject = useMemo(
@@ -31,42 +54,71 @@ export default function App() {
   const openedViaClickRef = useRef(false);
   const qp = useQueryParam('p');
 
+  // フィルタ状態（URLから遅延初期化）
+  const [status, setStatus] = useState<StatusOption>(() =>
+    parseStatusFromURL(new URLSearchParams(window.location.search))
+  );
+  const [selectedKinds, setSelectedKinds] = useState<Set<ProjectKind>>(() =>
+    parseKindsFromURL(new URLSearchParams(window.location.search), ALL_KINDS)
+  );
+  const kindOptions: ProjectKind[] = ALL_KINDS;
+
+  const suppressSyncRef = useRef(false);
+
+  // 起動時：?p を反映。戻る/進むはURL→状態に復元
   useEffect(() => {
-    const p = qp.get();
+    const sp = new URLSearchParams(window.location.search);
+
+    // モーダル
+    const p = sp.get('p');
     if (p && all.some((x) => x.slug === p)) setSelectedSlug(p);
+
     const onPop = () => {
-      const val = qp.get();
+      const sp2 = new URLSearchParams(window.location.search);
+      suppressSyncRef.current = true;
+
+      // モーダル
+      const val = sp2.get('p');
       if (val && all.some((x) => x.slug === val)) setSelectedSlug(val);
       else setSelectedSlug(null);
+
+      // フィルタ
+      setStatus(parseStatusFromURL(sp2));
+      setSelectedKinds(parseKindsFromURL(sp2, ALL_KINDS));
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const openModal = (slug: string) => {
-    setSelectedSlug(slug);
-    openedViaClickRef.current = true;
-    qp.set(slug, 'push'); // 戻るで閉じられる
-  };
-
-  const closeModal = () => {
-    if (openedViaClickRef.current) {
-      openedViaClickRef.current = false;
-      window.history.back(); // 直前のURLに戻して閉じる
-    } else {
-      // 初期URLに?pがある
-      qp.set(null, 'replace'); // p を消して一覧に戻す
+  // 状態 -> URL 同期
+  useEffect(() => {
+    if (suppressSyncRef.current) {
+      suppressSyncRef.current = false;
+      return;
     }
-    setSelectedSlug(null);
-  };
 
-  // ===== フィルタ状態 =====
-  const [status, setStatus] = useState<StatusOption>('ALL');
-  const [selectedKinds, setSelectedKinds] = useState<Set<ProjectKind>>(new Set());
+    const url = new URL(window.location.href);
+    const sp = url.searchParams;
 
-  const kindOptions: ProjectKind[] = useMemo(() => Array.from(new Set(all.map((p) => p.kind))), []);
+    const curStatus = parseStatusFromURL(sp);
+    const curKinds = parseKindsFromURL(sp, ALL_KINDS);
 
+    const statusChanged = curStatus !== status;
+    const kindsChanged = !equalSet(curKinds, selectedKinds);
+
+    if (!statusChanged && !kindsChanged) return; // 一致している
+
+    if (status === 'ALL') sp.delete('status');
+    else sp.set('status', status);
+
+    if (selectedKinds.size === 0) sp.delete('kind');
+    else sp.set('kind', Array.from(selectedKinds).join(','));
+
+    url.search = sp.toString();
+    window.history.pushState(null, '', url.toString());
+  }, [status, selectedKinds]);
+
+  // フィルタ操作
   const toggleKind = (k: ProjectKind) => {
     setSelectedKinds((prev) => {
       const next = new Set(prev);
@@ -75,9 +127,27 @@ export default function App() {
       return next;
     });
   };
+
   const resetKinds = () => setSelectedKinds(new Set());
 
-  // ===== フィルタ + ソート =====
+  // モーダル操作
+  const openModal = (slug: string) => {
+    setSelectedSlug(slug);
+    openedViaClickRef.current = true;
+    qp.set(slug, 'push');
+  };
+
+  const closeModal = () => {
+    if (openedViaClickRef.current) {
+      openedViaClickRef.current = false;
+      window.history.back();
+    } else {
+      qp.set(null, 'replace');
+    }
+    setSelectedSlug(null);
+  };
+
+  // フィルタ + ソート
   const filtered = useMemo(() => {
     const matchStatus = (p: Project) => (status === 'ALL' ? true : p.status === status);
     const matchKind = (p: Project) => (selectedKinds.size === 0 ? true : selectedKinds.has(p.kind));
