@@ -82,8 +82,8 @@ export const projects: Project[] = [
     tech: ['JavaScript', 'React', 'Vite'],
     repoUrl: 'https://github.com/seiya-matsuoka/color-picker-palette',
     liveUrl: 'https://seiya-matsuoka.github.io/color-picker-palette/',
-    thumb: 'public/images/projects/color-picker-palette/thumb.png',
-    images: ['public/images/projects/color-picker-palette/01.png'],
+    thumb: 'images/projects/color-picker-palette/thumb.png',
+    images: ['images/projects/color-picker-palette/01.png'],
   },
   {
     slug: 'reflex-tester-app',

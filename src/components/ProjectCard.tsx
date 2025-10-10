@@ -1,5 +1,6 @@
 import type { MouseEventHandler } from 'react';
 import type { Project } from '../data/projects';
+import { asset } from '../lib/asset';
 
 type Props = {
   project: Project;
@@ -38,7 +39,7 @@ export function ProjectCard({ project, onOpen }: Props) {
       <div className="aspect-[16/9] w-full overflow-hidden rounded-t-lg bg-slate-100">
         {project.thumb ? (
           <img
-            src={project.thumb}
+            src={asset(project.thumb)}
             alt={`${project.title} thumbnail`}
             className="h-full w-full object-cover"
             loading="lazy"

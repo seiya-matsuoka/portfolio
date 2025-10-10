@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Project } from '../data/projects';
+import { asset } from '../lib/asset';
 
 type Props = {
   project: Project;
@@ -15,8 +16,8 @@ export function ProjectModal({ project, onClose }: Props) {
   // ギャラリー（thumb + images）
   const gallery = useMemo(() => {
     const arr: string[] = [];
-    if (project.thumb) arr.push(project.thumb);
-    if (project.images?.length) arr.push(...project.images);
+    if (project.thumb) arr.push(asset(project.thumb)!);
+    if (project.images?.length) arr.push(...project.images.map((p) => asset(p)!));
     return arr;
   }, [project.thumb, project.images]);
 
