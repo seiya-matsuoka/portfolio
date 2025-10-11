@@ -196,8 +196,8 @@ export default function App() {
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
-              {sorted.map((p) => (
-                <ProjectCard key={p.slug} project={p} onOpen={openModal} />
+              {sorted.map((p, i) => (
+                <ProjectCard key={p.slug} project={p} onOpen={openModal} priority={i === 0} />
               ))}
             </div>
           )}

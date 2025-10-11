@@ -157,6 +157,8 @@ export function ProjectModal({ project, onClose }: Props) {
                   } transition-opacity duration-200`}
                   loading={i === 0 ? 'eager' : 'lazy'}
                   decoding="async"
+                  fetchPriority={i === idx ? 'high' : 'auto'}
+                  sizes="(min-width: 768px) 768px, calc(100vw - 2rem)"
                   aria-hidden={i === idx ? 'false' : 'true'}
                 />
               ))

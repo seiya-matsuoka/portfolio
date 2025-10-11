@@ -5,6 +5,7 @@ import { asset } from '../lib/asset';
 type Props = {
   project: Project;
   onOpen: (slug: string) => void;
+  priority?: boolean;
 };
 
 function StatusBadge({ status }: { status: Project['status'] }) {
@@ -22,7 +23,7 @@ function StatusBadge({ status }: { status: Project['status'] }) {
   );
 }
 
-export function ProjectCard({ project, onOpen }: Props) {
+export function ProjectCard({ project, onOpen, priority = false }: Props) {
   const handleOpen = () => onOpen(project.slug);
 
   const onCtaClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
@@ -42,7 +43,9 @@ export function ProjectCard({ project, onOpen }: Props) {
             src={asset(project.thumb)}
             alt={`${project.title} thumbnail`}
             className="h-full w-full object-cover"
-            loading="lazy"
+            loading={priority ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : 'auto'}
+            sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
           />
         ) : (
           <div className="grid h-full w-full place-items-center text-xs text-slate-400">
