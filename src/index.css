@@ -2,3 +2,74 @@
 
 @source "../index.html";
 @source "./**/*.{ts,tsx,js,jsx}";
+
+/* =========================
+   Theme Tokens (CSS variables)
+   ========================= */
+:root {
+  /* surfaces */
+  --color-bg: theme(colors.slate.50);
+  --color-surface: white;
+  --color-card: white;
+  --color-border: theme(colors.slate.200);
+
+  /* text */
+  --color-fg: theme(colors.slate.800);
+  --color-muted: theme(colors.slate.600);
+
+  /* accent */
+  --color-accent: theme(colors.indigo.600);
+  --color-accent-hover: theme(colors.indigo.700);
+  --color-accent-contrast: white;
+
+  /* focus ring */
+  --color-ring: theme(colors.indigo.400);
+
+  /* radius / shadow */
+  --radius-md: 0.5rem;
+  /* 8px */
+  --radius-xl: 0.75rem;
+  /* 12px */
+}
+
+/* ダーク */
+.theme-dark {
+  --color-bg: theme(colors.slate.950);
+  --color-surface: theme(colors.slate.900);
+  --color-card: theme(colors.slate.900);
+  --color-border: theme(colors.slate.700);
+
+  --color-fg: theme(colors.slate.100);
+  --color-muted: theme(colors.slate.400);
+
+  --color-accent: theme(colors.indigo.500);
+  --color-accent-hover: theme(colors.indigo.600);
+  --color-accent-contrast: white;
+
+  --color-ring: theme(colors.indigo.500);
+}
+
+/* アクセント差し替え */
+.accent-emerald {
+  --color-accent: theme(colors.emerald.600);
+  --color-accent-hover: theme(colors.emerald.700);
+  --color-ring: theme(colors.emerald.400);
+}
+
+.accent-rose {
+  --color-accent: theme(colors.rose.600);
+  --color-accent-hover: theme(colors.rose.700);
+  --color-ring: theme(colors.rose.400);
+}
+
+/* ユーティリティ */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+/* フォーカスリングを変数で統一 */
+.focus-ring {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}

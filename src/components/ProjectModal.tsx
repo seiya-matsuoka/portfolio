@@ -122,18 +122,27 @@ export function ProjectModal({ project, onClose }: Props) {
     >
       <div
         ref={dialogRef}
-        className="animate-in fade-in zoom-in-95 w-full max-w-3xl rounded-xl border border-[color:var(--color-border,theme(colors.slate.200))] bg-white shadow-lg duration-150"
+        className="animate-in fade-in zoom-in-95 w-full max-w-3xl rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150"
       >
         {/* ヘッダー */}
-        <div className="flex items-center justify-between border-b border-[color:var(--color-border,theme(colors.slate.200))] p-4">
-          <h2 id={titleId} className="text-lg font-semibold md:text-xl">
+        <div className="flex items-center justify-between border-b border-[color:var(--color-border)] p-4">
+          <h2
+            id={titleId}
+            className="text-lg font-semibold md:text-xl"
+            style={{ color: 'var(--color-fg)' }}
+          >
             {project.title}
           </h2>
           <button
             ref={closeBtnRef}
             onClick={onClose}
-            className="rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-sm hover:border-slate-300"
+            className="rounded-md border px-2.5 py-1.5 text-sm outline-offset-2 hover:border-slate-300 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
             aria-label="Close"
+            style={{
+              borderColor: 'var(--color-border)',
+              background: 'white',
+              color: 'var(--color-fg)',
+            }}
           >
             ×
           </button>
@@ -213,15 +222,23 @@ export function ProjectModal({ project, onClose }: Props) {
         {/* 本文 */}
         <div className="space-y-4 p-4">
           {/* 概要 */}
-          <p className="text-sm leading-7 whitespace-pre-line text-slate-700 md:text-base">
+          <p
+            className="text-sm leading-7 whitespace-pre-line md:text-base"
+            style={{ color: 'var(--color-fg)' }}
+          >
             {bodyText}
           </p>
 
           {/* 機能リスト */}
           {project.features?.length ? (
             <div>
-              <h3 className="mb-1 text-sm font-semibold text-slate-800">主要機能</h3>
-              <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700">
+              <h3 className="mb-1 text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
+                主要機能
+              </h3>
+              <ul
+                className="list-disc space-y-1 pl-5 text-sm"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 {project.features.map((f, i) => (
                   <li key={i}>{f}</li>
                 ))}
@@ -231,13 +248,25 @@ export function ProjectModal({ project, onClose }: Props) {
 
           {/* 技術タグ */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] text-slate-700">
+            <span
+              className="rounded border px-1.5 py-0.5 text-[11px]"
+              style={{
+                borderColor: 'var(--color-border)',
+                background: 'var(--color-surface)',
+                color: 'var(--color-fg)',
+              }}
+            >
               {project.kind}
             </span>
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] text-slate-700"
+                className="rounded border px-1.5 py-0.5 text-[11px]"
+                style={{
+                  borderColor: 'var(--color-border)',
+                  background: 'var(--color-surface)',
+                  color: 'var(--color-fg)',
+                }}
               >
                 {t}
               </span>
@@ -251,7 +280,17 @@ export function ProjectModal({ project, onClose }: Props) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="rounded-md border border-transparent bg-indigo-600 px-3 py-1.5 text-sm text-white hover:bg-indigo-700"
+                className="rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+                style={{
+                  backgroundColor: 'var(--color-accent)',
+                  color: 'var(--color-accent-contrast)',
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor = 'var(--color-accent)')
+                }
               >
                 Open App
               </a>
@@ -260,7 +299,12 @@ export function ProjectModal({ project, onClose }: Props) {
               href={project.repoUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm hover:border-slate-300"
+              className="rounded-md border px-3 py-1.5 text-sm outline-offset-2 hover:border-slate-300 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+              style={{
+                borderColor: 'var(--color-border)',
+                background: 'white',
+                color: 'var(--color-fg)',
+              }}
             >
               GitHub
             </a>
