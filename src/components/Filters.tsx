@@ -23,14 +23,14 @@ export function Filters({
   const statusOptions: StatusOption[] = ['ALL', 'DONE', 'WIP', 'ARCHIVED'];
 
   const statusClass = (active: boolean) =>
-    `inline-flex items-center rounded-md border px-2.5 py-1.5 text-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-[color:var(--color-ring)] outline-offset-2 ${
+    `inline-flex items-center rounded-md border px-2.5 py-1.5 text-sm transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] outline-offset-2 ${
       active
         ? 'border-transparent text-white'
         : 'border-[color:var(--color-border)] bg-white hover:border-slate-300'
     }`;
 
   const chipClass = (active: boolean) =>
-    `inline-flex items-center rounded-full border px-2.5 py-1 text-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-[color:var(--color-ring)] outline-offset-2 ${
+    `inline-flex items-center rounded-full border px-2.5 py-1 text-sm transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] outline-offset-2 ${
       active
         ? 'border-transparent text-[color:var(--color-bg)]'
         : 'border-[color:var(--color-border)] bg-slate-50 text-slate-700 hover:border-slate-300'
