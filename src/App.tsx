@@ -180,7 +180,9 @@ export default function App() {
         <section className="py-10 md:py-14">
           <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Personal Projects</h1>
           <p className="mt-3 max-w-2xl leading-7 text-slate-600">
-            一言文章(候補：個人開発で作った小さなゲームとWebアプリの一覧です。)
+            学習目的の個人開発で作成した小さなゲームとWebアプリの一覧。
+            <br />
+            React / TypeScript / JavaScript を中心に学習中。 実務では Java を約2年を経験。
           </p>
         </section>
 
