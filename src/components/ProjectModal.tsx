@@ -110,6 +110,7 @@ export function ProjectModal({ project, onClose }: Props) {
   };
 
   const titleId = `proj-modal-title-${project.slug}`;
+  const descId = `proj-modal-desc-${project.slug}`;
   const bodyText = project.description ?? project.summary;
 
   return (
@@ -119,10 +120,11 @@ export function ProjectModal({ project, onClose }: Props) {
       aria-labelledby={titleId}
       role="dialog"
       aria-modal="true"
+      aria-describedby={descId}
     >
       <div
         ref={dialogRef}
-        className="animate-in fade-in zoom-in-95 w-full max-w-3xl rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150"
+        className="animate-in fade-in zoom-in-95 w-full max-w-3xl rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
       >
         {/* ヘッダー */}
         <div className="flex items-center justify-between border-b border-[color:var(--color-border)] p-4">
@@ -163,7 +165,7 @@ export function ProjectModal({ project, onClose }: Props) {
                   alt={`${project.title} preview ${i + 1}`}
                   className={`absolute inset-0 h-full w-full object-cover ${
                     i === idx ? 'opacity-100' : 'opacity-0'
-                  } transition-opacity duration-200`}
+                  } transition-opacity duration-200 motion-reduce:transition-none`}
                   loading={i === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                   fetchPriority={i === idx ? 'high' : 'auto'}
@@ -223,6 +225,7 @@ export function ProjectModal({ project, onClose }: Props) {
         <div className="space-y-4 p-4">
           {/* 概要 */}
           <p
+            id={descId}
             className="text-sm leading-7 whitespace-pre-line md:text-base"
             style={{ color: 'var(--color-fg)' }}
           >

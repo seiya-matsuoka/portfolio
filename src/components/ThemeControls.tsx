@@ -20,9 +20,9 @@ export function ThemeControls() {
 
   return (
     <div className="flex items-center gap-2">
-      {/* <label htmlFor="theme-mode" className="text-sm" style={{ color: 'var(--color-muted)' }}>
-        Theme
-      </label> */}
+      <label htmlFor="theme-mode" className="sr-only">
+        テーマ
+      </label>{' '}
       <select
         id="theme-mode"
         value={theme}

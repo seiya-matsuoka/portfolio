@@ -31,9 +31,20 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
     e.stopPropagation();
   };
 
+  const onKeyDown: React.KeyboardEventHandler<HTMLElement> = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOpen();
+    }
+  };
+
   return (
     <article
       onClick={handleOpen}
+      onKeyDown={onKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`「${project.title}」の詳細を開く`}
       className="group cursor-pointer rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] transition-transform duration-150 hover:-translate-y-0.5"
     >
       {/* サムネ */}

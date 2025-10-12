@@ -166,8 +166,16 @@ export default function App() {
 
   return (
     <div className="min-h-dvh bg-[color:var(--color-bg,theme(colors.slate.50))] text-[color:var(--color-fg,theme(colors.slate.800))]">
+      <a
+        href="#main"
+        className="sr-only fixed top-3 left-3 z-[100] rounded border bg-[color:var(--color-surface)] px-3 py-2 text-sm focus:not-sr-only"
+        style={{ borderColor: 'var(--color-border)', color: 'var(--color-fg)' }}
+      >
+        本文へスキップ
+      </a>
+
       <Header />
-      <main className="mx-auto max-w-6xl px-4">
+      <main id="main" className="mx-auto max-w-6xl px-4" tabIndex={-1}>
         {/* ヒーロー */}
         <section className="py-10 md:py-14">
           <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Personal Projects</h1>
@@ -188,8 +196,13 @@ export default function App() {
           />
         </section>
 
+        {/* ライブリージョン */}
+        <div className="sr-only" role="status" aria-live="polite">
+          {sorted.length}件に絞り込みました
+        </div>
+
         {/* グリッド */}
-        <section className="pb-16">
+        <section className="pb-16" aria-label="プロジェクト一覧">
           {sorted.length === 0 ? (
             <div className="rounded-md border border-slate-200 bg-white p-6 text-slate-500">
               条件に一致する項目がありません。
