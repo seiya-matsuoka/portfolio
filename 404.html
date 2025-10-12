@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ページが見つかりません</title>
+    <meta name="robots" content="noindex" />
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --fg: #0f172a;
+            --border: #e2e8f0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0b1220;
+                --fg: #e2e8f0;
+                --border: #334155;
+            }
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'
+        }
+
+        .wrap {
+            min-height: 100%;
+            display: grid;
+            place-items: center;
+            padding: 24px
+        }
+
+        .card {
+            max-width: 560px;
+            width: 100%;
+            background: #fff0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px
+        }
+
+        .title {
+            margin: 0 0 8px;
+            font-size: 20px;
+            font-weight: 700
+        }
+
+        .desc {
+            margin: 0 0 16px;
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: .85
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            display: inline-block;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-decoration: none;
+            color: inherit
+        }
+
+        .btn:hover {
+            opacity: .9
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <section class="card" aria-labelledby="title">
+            <h1 id="title" class="title">ページが見つかりません（404）</h1>
+            <p class="desc">URLが間違っているか、移動または削除された可能性があります。</p>
+            <div class="row">
+                <!-- 相対パス ./ でトップへ -->
+                <a class="btn" href="./">トップへ戻る</a>
+                <a class="btn" href="mailto:seiya.matsuoka0413@gmail.com">連絡する</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
