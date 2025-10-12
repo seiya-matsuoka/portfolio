@@ -1,24 +1,14 @@
 import { useEffect, useState } from 'react';
-import type { Accent, ThemeMode } from '../lib/theme';
-import {
-  applyTheme,
-  initThemeFromStorage,
-  getStoredTheme,
-  applyAccent,
-  initAccentFromStorage,
-  getStoredAccent,
-} from '../lib/theme';
+import type { ThemeMode } from '../lib/theme';
+import { applyTheme, initThemeFromStorage, getStoredTheme } from '../lib/theme';
 
 export function ThemeControls() {
   const [theme, setTheme] = useState<ThemeMode>('light');
-  const [accent, setAccent] = useState<Accent>('indigo');
 
   // 初期読み込み
   useEffect(() => {
     const disposeTheme = initThemeFromStorage();
-    initAccentFromStorage();
     setTheme(getStoredTheme());
-    setAccent(getStoredAccent());
     return () => {
       disposeTheme?.();
     };
@@ -27,12 +17,6 @@ export function ThemeControls() {
   const onThemeChange = (next: ThemeMode) => {
     setTheme(next);
     applyTheme(next);
-  };
-
-  const onAccentChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const val = e.target.value as Accent;
-    setAccent(val);
-    applyAccent(val);
   };
 
   const btnBase =
@@ -69,27 +53,11 @@ export function ThemeControls() {
           aria-pressed={theme === 'system'}
           className={`${btnBase} ${theme === 'system' ? btnActive : btnIdle}`}
           style={{ backgroundColor: theme === 'system' ? 'var(--color-accent)' : 'white' }}
-          title="System"
+          title="Auto"
         >
-          System
+          Auto
         </button>
       </div>
-
-      {/* Accent select */}
-      <label className="sr-only" htmlFor="accent-select">
-        Accent
-      </label>
-      <select
-        id="accent-select"
-        value={accent}
-        onChange={onAccentChange}
-        className="rounded-md border border-[color:var(--color-border)] bg-white px-2 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-        title="Accent color"
-      >
-        <option value="indigo">Indigo</option>
-        <option value="emerald">Emerald</option>
-        <option value="rose">Rose</option>
-      </select>
     </div>
   );
 }
