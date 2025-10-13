@@ -43,12 +43,19 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/quick-reaction-game',
     liveUrl: 'https://seiya-matsuoka.github.io/quick-reaction-game/',
-    // thumb: 'images/projects/quick-reaction-game/thumb.webp',
+    thumb: 'images/projects/quick-reaction-game/thumb.webp',
     description:
       'まばたき / 口の開き / タップ で反応速度を計測できるリアクションゲーム。\n' +
       '「合図」に素早く反応してタイムを計測します。',
     features: ['カメラ検知は まばたき / 口の開き に対応'],
-    // mages: ['images/projects/quick-reaction-game/01.webp'],
+    images: [
+      'images/projects/quick-reaction-game/01.webp',
+      'images/projects/quick-reaction-game/02.webp',
+      'images/projects/quick-reaction-game/03.webp',
+      'images/projects/quick-reaction-game/04.webp',
+      'images/projects/quick-reaction-game/05.webp',
+      'images/projects/quick-reaction-game/06.webp',
+    ],
     updatedAt: '2025-10-07',
   },
   {
