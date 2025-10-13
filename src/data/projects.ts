@@ -125,7 +125,7 @@ export const projects: Project[] = [
     title: 'Color Picker Palette',
     summary: 'HSL/HSV の調整・コントラスト表示つきのカラーパレット。',
     status: 'DONE',
-    kind: 'Web App',
+    kind: 'Tool',
     tech: ['JavaScript', 'React', 'Vite'],
     repoUrl: 'https://github.com/seiya-matsuoka/color-picker-palette',
     liveUrl: 'https://seiya-matsuoka.github.io/color-picker-palette/',
