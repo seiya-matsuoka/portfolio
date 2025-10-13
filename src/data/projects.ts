@@ -96,7 +96,7 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/total-match-game',
     liveUrl: 'https://seiya-matsuoka.github.io/total-match-game/',
-    // thumb: 'images/projects/total-match-game/thumb.webp',
+    thumb: 'images/projects/total-match-game/thumb.webp',
     description:
       'グリッドから ちょうど N 個 の数字を選び、合計をターゲットに一致させるゲーム。\n' +
       'マウス/タップ・キーボードの両方に対応し、設定ごとにハイスコアを保存します。',
@@ -104,7 +104,12 @@ export const projects: Project[] = [
       '3×3 / 4×4 / 5×5 の盤面と、3 / 4 / 5 の選択枚数に対応',
       '不正解時の動作を「問題継続 / 問題切替」から選択可',
     ],
-    // images: ['images/projects/total-match-game/01.webp'],
+    images: [
+      'images/projects/total-match-game/01.webp',
+      'images/projects/total-match-game/02.webp',
+      'images/projects/total-match-game/03.webp',
+      'images/projects/total-match-game/04.webp',
+    ],
     updatedAt: '2025-10-05',
   },
 
