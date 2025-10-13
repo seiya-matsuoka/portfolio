@@ -119,7 +119,11 @@ export const projects: Project[] = [
       'HEX 入力/コピー に対応、HSL/HSV スライダーで微調整',
       'パレットは お気に入り登録＆ドラッグ＆ドロップで並べ替え、localStorage に永続化',
     ],
-    images: ['images/projects/color-picker-palette/01.webp'],
+    images: [
+      'images/projects/color-picker-palette/01.webp',
+      'images/projects/color-picker-palette/02.webp',
+      'images/projects/color-picker-palette/03.webp',
+    ],
     updatedAt: '2025-09-15',
   },
   {
