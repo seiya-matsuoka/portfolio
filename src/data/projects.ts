@@ -75,12 +75,16 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Canvas', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/shape-trace-game',
     liveUrl: 'https://seiya-matsuoka.github.io/shape-trace-game/',
-    // thumb: 'images/projects/shape-trace-game/thumb.webp',
+    thumb: 'images/projects/shape-trace-game/thumb.webp',
     description:
       '指定図形（丸/三角/四角/星/五角形/ハート）を一筆書きでトレースするゲーム。\n' +
       'マウス／タッチで一筆書きし、終点で自動採点（%）します。',
     features: ['サイズ（大/小）、表示ガイド（手本/グリッド/十字）のON/OFFを切替可'],
-    // images: ['images/projects/shape-trace-game/01.webp'],
+    images: [
+      'images/projects/shape-trace-game/01.webp',
+      'images/projects/shape-trace-game/02.webp',
+      'images/projects/shape-trace-game/03.webp',
+    ],
     updatedAt: '2025-09-29',
   },
   {
