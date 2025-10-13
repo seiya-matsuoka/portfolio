@@ -28,10 +28,10 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Next.js', 'Tailwind', 'DnD Kit', 'Prisma', 'Postgres'],
     repoUrl: 'https://github.com/seiya-matsuoka/kanban-task-manager',
     // liveUrl: 'https://...', // TODO：追記
-    // thumb: 'images/projects/kanban-task-manager/thumb.png',
+    // thumb: 'images/projects/kanban-task-manager/thumb.webp',
     description: 'TODO：追記\n' + 'TODO：追記', //TODO：追記
     features: ['TODO：追記', 'TODO：追記'], //TODO：追記
-    // images: ['images/projects/kanban-task-manager/01.png'],
+    // images: ['images/projects/kanban-task-manager/01.webp'],
     updatedAt: '2025-09-28',
   },
   {
@@ -43,12 +43,12 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/quick-reaction-game',
     liveUrl: 'https://seiya-matsuoka.github.io/quick-reaction-game/',
-    // thumb: 'images/projects/quick-reaction-game/thumb.png',
+    // thumb: 'images/projects/quick-reaction-game/thumb.webp',
     description:
       'まばたき / 口の開き / タップ で反応速度を計測できるリアクションゲーム。\n' +
       '「合図」に素早く反応してタイムを計測します。',
     features: ['カメラ検知は まばたき / 口の開き に対応'],
-    // mages: ['images/projects/quick-reaction-game/01.png'],
+    // mages: ['images/projects/quick-reaction-game/01.webp'],
     updatedAt: '2025-10-07',
   },
   {
@@ -60,10 +60,10 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Next.js', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/json-diff-viewer',
     // liveUrl: 'https://...', // TODO：追記
-    // thumb: 'images/projects/json-diff-viewer/thumb.png',
+    // thumb: 'images/projects/json-diff-viewer/thumb.webp',
     description: 'TODO：追記\n' + 'TODO：追記', //TODO：追記
     features: ['TODO：追記', 'TODO：追記'], //TODO：追記
-    // images: ['images/projects/json-diff-viewer/01.png'],
+    // images: ['images/projects/json-diff-viewer/01.webp'],
     updatedAt: '2025-09-25',
   },
   {
@@ -75,12 +75,12 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Canvas', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/shape-trace-game',
     liveUrl: 'https://seiya-matsuoka.github.io/shape-trace-game/',
-    // thumb: 'images/projects/shape-trace-game/thumb.png',
+    // thumb: 'images/projects/shape-trace-game/thumb.webp',
     description:
       '指定図形（丸/三角/四角/星/五角形/ハート）を一筆書きでトレースするゲーム。\n' +
       'マウス／タッチで一筆書きし、終点で自動採点（%）します。',
     features: ['サイズ（大/小）、表示ガイド（手本/グリッド/十字）のON/OFFを切替可'],
-    // images: ['images/projects/shape-trace-game/01.png'],
+    // images: ['images/projects/shape-trace-game/01.webp'],
     updatedAt: '2025-09-29',
   },
   {
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/total-match-game',
     liveUrl: 'https://seiya-matsuoka.github.io/total-match-game/',
-    // thumb: 'images/projects/total-match-game/thumb.png',
+    // thumb: 'images/projects/total-match-game/thumb.webp',
     description:
       'グリッドから ちょうど N 個 の数字を選び、合計をターゲットに一致させるゲーム。\n' +
       'マウス/タップ・キーボードの両方に対応し、設定ごとにハイスコアを保存します。',
@@ -100,7 +100,7 @@ export const projects: Project[] = [
       '3×3 / 4×4 / 5×5 の盤面と、3 / 4 / 5 の選択枚数に対応',
       '不正解時の動作を「問題継続 / 問題切替」から選択可',
     ],
-    // images: ['images/projects/total-match-game/01.png'],
+    // images: ['images/projects/total-match-game/01.webp'],
     updatedAt: '2025-10-05',
   },
 
@@ -113,13 +113,13 @@ export const projects: Project[] = [
     tech: ['JavaScript', 'React', 'Vite'],
     repoUrl: 'https://github.com/seiya-matsuoka/color-picker-palette',
     liveUrl: 'https://seiya-matsuoka.github.io/color-picker-palette/',
-    thumb: 'images/projects/color-picker-palette/thumb.png',
+    thumb: 'images/projects/color-picker-palette/thumb.webp',
     description: 'HSL/HSV の調整・コントラスト表示つきのカラーパレット。',
     features: [
       'HEX 入力/コピー に対応、HSL/HSV スライダーで微調整',
       'パレットは お気に入り登録＆ドラッグ＆ドロップで並べ替え、localStorage に永続化',
     ],
-    images: ['images/projects/color-picker-palette/01.png'],
+    images: ['images/projects/color-picker-palette/01.webp'],
     updatedAt: '2025-09-15',
   },
   {
@@ -131,12 +131,17 @@ export const projects: Project[] = [
     tech: ['JavaScript (Vanilla)'],
     repoUrl: 'https://github.com/seiya-matsuoka/reflex-tester-app',
     liveUrl: 'https://seiya-matsuoka.github.io/reflex-tester-app/',
-    // thumb: 'images/projects/reflex-tester-app/thumb.png',
+    thumb: 'images/projects/reflex-tester-app/thumb.webp',
     description:
       '反射神経（反応時間）を測定するシンプルな Web アプリ。\n' +
       '赤 → 緑 に変わったらできるだけ早くクリック／タップ。',
     features: ['待機中（赤） の押下はフライング扱い（再試行）', '依存なしの Vanilla JS 構成'],
-    // images: ['images/projects/reflex-tester-app/01.png'],
+    images: [
+      'images/projects/reflex-tester-app/01.webp',
+      'images/projects/reflex-tester-app/02.webp',
+      'images/projects/reflex-tester-app/03.webp',
+      'images/projects/reflex-tester-app/04.webp',
+    ],
     updatedAt: '2025-09-14',
   },
 ];
