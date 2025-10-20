@@ -117,7 +117,8 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
               }
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
             >
-              Open App
+              {/* 別候補：Open App */}
+              Demo
             </a>
           )}
           <a

@@ -295,7 +295,8 @@ export function ProjectModal({ project, onClose }: Props) {
                   (e.currentTarget.style.backgroundColor = 'var(--color-accent)')
                 }
               >
-                Open App
+                {/* 別候補：Open App */}
+                Demo
               </a>
             )}
             <a
