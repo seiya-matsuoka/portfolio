@@ -28,7 +28,7 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'Next.js', 'Tailwind', 'Prisma', 'Postgres'],
     repoUrl: 'https://github.com/seiya-matsuoka/kanban-task-manager',
     liveUrl: 'https://kanban-task-manager-seiya.vercel.app/',
-    // thumb: 'images/projects/kanban-task-manager/thumb.webp',
+    thumb: 'images/projects/kanban-task-manager/thumb.webp',
     description:
       'ボード / リスト / カード で構成されたシンプルなカンバンボード。\n' +
       '認証なしで自由編集（CRUD操作 と並び替えが誰でも可能）にしています。',
@@ -36,7 +36,11 @@ export const projects: Project[] = [
       'ボード一覧はカード型グリッド、詳細は横並びリスト＋カード',
       'リストの横方向並び替え、カードの縦方向並び替え＋他リストへの移動',
     ],
-    // images: ['images/projects/kanban-task-manager/01.webp'],
+    images: [
+      'images/projects/kanban-task-manager/01.webp',
+      'images/projects/kanban-task-manager/02.webp',
+      'images/projects/kanban-task-manager/03.webp',
+    ],
     updatedAt: '2025-09-28',
   },
   {
