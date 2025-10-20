@@ -22,15 +22,20 @@ export const projects: Project[] = [
   {
     slug: 'kanban-task-manager',
     title: 'Kanban Task Manager',
-    summary: 'TODO：追記', // TODO：追記
-    status: 'WIP',
+    summary: 'ボード / リスト / カード で構成されたシンプルなカンバンボード。',
+    status: 'DONE',
     kind: 'Web App',
-    tech: ['TypeScript', 'Next.js', 'Tailwind', 'DnD Kit', 'Prisma', 'Postgres'],
+    tech: ['TypeScript', 'Next.js', 'Tailwind', 'Prisma', 'Postgres'],
     repoUrl: 'https://github.com/seiya-matsuoka/kanban-task-manager',
-    // liveUrl: 'https://...', // TODO：追記
+    liveUrl: 'https://kanban-task-manager-seiya.vercel.app/',
     // thumb: 'images/projects/kanban-task-manager/thumb.webp',
-    description: 'TODO：追記\n' + 'TODO：追記', //TODO：追記
-    features: ['TODO：追記', 'TODO：追記'], //TODO：追記
+    description:
+      'ボード / リスト / カード で構成されたシンプルなカンバンボード。\n' +
+      '認証なしで自由編集（CRUD操作 と並び替えが誰でも可能）にしています。',
+    features: [
+      'ボード一覧はカード型グリッド、詳細は横並びリスト＋カード',
+      'リストの横方向並び替え、カードの縦方向並び替え＋他リストへの移動',
+    ],
     // images: ['images/projects/kanban-task-manager/01.webp'],
     updatedAt: '2025-09-28',
   },
