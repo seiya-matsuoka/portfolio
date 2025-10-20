@@ -61,16 +61,21 @@ export const projects: Project[] = [
   {
     slug: 'json-diff-viewer',
     title: 'JSON Diff Viewer',
-    summary: 'TODO：追記', // TODO：追記
-    status: 'WIP',
+    summary: 'ファイル／外部APIのJSONを左右で読み込み、ツリー形式の差分を可視化するツール。',
+    status: 'DONE',
     kind: 'Tool',
     tech: ['TypeScript', 'Next.js', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/json-diff-viewer',
-    // liveUrl: 'https://...', // TODO：追記
-    // thumb: 'images/projects/json-diff-viewer/thumb.webp',
-    description: 'TODO：追記\n' + 'TODO：追記', //TODO：追記
-    features: ['TODO：追記', 'TODO：追記'], //TODO：追記
-    // images: ['images/projects/json-diff-viewer/01.webp'],
+    liveUrl: 'https://json-diff-viewer.vercel.app/',
+    thumb: 'images/projects/json-diff-viewer/thumb.webp',
+    description:
+      'ファイル／外部APIのJSONを左右で読み込み、ツリー形式の差分を可視化するツール。\n' +
+      'コピーや差分一覧のダウンロードも可能です。',
+    features: ['ファイルインポート（.json） と、外部APIのURL取得が可能（アプリ内プロキシ経由）'],
+    images: [
+      'images/projects/json-diff-viewer/01.webp',
+      'images/projects/json-diff-viewer/02.webp',
+    ],
     updatedAt: '2025-09-25',
   },
   {
