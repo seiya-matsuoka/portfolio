@@ -25,6 +25,11 @@
   /* focus ring */
   --color-ring: theme(colors.indigo.400);
 
+  /* status colors */
+  --status-done-fg: theme(colors.green.600);
+  --status-wip-fg: theme(colors.amber.600);
+  --status-archived-fg: theme(colors.slate.600);
+
   /* radius / shadow */
   --radius-md: 0.5rem;
   /* 8px */
@@ -47,6 +52,10 @@
   --color-accent-contrast: white;
 
   --color-ring: theme(colors.indigo.500);
+
+  --status-done-fg: theme(colors.green.400);
+  --status-wip-fg: theme(colors.amber.400);
+  --status-archived-fg: theme(colors.slate.400);
 }
 
 /* アクセント差し替え */
