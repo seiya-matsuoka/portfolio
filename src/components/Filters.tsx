@@ -24,17 +24,11 @@ export function Filters({
 
   const statusClass = (active: boolean) =>
     `inline-flex items-center rounded-md border px-2.5 py-1.5 text-sm transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] outline-offset-2 ${
-      active
-        ? 'border-transparent text-white'
-        : 'border-[color:var(--color-border)] bg-white hover:border-slate-300'
+      active ? 'border-transparent text-white' : ''
     }`;
 
-  const chipClass = (active: boolean) =>
-    `inline-flex items-center rounded-full border px-2.5 py-1 text-sm transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] outline-offset-2 ${
-      active
-        ? 'border-transparent text-[color:var(--color-bg)]'
-        : 'border-[color:var(--color-border)] bg-slate-50 text-slate-700 hover:border-slate-300'
-    }`;
+  const chipClass = (_active: boolean) =>
+    `inline-flex items-center rounded-full border px-2.5 py-1 text-sm transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] outline-offset-2`;
 
   return (
     <div className="flex flex-col gap-4">
@@ -53,7 +47,9 @@ export function Filters({
               onClick={() => onChangeStatus(s)}
               className={statusClass(active)}
               style={{
-                backgroundColor: active ? 'var(--color-accent)' : 'white',
+                backgroundColor: active ? 'var(--color-accent)' : 'var(--color-surface)',
+                borderColor: active ? 'transparent' : 'var(--color-border)',
+                color: active ? 'white' : 'var(--color-fg)',
               }}
             >
               {s}
@@ -77,7 +73,9 @@ export function Filters({
               onClick={() => onToggleKind(k)}
               className={chipClass(active)}
               style={{
-                backgroundColor: active ? 'var(--color-fg)' : 'var(--color-surface)',
+                background: active ? 'var(--color-fg)' : 'var(--color-surface)',
+                color: active ? 'var(--color-bg)' : 'var(--color-fg)',
+                borderColor: 'var(--color-border)',
               }}
             >
               {k}
@@ -87,11 +85,11 @@ export function Filters({
         <button
           type="button"
           onClick={onResetKinds}
-          className="ml-1 inline-flex items-center rounded-md border px-2 py-1 text-xs outline-offset-2 hover:border-slate-300 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+          className="ml-1 inline-flex items-center rounded-md border px-2 py-1 text-xs outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
           title="Kind選択をクリア"
           style={{
             borderColor: 'var(--color-border)',
-            background: 'white',
+            background: 'var(--color-surface)',
             color: 'var(--color-muted)',
           }}
         >

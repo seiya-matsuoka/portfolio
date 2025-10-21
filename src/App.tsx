@@ -179,7 +179,7 @@ export default function App() {
         {/* ヒーロー */}
         <section className="py-10 md:py-14">
           <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Personal Projects</h1>
-          <p className="mt-3 max-w-2xl leading-7 text-slate-600">
+          <p className="mt-3 max-w-2xl leading-7" style={{ color: 'var(--color-muted)' }}>
             学習目的の個人開発で作成した小さなゲームとWebアプリの一覧。
             <br />
             React / TypeScript / JavaScript を中心に学習中。 実務では Java を約2年を経験。
@@ -206,7 +206,14 @@ export default function App() {
         {/* グリッド */}
         <section className="pb-16" aria-label="プロジェクト一覧">
           {sorted.length === 0 ? (
-            <div className="rounded-md border border-slate-200 bg-white p-6 text-slate-500">
+            <div
+              className="rounded-md border p-6"
+              style={{
+                borderColor: 'var(--color-border)',
+                background: 'var(--color-surface)',
+                color: 'var(--color-muted)',
+              }}
+            >
               条件に一致する項目がありません。
             </div>
           ) : (

@@ -27,7 +27,12 @@ export function ThemeControls() {
         id="theme-mode"
         value={theme}
         onChange={onThemeChange}
-        className="rounded-md border border-[color:var(--color-border)] bg-white px-2 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+        className="rounded-md border px-2 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+        style={{
+          borderColor: 'var(--color-border)',
+          background: 'var(--color-surface)',
+          color: 'var(--color-fg)',
+        }}
         title="Theme mode"
       >
         <option value="light">Light</option>

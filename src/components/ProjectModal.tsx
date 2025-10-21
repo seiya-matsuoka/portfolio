@@ -142,7 +142,7 @@ export function ProjectModal({ project, onClose }: Props) {
             aria-label="Close"
             style={{
               borderColor: 'var(--color-border)',
-              background: 'white',
+              background: 'var(--color-surface)',
               color: 'var(--color-fg)',
             }}
           >
@@ -152,7 +152,8 @@ export function ProjectModal({ project, onClose }: Props) {
 
         {/* メディア：ギャラリー or プレースホルダー */}
         <div
-          className="relative w-full overflow-hidden bg-slate-100"
+          className="relative w-full overflow-hidden"
+          style={{ background: 'var(--color-surface)' }}
           aria-roledescription="carousel"
           aria-label="Project previews"
         >
@@ -186,7 +187,8 @@ export function ProjectModal({ project, onClose }: Props) {
               <button
                 type="button"
                 onClick={prev}
-                className="absolute top-1/2 left-2 -translate-y-1/2 rounded-md bg-white/80 px-2 py-1 text-sm shadow hover:bg-white"
+                className="absolute top-1/2 left-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
+                style={{ background: 'var(--color-surface)', opacity: 0.9 }}
                 aria-label="前の画像"
               >
                 ←
@@ -194,7 +196,8 @@ export function ProjectModal({ project, onClose }: Props) {
               <button
                 type="button"
                 onClick={next}
-                className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md bg-white/80 px-2 py-1 text-sm shadow hover:bg-white"
+                className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
+                style={{ background: 'var(--color-surface)', opacity: 0.9 }}
                 aria-label="次の画像"
               >
                 →
@@ -202,15 +205,17 @@ export function ProjectModal({ project, onClose }: Props) {
 
               {/* ドットナビ */}
               <div className="pointer-events-none absolute inset-x-0 bottom-2 grid place-items-center">
-                <div className="pointer-events-auto inline-flex items-center gap-1 rounded-full bg-white/80 px-2 py-1">
+                <div
+                  className="pointer-events-auto inline-flex items-center gap-1 rounded-full px-2 py-1"
+                  style={{ background: 'var(--color-surface)', opacity: 0.9 }}
+                >
                   {gallery.map((_, i) => (
                     <button
                       key={i}
                       type="button"
                       onClick={() => go(i)}
-                      className={`h-2.5 w-2.5 rounded-full ${
-                        i === idx ? 'bg-slate-900' : 'bg-slate-400'
-                      }`}
+                      className="h-2.5 w-2.5 rounded-full"
+                      style={{ background: i === idx ? 'var(--color-fg)' : 'var(--color-border)' }}
                       aria-label={`画像 ${i + 1} を表示`}
                       aria-current={i === idx ? 'true' : 'false'}
                     />
@@ -303,10 +308,10 @@ export function ProjectModal({ project, onClose }: Props) {
               href={project.repoUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="rounded-md border px-3 py-1.5 text-sm outline-offset-2 hover:border-slate-300 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+              className="rounded-md border px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
               style={{
                 borderColor: 'var(--color-border)',
-                background: 'white',
+                background: 'var(--color-surface)',
                 color: 'var(--color-fg)',
               }}
             >
