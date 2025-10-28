@@ -20,6 +20,25 @@ export type Project = {
 // 暫定データ
 export const projects: Project[] = [
   {
+    slug: 'tetromino-fall-game',
+    title: 'Tetromino Fall Game',
+    summary: 'TODO',
+    status: 'WIP',
+    kind: 'Game',
+    tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
+    repoUrl: 'https://github.com/seiya-matsuoka/tetromino-fall-game',
+    // liveUrl: 'TODO',
+    // thumb: 'images/projects/tetromino-fall-game/thumb.webp',
+    description: 'TODO\n' + 'TODO',
+    features: ['TODO', 'TODO'],
+    // images: [
+    // 'images/projects/tetromino-fall-game/01.webp',
+    // 'images/projects/tetromino-fall-game/02.webp',
+    // 'images/projects/tetromino-fall-game/03.webp',
+    // ],
+    updatedAt: '2025-10-28',
+  },
+  {
     slug: 'kanban-task-manager',
     title: 'Kanban Task Manager',
     summary: 'ボード / リスト / カード で構成されたシンプルなカンバンボード。',
