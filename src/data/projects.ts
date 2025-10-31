@@ -27,7 +27,7 @@ export const projects: Project[] = [
     kind: 'Game',
     tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/tetromino-fall-game',
-    // liveUrl: 'TODO',
+    liveUrl: 'https://seiya-matsuoka.github.io/tetromino-fall-game/',
     // thumb: 'images/projects/tetromino-fall-game/thumb.webp',
     description: 'TODO\n' + 'TODO',
     features: ['TODO', 'TODO'],
