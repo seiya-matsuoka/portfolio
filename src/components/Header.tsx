@@ -1,4 +1,6 @@
 import { ThemeControls } from './ThemeControls';
+import { SiGithub } from 'react-icons/si';
+import { FiMail } from 'react-icons/fi';
 
 export function Header() {
   return (
@@ -17,7 +19,10 @@ export function Header() {
             className="text-sm underline decoration-transparent hover:decoration-current"
             style={{ color: 'var(--color-fg)' }}
           >
-            Email
+            <span className="inline-flex items-center gap-1.5">
+              <FiMail className="h-4 w-4" aria-hidden="true" />
+              <span>Email</span>
+            </span>
           </a>
           <a
             href="https://github.com/seiya-matsuoka"
@@ -26,7 +31,10 @@ export function Header() {
             className="text-sm underline decoration-transparent hover:decoration-current"
             style={{ color: 'var(--color-fg)' }}
           >
-            GitHub
+            <span className="inline-flex items-center gap-1.5">
+              <SiGithub className="h-4 w-4" aria-hidden="true" />
+              <span>GitHub</span>
+            </span>
           </a>
 
           <ThemeControls />
