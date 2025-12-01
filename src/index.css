@@ -30,6 +30,16 @@
   --status-wip-fg: theme(colors.amber.600);
   --status-archived-fg: theme(colors.slate.600);
 
+  /* secondary Button */
+  --btn-sec-bg: theme(colors.slate.700);
+  --btn-sec-fg: white;
+  --btn-sec-border: theme(colors.slate.800);
+  --btn-sec-bg-hover: theme(colors.slate.800);
+  /* --btn-sec-bg: theme(colors.slate.800);
+  --btn-sec-fg: white;
+  --btn-sec-border: theme(colors.slate.900);
+  --btn-sec-bg-hover: theme(colors.slate.900); */
+
   /* radius / shadow */
   --radius-md: 0.5rem;
   /* 8px */
@@ -56,6 +66,15 @@
   --status-done-fg: theme(colors.green.400);
   --status-wip-fg: theme(colors.amber.400);
   --status-archived-fg: theme(colors.slate.400);
+
+  --btn-sec-bg: theme(colors.slate.700);
+  --btn-sec-fg: white;
+  --btn-sec-border: theme(colors.slate.800);
+  --btn-sec-bg-hover: theme(colors.slate.600);
+  /* --btn-sec-bg: theme(colors.slate.800);
+  --btn-sec-fg: white;
+  --btn-sec-border: theme(colors.slate.900);
+  --btn-sec-bg-hover: theme(colors.slate.700); */
 }
 
 /* アクセント差し替え */
@@ -81,4 +100,17 @@
 .focus-ring {
   outline: 2px solid var(--color-ring);
   outline-offset: 2px;
+}
+
+/* GitHubボタン */
+.btn-secondary {
+  border: 1px solid var(--btn-sec-border);
+  background: var(--btn-sec-bg);
+  color: var(--btn-sec-fg);
+  transition: background-color .15s ease;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: var(--btn-sec-bg-hover);
 }
