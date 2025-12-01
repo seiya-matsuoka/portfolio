@@ -1,6 +1,8 @@
 import type { MouseEventHandler } from 'react';
 import type { Project } from '../data/projects';
 import { asset } from '../lib/asset';
+import { SiGithub } from 'react-icons/si';
+import { FaPlayCircle } from 'react-icons/fa';
 
 type Props = {
   project: Project;
@@ -127,7 +129,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
               href={project.liveUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+              className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
               style={{
                 backgroundColor: 'var(--color-accent)',
                 color: 'var(--color-accent-contrast)',
@@ -137,8 +139,8 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
               }
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
             >
-              {/* 別候補：Open App */}
-              Demo
+              <FaPlayCircle className="h-4 w-4" aria-hidden="true" />
+              <span>Demo</span>
             </a>
           )}
           <a
@@ -146,14 +148,10 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
             href={project.repoUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="rounded-md border px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-            style={{
-              borderColor: 'var(--color-border)',
-              background: 'var(--color-surface)',
-              color: 'var(--color-fg)',
-            }}
+            className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
           >
-            GitHub
+            <SiGithub className="h-4 w-4" aria-hidden="true" />
+            <span>GitHub</span>
           </a>
         </div>
       </div>
