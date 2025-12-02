@@ -1,4 +1,4 @@
-export type ProjectStatus = 'DONE' | 'WIP' | 'ARCHIVED';
+export type ProjectStatus = 'DONE' | 'WIP';
 export type ProjectKind = 'Game' | 'Web App' | 'Tool';
 
 export type Project = {

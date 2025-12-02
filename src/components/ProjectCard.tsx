@@ -14,7 +14,6 @@ function StatusBadge({ status }: { status: Project['status'] }) {
   const map: Record<Project['status'], { color: string }> = {
     DONE: { color: 'var(--status-done-fg)' },
     WIP: { color: 'var(--status-wip-fg)' },
-    ARCHIVED: { color: 'var(--status-archived-fg)' },
   };
   return (
     <span

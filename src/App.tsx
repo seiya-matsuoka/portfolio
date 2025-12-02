@@ -23,7 +23,7 @@ function useQueryParam(name: string) {
 type StatusOption = 'ALL' | ProjectStatus;
 
 // URL <-> 状態 のヘルパ
-const STATUS_SET = new Set<StatusOption>(['ALL', 'DONE', 'WIP', 'ARCHIVED']);
+const STATUS_SET = new Set<StatusOption>(['ALL', 'DONE', 'WIP']);
 const ALL_KINDS: ProjectKind[] = Array.from(new Set(all.map((p) => p.kind)));
 
 function parseStatusFromURL(sp: URLSearchParams): StatusOption {

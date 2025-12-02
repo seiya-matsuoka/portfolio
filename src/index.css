@@ -28,7 +28,6 @@
   /* status colors */
   --status-done-fg: theme(colors.green.600);
   --status-wip-fg: theme(colors.amber.600);
-  --status-archived-fg: theme(colors.slate.600);
 
   /* secondary Button */
   --btn-sec-bg: theme(colors.slate.700);
@@ -65,7 +64,6 @@
 
   --status-done-fg: theme(colors.green.400);
   --status-wip-fg: theme(colors.amber.400);
-  --status-archived-fg: theme(colors.slate.400);
 
   --btn-sec-bg: theme(colors.slate.700);
   --btn-sec-fg: white;
