@@ -243,7 +243,7 @@ export function ProjectModal({ project, onClose }: Props) {
           {project.features?.length ? (
             <div>
               <h3 className="mb-1 text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
-                主要機能
+                主な機能
               </h3>
               <ul
                 className="list-disc space-y-1 pl-5 text-sm"
