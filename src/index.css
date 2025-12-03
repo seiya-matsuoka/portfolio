@@ -39,6 +39,12 @@
   --btn-sec-border: theme(colors.slate.900);
   --btn-sec-bg-hover: theme(colors.slate.900); */
 
+  /* featured */
+  --featured-card-bg: color-mix(in oklab, var(--color-card), var(--color-accent) 7%);
+  --featured-card-border: color-mix(in oklab, var(--color-border), var(--color-accent) 50%);
+  --featured-badge-bg: color-mix(in oklab, var(--color-accent), white 10%);
+  --featured-badge-fg: var(--color-accent-contrast);
+
   /* radius / shadow */
   --radius-md: 0.5rem;
   /* 8px */
@@ -73,6 +79,11 @@
   --btn-sec-fg: white;
   --btn-sec-border: theme(colors.slate.900);
   --btn-sec-bg-hover: theme(colors.slate.700); */
+
+  --featured-card-bg: color-mix(in oklab, var(--color-card), var(--color-accent) 12%);
+  --featured-card-border: color-mix(in oklab, var(--color-border), var(--color-accent) 40%);
+  --featured-badge-bg: color-mix(in oklab, var(--color-accent), black 15%);
+  --featured-badge-fg: var(--color-accent-contrast);
 }
 
 /* アクセント差し替え */

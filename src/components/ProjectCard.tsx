@@ -44,6 +44,14 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
     }
   };
 
+  const isFeatured = project.featured === true;
+
+  const articleClass =
+    'group cursor-pointer rounded-lg border shadow-[0_1px_0_0_rgba(0,0,0,0.03)] transition-transform duration-150 hover:-translate-y-0.5 ' +
+    (isFeatured
+      ? 'border-[color:var(--featured-card-border)] bg-[color:var(--featured-card-bg)]'
+      : 'border-[color:var(--color-border)] bg-[color:var(--color-card)]');
+
   return (
     <article
       onClick={handleOpen}
@@ -51,7 +59,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
       role="button"
       tabIndex={0}
       aria-label={`「${project.title}」の詳細を開く`}
-      className="group cursor-pointer rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] transition-transform duration-150 hover:-translate-y-0.5"
+      className={articleClass}
     >
       {/* サムネ */}
       <div
@@ -78,12 +86,26 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
       {/* 本文 */}
       <div className="flex flex-col gap-3 p-4">
         <div className="flex items-center justify-between gap-2">
-          <h3
-            className="line-clamp-1 text-sm leading-tight font-semibold md:text-base"
-            style={{ color: 'var(--color-fg)' }}
-          >
-            {project.title}
-          </h3>
+          <div className="min-w-0 flex-1">
+            {project.featured && (
+              <span
+                className="mb-1 inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium tracking-wide"
+                style={{
+                  backgroundColor: 'var(--featured-badge-bg)',
+                  color: 'var(--featured-badge-fg)',
+                }}
+              >
+                Featured
+              </span>
+            )}
+            <h3
+              className="line-clamp-1 text-sm leading-tight font-semibold md:text-base"
+              style={{ color: 'var(--color-fg)' }}
+            >
+              {project.title}
+            </h3>
+          </div>
+
           <StatusBadge status={project.status} />
         </div>
 

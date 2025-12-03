@@ -157,9 +157,21 @@ export default function App() {
 
   const sorted = useMemo(() => {
     const toTS = (s?: string) => (s ? new Date(s).getTime() : 0);
+
     return [...filtered].sort((a, b) => {
+      // featured の有無でソート
+      const aFeat = a.featured ? 1 : 0;
+      const bFeat = b.featured ? 1 : 0;
+      if (aFeat !== bFeat) {
+        // featured === true が前に来る
+        return bFeat - aFeat;
+      }
+
+      // 更新日降順
       const byDate = toTS(b.updatedAt) - toTS(a.updatedAt);
       if (byDate !== 0) return byDate;
+
+      // タイトルの辞書順
       return a.title.localeCompare(b.title);
     });
   }, [filtered]);
