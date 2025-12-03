@@ -14,6 +14,7 @@ export type Project = {
   description?: string; //モーダル用の詳しい説明
   features?: string[]; //主な機能・要点
   images?: string[]; //追加スクショ（16:9（1200×675 or 1600×900）） / 形式：images/projects/<slug>/1.webp, 2.webp ...
+featured?: boolean; // 強調したいプロジェクト
   updatedAt?: string;
 };
 
