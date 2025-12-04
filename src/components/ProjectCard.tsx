@@ -46,11 +46,15 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
 
   const isFeatured = project.featured === true;
 
-  const articleClass =
-    'group cursor-pointer rounded-lg border shadow-[0_1px_0_0_rgba(0,0,0,0.03)] transition-transform duration-150 hover:-translate-y-0.5 ' +
-    (isFeatured
-      ? 'border-[color:var(--featured-card-border)] bg-[color:var(--featured-card-bg)]'
-      : 'border-[color:var(--color-border)] bg-[color:var(--color-card)]');
+  const baseClass = 'group cursor-pointer rounded-lg border transition-transform duration-150';
+
+  const featuredClass =
+    'border-[color:var(--featured-card-border)] bg-[color:var(--featured-card-bg)] shadow-md hover:-translate-y-1 hover:shadow-lg';
+
+  const normalClass =
+    'border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] hover:-translate-y-0.5 hover:shadow-md';
+
+  const articleClass = `${baseClass} ${isFeatured ? featuredClass : normalClass}`;
 
   return (
     <article
