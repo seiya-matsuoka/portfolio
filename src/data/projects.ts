@@ -21,6 +21,26 @@ featured?: boolean; // 強調したいプロジェクト
 // 暫定データ
 export const projects: Project[] = [
   {
+    slug: 'reading-log-app',
+    title: 'Reading Log App',
+    summary: 'TODO',
+    status: 'WIP',
+    kind: 'Web App',
+    tech: ['JavaScript', 'Express', 'React', 'Vite', 'Tailwind', 'SQL', 'Postgres'],
+    repoUrl: 'https://github.com/seiya-matsuoka/reading-log-app',
+    liveUrl: 'https://reading-log-app-frontend.vercel.app/',
+    // thumb: 'images/projects/reading-log-app/thumb.webp',
+    description: 'TODO\n' + 'TODO',
+    features: ['TODO', 'TODO'],
+    // images: [
+    // 'images/projects/reading-log-app/01.webp',
+    // 'images/projects/reading-log-app/02.webp',
+    // 'images/projects/reading-log-app/03.webp',
+    // ],
+    featured: true,
+    updatedAt: '2025-12-06',
+  },
+  {
     slug: 'tetromino-fall-game',
     title: 'Tetromino Fall Game',
     summary: 'TODO',
