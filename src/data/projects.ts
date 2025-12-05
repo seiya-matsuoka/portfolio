@@ -57,6 +57,7 @@ export const projects: Project[] = [
     // 'images/projects/tetromino-fall-game/02.webp',
     // 'images/projects/tetromino-fall-game/03.webp',
     // ],
+    featured: false,
     updatedAt: '2025-10-28',
   },
   {
@@ -81,6 +82,7 @@ export const projects: Project[] = [
       'images/projects/kanban-task-manager/02.webp',
       'images/projects/kanban-task-manager/03.webp',
     ],
+    featured: false,
     updatedAt: '2025-09-28',
   },
   {
@@ -105,6 +107,7 @@ export const projects: Project[] = [
       'images/projects/quick-reaction-game/05.webp',
       'images/projects/quick-reaction-game/06.webp',
     ],
+    featured: false,
     updatedAt: '2025-10-07',
   },
   {
@@ -125,6 +128,7 @@ export const projects: Project[] = [
       'images/projects/json-diff-viewer/01.webp',
       'images/projects/json-diff-viewer/02.webp',
     ],
+    featured: false,
     updatedAt: '2025-09-25',
   },
   {
@@ -146,6 +150,7 @@ export const projects: Project[] = [
       'images/projects/shape-trace-game/02.webp',
       'images/projects/shape-trace-game/03.webp',
     ],
+    featured: false,
     updatedAt: '2025-09-29',
   },
   {
@@ -171,6 +176,7 @@ export const projects: Project[] = [
       'images/projects/total-match-game/03.webp',
       'images/projects/total-match-game/04.webp',
     ],
+    featured: false,
     updatedAt: '2025-10-05',
   },
 
@@ -194,6 +200,7 @@ export const projects: Project[] = [
       'images/projects/color-picker-palette/02.webp',
       'images/projects/color-picker-palette/03.webp',
     ],
+    featured: false,
     updatedAt: '2025-09-15',
   },
   {
@@ -216,6 +223,7 @@ export const projects: Project[] = [
       'images/projects/reflex-tester-app/03.webp',
       'images/projects/reflex-tester-app/04.webp',
     ],
+    featured: false,
     updatedAt: '2025-09-14',
   },
 ];
