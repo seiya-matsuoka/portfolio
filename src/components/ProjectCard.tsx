@@ -67,7 +67,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
     >
       {/* サムネ */}
       <div
-        className="aspect-[16/9] w-full overflow-hidden rounded-t-lg"
+        className="relative aspect-[16/9] w-full overflow-hidden rounded-t-lg"
         style={{ background: 'var(--color-surface)' }}
       >
         {project.thumb ? (
@@ -84,6 +84,18 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
           <div className="grid h-full w-full place-items-center text-xs text-slate-400">
             No Image
           </div>
+        )}
+
+        {project.featured && (
+          <span
+            className="absolute top-3 left-3 inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium"
+            style={{
+              backgroundColor: 'var(--featured-badge-bg)',
+              color: 'var(--featured-badge-fg)',
+            }}
+          >
+            Featured
+          </span>
         )}
       </div>
 
