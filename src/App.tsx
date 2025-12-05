@@ -192,9 +192,9 @@ export default function App() {
         <section className="py-10 md:py-14">
           <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Personal Projects</h1>
           <p className="mt-3 max-w-2xl leading-7" style={{ color: 'var(--color-muted)' }}>
-            学習目的の個人開発で作成した小さなゲームとWebアプリの一覧。
-            <br />
-            React / TypeScript / JavaScript を中心に学習中。 実務では Java を約2年を経験。
+            学習目的の個人開発で作成した成果物の一覧。
+            {/* <br />
+            React / TypeScript / JavaScript を中心に学習中。 */}
           </p>
         </section>
 
