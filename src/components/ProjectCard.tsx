@@ -103,17 +103,6 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
       <div className="flex flex-col gap-3 p-4">
         <div className="flex items-center justify-between gap-2">
           <div className="min-w-0 flex-1">
-            {project.featured && (
-              <span
-                className="mb-1 inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium tracking-wide"
-                style={{
-                  backgroundColor: 'var(--featured-badge-bg)',
-                  color: 'var(--featured-badge-fg)',
-                }}
-              >
-                Featured
-              </span>
-            )}
             <h3
               className="line-clamp-1 text-sm leading-tight font-semibold md:text-base"
               style={{ color: 'var(--color-fg)' }}
