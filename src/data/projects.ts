@@ -43,20 +43,27 @@ export const projects: Project[] = [
   {
     slug: 'tetromino-fall-game',
     title: 'Tetromino Fall Game',
-    summary: 'TODO',
-    status: 'WIP',
+    summary:
+      '落下パズル（テトロミノ）を 7バッグ・回転・レベル制の重力・スコア・キーボード/タッチ操作で実装。',
+    status: 'DONE',
     kind: 'Game',
     tech: ['TypeScript', 'Vite', 'Tailwind'],
     repoUrl: 'https://github.com/seiya-matsuoka/tetromino-fall-game',
     liveUrl: 'https://seiya-matsuoka.github.io/tetromino-fall-game/',
-    // thumb: 'images/projects/tetromino-fall-game/thumb.webp',
-    description: 'TODO\n' + 'TODO',
-    features: ['TODO', 'TODO'],
-    // images: [
-    // 'images/projects/tetromino-fall-game/01.webp',
-    // 'images/projects/tetromino-fall-game/02.webp',
-    // 'images/projects/tetromino-fall-game/03.webp',
-    // ],
+    thumb: 'images/projects/tetromino-fall-game/thumb.webp',
+    description:
+      '落下パズル（テトロミノ）を 7バッグ・回転・レベル制の重力・スコア・キーボード/タッチ操作で実装。\n' +
+      '← / →：左右移動、↓：ソフトドロップ（長押しでハードドロップ）、↑：右回転（長押しで左回転に変更）',
+    features: [
+      '7バッグ方式で偏りを抑えたミノ供給',
+      '1〜4行の同時ライン消去に応じて加点、10行ごとに自動レベルアップ',
+    ],
+    images: [
+      'images/projects/tetromino-fall-game/01.webp',
+      'images/projects/tetromino-fall-game/02.webp',
+      'images/projects/tetromino-fall-game/03.webp',
+      'images/projects/tetromino-fall-game/04.webp',
+    ],
     featured: false,
     updatedAt: '2025-10-28',
   },
