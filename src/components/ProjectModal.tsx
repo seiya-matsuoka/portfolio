@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Project } from '../data/projects';
 import { asset } from '../lib/asset';
 import { SiGithub } from 'react-icons/si';
-import { FaPlayCircle } from 'react-icons/fa';
+import { FaPlayCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 type Props = {
   project: Project;
@@ -270,23 +270,36 @@ export function ProjectModal({ project, onClose }: Props) {
             {/* コントロール */}
             {gallery.length > 1 && (
               <>
+                {/* 左ボタン */}
                 <button
                   type="button"
                   onClick={prev}
-                  className="absolute top-1/2 left-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
-                  style={{ background: 'var(--color-surface)', opacity: 0.9 }}
+                  className="group absolute top-1/2 left-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full shadow-md outline-offset-2 transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:h-11 md:w-11"
+                  style={{
+                    background: 'var(--color-surface)',
+                    border: '1px solid var(--color-border)',
+                    color: 'var(--color-fg)',
+                    opacity: 0.9,
+                  }}
                   aria-label="前の画像"
                 >
-                  ←
+                  <FaChevronLeft className="h-5 w-5" aria-hidden="true" />
                 </button>
+
+                {/* 右ボタン */}
                 <button
                   type="button"
                   onClick={next}
-                  className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
-                  style={{ background: 'var(--color-surface)', opacity: 0.9 }}
+                  className="group absolute top-1/2 right-2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full shadow-md outline-offset-2 transition-transform hover:scale-[1.03] focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:h-11 md:w-11"
+                  style={{
+                    background: 'var(--color-surface)',
+                    border: '1px solid var(--color-border)',
+                    color: 'var(--color-fg)',
+                    opacity: 0.9,
+                  }}
                   aria-label="次の画像"
                 >
-                  →
+                  <FaChevronRight className="h-5 w-5" aria-hidden="true" />
                 </button>
 
                 {/* ドットナビ */}
