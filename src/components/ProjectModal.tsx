@@ -154,127 +154,149 @@ export function ProjectModal({ project, onClose }: Props) {
 
         {/* ギャラリー＋本文 */}
         <div className="min-h-0 flex-1 overflow-y-auto">
-        {/* メディア：ギャラリー or プレースホルダー */}
-        <div
-          className="relative w-full overflow-hidden"
-          style={{ background: 'var(--color-surface)' }}
-          aria-roledescription="carousel"
-          aria-label="Project previews"
-        >
-          <div className="relative aspect-[16/9] w-full">
-            {hasGallery ? (
-              gallery.map((src, i) => (
-                <img
-                  key={`${src}-${i}`}
-                  src={src}
-                  alt={`${project.title} preview ${i + 1}`}
-                  className={`absolute inset-0 h-full w-full object-cover ${
-                    i === idx ? 'opacity-100' : 'opacity-0'
-                  } transition-opacity duration-200 motion-reduce:transition-none`}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  fetchPriority={i === idx ? 'high' : 'auto'}
-                  sizes="(min-width: 768px) 768px, calc(100vw - 2rem)"
-                  aria-hidden={i === idx ? 'false' : 'true'}
-                />
-              ))
-            ) : (
-              <div className="absolute inset-0 grid h-full w-full place-items-center text-sm text-slate-400">
-                Preview
-              </div>
-            )}
-          </div>
+          {/* メディア：ギャラリー or プレースホルダー */}
+          <div
+            className="relative w-full overflow-hidden"
+            style={{ background: 'var(--color-surface)' }}
+            aria-roledescription="carousel"
+            aria-label="Project previews"
+          >
+            <div className="relative aspect-[16/9] w-full">
+              {hasGallery ? (
+                gallery.map((src, i) => (
+                  <img
+                    key={`${src}-${i}`}
+                    src={src}
+                    alt={`${project.title} preview ${i + 1}`}
+                    className={`absolute inset-0 h-full w-full object-cover ${
+                      i === idx ? 'opacity-100' : 'opacity-0'
+                    } transition-opacity duration-200 motion-reduce:transition-none`}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    fetchPriority={i === idx ? 'high' : 'auto'}
+                    sizes="(min-width: 768px) 768px, calc(100vw - 2rem)"
+                    aria-hidden={i === idx ? 'false' : 'true'}
+                  />
+                ))
+              ) : (
+                <div className="absolute inset-0 grid h-full w-full place-items-center text-sm text-slate-400">
+                  Preview
+                </div>
+              )}
+            </div>
 
-          {/* コントロール */}
-          {gallery.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={prev}
-                className="absolute top-1/2 left-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
-                style={{ background: 'var(--color-surface)', opacity: 0.9 }}
-                aria-label="前の画像"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
-                style={{ background: 'var(--color-surface)', opacity: 0.9 }}
-                aria-label="次の画像"
-              >
-                →
-              </button>
-
-              {/* ドットナビ */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-2 grid place-items-center">
-                <div
-                  className="pointer-events-auto inline-flex items-center gap-1 rounded-full px-2 py-1"
+            {/* コントロール */}
+            {gallery.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prev}
+                  className="absolute top-1/2 left-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
                   style={{ background: 'var(--color-surface)', opacity: 0.9 }}
+                  aria-label="前の画像"
                 >
-                  {gallery.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => go(i)}
-                      className="h-2.5 w-2.5 rounded-full"
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={next}
+                  className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md px-2 py-1 text-sm shadow"
+                  style={{ background: 'var(--color-surface)', opacity: 0.9 }}
+                  aria-label="次の画像"
+                >
+                  →
+                </button>
+
+                {/* ドットナビ */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-2 grid place-items-center">
+                  <div
+                    className="pointer-events-auto inline-flex items-center gap-1 rounded-full px-2 py-1"
+                    style={{ background: 'var(--color-surface)', opacity: 0.9 }}
+                  >
+                    {gallery.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => go(i)}
+                        className="h-2.5 w-2.5 rounded-full"
                         style={{
                           background: i === idx ? 'var(--color-fg)' : 'var(--color-border)',
                         }}
-                      aria-label={`画像 ${i + 1} を表示`}
-                      aria-current={i === idx ? 'true' : 'false'}
-                    />
-                  ))}
+                        aria-label={`画像 ${i + 1} を表示`}
+                        aria-current={i === idx ? 'true' : 'false'}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
 
-        {/* 本文 */}
-        <div className="space-y-4 p-4">
-          {/* 概要 */}
-          <p
-            id={descId}
-            className="text-sm leading-7 whitespace-pre-line md:text-base"
-            style={{ color: 'var(--color-fg)' }}
-          >
-            {bodyText}
-          </p>
-
-          {/* 機能リスト */}
-          {project.features?.length ? (
-            <div>
-              <h3 className="mb-1 text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
-                主な機能
-              </h3>
-              <ul
-                className="list-disc space-y-1 pl-5 text-sm"
-                style={{ color: 'var(--color-muted)' }}
+          {/* 本文 */}
+          <div className="space-y-4 p-4">
+            {/* CTA */}
+            <div className="flex items-center gap-2">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+                  style={{
+                    backgroundColor: 'var(--color-accent)',
+                    color: 'var(--color-accent-contrast)',
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = 'var(--color-accent)')
+                  }
+                >
+                  <FaPlayCircle className="h-4 w-4" aria-hidden="true" />
+                  <span>Demo</span>
+                </a>
+              )}
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
               >
-                {project.features.map((f, i) => (
-                  <li key={i}>{f}</li>
-                ))}
-              </ul>
+                <SiGithub className="h-4 w-4" aria-hidden="true" />
+                <span>GitHub</span>
+              </a>
             </div>
-          ) : null}
 
-          {/* 技術タグ */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span
-              className="rounded border px-1.5 py-0.5 text-[11px]"
-              style={{
-                borderColor: 'var(--color-border)',
-                background: 'var(--color-surface)',
-                color: 'var(--color-fg)',
-              }}
+            {/* 概要 */}
+            <p
+              id={descId}
+              className="text-sm leading-7 whitespace-pre-line md:text-base"
+              style={{ color: 'var(--color-fg)' }}
             >
-              {project.kind}
-            </span>
-            {project.tech.map((t) => (
+              {bodyText}
+            </p>
+
+            {/* 機能リスト */}
+            {project.features?.length ? (
+              <div>
+                <h3 className="mb-1 text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
+                  主な機能
+                </h3>
+                <ul
+                  className="list-disc space-y-1 pl-5 text-sm"
+                  style={{ color: 'var(--color-muted)' }}
+                >
+                  {project.features.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {/* 技術タグ */}
+            <div className="flex flex-wrap items-center gap-2">
               <span
-                key={t}
                 className="rounded border px-1.5 py-0.5 text-[11px]"
                 style={{
                   borderColor: 'var(--color-border)',
@@ -282,43 +304,22 @@ export function ProjectModal({ project, onClose }: Props) {
                   color: 'var(--color-fg)',
                 }}
               >
-                {t}
+                {project.kind}
               </span>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="flex items-center gap-2">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-                style={{
-                  backgroundColor: 'var(--color-accent)',
-                  color: 'var(--color-accent-contrast)',
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = 'var(--color-accent)')
-                }
-              >
-                <FaPlayCircle className="h-4 w-4" aria-hidden="true" />
-                <span>Demo</span>
-              </a>
-            )}
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-            >
-              <SiGithub className="h-4 w-4" aria-hidden="true" />
-              <span>GitHub</span>
-            </a>
+              {project.tech.map((t) => (
+                <span
+                  key={t}
+                  className="rounded border px-1.5 py-0.5 text-[11px]"
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    background: 'var(--color-surface)',
+                    color: 'var(--color-fg)',
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
