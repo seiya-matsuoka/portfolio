@@ -38,6 +38,82 @@ export function ProjectModal({ project, onClose }: Props) {
   const prev = () => go(idx - 1);
   const next = () => go(idx + 1);
 
+  // スワイプ検出用
+  const swipePointerIdRef = useRef<number | null>(null);
+  const swipeStartXRef = useRef(0);
+  const swipeStartYRef = useRef(0);
+  const swipeActiveRef = useRef(false);
+  const SWIPE_THRESHOLD = 40; // px
+
+  const handlePointerDown: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    if (e.pointerType !== 'touch' || !hasGallery) return;
+    swipePointerIdRef.current = e.pointerId;
+    swipeStartXRef.current = e.clientX;
+    swipeStartYRef.current = e.clientY;
+    swipeActiveRef.current = false;
+  };
+
+  const handlePointerMove: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    if (
+      e.pointerType !== 'touch' ||
+      swipePointerIdRef.current === null ||
+      e.pointerId !== swipePointerIdRef.current
+    ) {
+      return;
+    }
+
+    const dx = e.clientX - swipeStartXRef.current;
+    const dy = e.clientY - swipeStartYRef.current;
+
+    // 縦横方向の強さによって判定する
+    if (!swipeActiveRef.current) {
+      // ほぼ動いていない場合はそのまま
+      if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+
+      // 横方向の動きが強い場合はスワイプ開始
+      if (Math.abs(dx) > Math.abs(dy)) {
+        swipeActiveRef.current = true;
+        // 縦スクロールよりスワイプを優先する
+        e.preventDefault();
+      } else {
+        // 縦方向の動きが強い場合はキャンセル
+        swipePointerIdRef.current = null;
+      }
+    }
+  };
+
+  const finishSwipe = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (
+      e.pointerType !== 'touch' ||
+      swipePointerIdRef.current === null ||
+      e.pointerId !== swipePointerIdRef.current
+    ) {
+      return;
+    }
+
+    const dx = e.clientX - swipeStartXRef.current;
+    const dy = e.clientY - swipeStartYRef.current;
+
+    if (swipeActiveRef.current && Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+
+    swipePointerIdRef.current = null;
+    swipeActiveRef.current = false;
+  };
+
+  const handlePointerUp: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    finishSwipe(e);
+  };
+
+  const handlePointerCancel: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    finishSwipe(e);
+  };
+
   // プリロード
   useEffect(() => {
     if (!hasGallery) return;
@@ -161,7 +237,13 @@ export function ProjectModal({ project, onClose }: Props) {
             aria-roledescription="carousel"
             aria-label="Project previews"
           >
-            <div className="relative aspect-[16/9] w-full">
+            <div
+              className="relative aspect-[16/9] w-full touch-pan-y"
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerCancel}
+            >
               {hasGallery ? (
                 gallery.map((src, i) => (
                   <img
