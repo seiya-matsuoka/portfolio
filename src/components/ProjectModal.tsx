@@ -126,10 +126,10 @@ export function ProjectModal({ project, onClose }: Props) {
     >
       <div
         ref={dialogRef}
-        className="animate-in fade-in zoom-in-95 w-full max-w-3xl rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
+        className="animate-in fade-in zoom-in-95 flex max-h-[calc(100vh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
       >
         {/* ヘッダー */}
-        <div className="flex items-center justify-between border-b border-[color:var(--color-border)] p-4">
+        <div className="flex shrink-0 items-center justify-between border-b border-[color:var(--color-border)] p-4">
           <h2
             id={titleId}
             className="text-lg font-semibold md:text-xl"
@@ -152,6 +152,8 @@ export function ProjectModal({ project, onClose }: Props) {
           </button>
         </div>
 
+        {/* ギャラリー＋本文 */}
+        <div className="min-h-0 flex-1 overflow-y-auto">
         {/* メディア：ギャラリー or プレースホルダー */}
         <div
           className="relative w-full overflow-hidden"
@@ -217,7 +219,9 @@ export function ProjectModal({ project, onClose }: Props) {
                       type="button"
                       onClick={() => go(i)}
                       className="h-2.5 w-2.5 rounded-full"
-                      style={{ background: i === idx ? 'var(--color-fg)' : 'var(--color-border)' }}
+                        style={{
+                          background: i === idx ? 'var(--color-fg)' : 'var(--color-border)',
+                        }}
                       aria-label={`画像 ${i + 1} を表示`}
                       aria-current={i === idx ? 'true' : 'false'}
                     />
