@@ -14,7 +14,7 @@ export type Project = {
   description?: string; //モーダル用の詳しい説明
   features?: string[]; //主な機能・要点
   images?: string[]; //追加スクショ（16:9（1200×675 or 1600×900）） / 形式：images/projects/<slug>/1.webp, 2.webp ...
-featured?: boolean; // 強調したいプロジェクト
+  featured?: boolean; // 強調したいプロジェクト
   updatedAt?: string;
 };
 
@@ -23,20 +23,28 @@ export const projects: Project[] = [
   {
     slug: 'reading-log-app',
     title: 'Reading Log App',
-    summary: 'TODO',
+    summary: '読書中の書籍を登録し、累計ページをベースに読書ログを追加して進捗管理できるアプリ。',
     status: 'WIP',
     kind: 'Web App',
-    tech: ['JavaScript', 'Express', 'React', 'Vite', 'Tailwind', 'SQL', 'Postgres'],
+    tech: ['JavaScript', 'React', 'Vite', 'Tailwind', 'Node.js', 'Express', 'SQL', 'Postgres'],
     repoUrl: 'https://github.com/seiya-matsuoka/reading-log-app',
     liveUrl: 'https://reading-log-app-frontend.vercel.app/',
-    // thumb: 'images/projects/reading-log-app/thumb.webp',
-    description: 'TODO\n' + 'TODO',
-    features: ['TODO', 'TODO'],
-    // images: [
-    // 'images/projects/reading-log-app/01.webp',
-    // 'images/projects/reading-log-app/02.webp',
-    // 'images/projects/reading-log-app/03.webp',
-    // ],
+    thumb: 'images/projects/reading-log-app/thumb.webp',
+    description:
+      '読書中の書籍を登録し、累計ページをベースに読書ログを追加して進捗管理できるアプリ。\n' +
+      'メモや月次統計にも対応。',
+    features: [
+      '書籍の登録 / 編集 / 論理削除',
+      '読書ログの追加（累計ページ・読書時間・日付・メモ）と直近ログの取り消し',
+      '月次統計（合計ページ / 1日平均）',
+      'デモ運用前提のため、認証機能無し（デモユーザー切替方式）',
+    ],
+    images: [
+      'images/projects/reading-log-app/01.webp',
+      'images/projects/reading-log-app/02.webp',
+      'images/projects/reading-log-app/03.webp',
+      'images/projects/reading-log-app/04.webp',
+    ],
     featured: true,
     updatedAt: '2025-12-06',
   },
