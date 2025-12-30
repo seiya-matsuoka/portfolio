@@ -21,6 +21,33 @@ export type Project = {
 // 暫定データ
 export const projects: Project[] = [
   {
+    slug: 'media-gallery-generator-cli',
+    title: 'Media Gallery Generator CLI',
+    summary:
+      '指定ディレクトリ配下にある画像・動画から、静的ギャラリー（HTMLファイル）を生成する CLI ツール。※Demo環境無し。',
+    status: 'DONE',
+    kind: 'Tool',
+    tech: ['Java', 'Maven', 'Picocli', 'JUnit', 'CLI'],
+    repoUrl: 'https://github.com/seiya-matsuoka/media-gallery-generator-cli',
+    liveUrl: '',
+    thumb: 'images/projects/media-gallery-generator-cli/thumb.webp',
+    description:
+      '指定ディレクトリ配下にある画像・動画から、静的ギャラリー（HTMLファイル）を生成する CLI ツール。\n' +
+      '※Demo環境無し。',
+    features: [
+      'work/media を再帰走査して、画像/動画を一覧化',
+      'work/dist/index.html を生成',
+      'work/dist/assets/ に実体コピー',
+    ],
+    images: [
+      'images/projects/media-gallery-generator-cli/01.webp',
+      'images/projects/media-gallery-generator-cli/02.webp',
+      'images/projects/media-gallery-generator-cli/03.webp',
+    ],
+    featured: false,
+    updatedAt: '2025-12-30',
+  },
+  {
     slug: 'reading-log-app',
     title: 'Reading Log App',
     summary: '読書中の書籍を登録し、累計ページをベースに読書ログを追加して進捗管理できるアプリ。',
