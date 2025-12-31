@@ -107,3 +107,35 @@
   - スワイプ操作でもスライド可能
 
 ---
+
+## 3. 環境変数（VITE_SITE_URL）
+
+`index.html` で `%VITE_SITE_URL%` を使っています。  
+Vercel 等の環境変数で `VITE_SITE_URL` を設定してください。
+
+### 推奨値
+
+- **末尾に `/` を付ける**のが安全です（`%VITE_SITE_URL%og.png` の連結が崩れないように）
+  - 例：`https://seiya-matsuoka-dev.vercel.app/`
+
+---
+
+## 4. 共有URL
+
+このサイトは状態をURLで共有できます。
+
+- モーダル直リンク：`?p=<slug>`
+  - 例：`...?p=reading-log-app`
+- ステータス絞り込み：`?status=DONE` / `?status=WIP`
+- kind 絞り込み：`?kind=Game%2CWeb+0App`
+
+---
+
+## 5. 更新時チェックリスト
+
+- [ ] カード表示（title/summary/status/kind/tech）が崩れていない
+- [ ] モーダルが開く（クリック / Enter / Space）
+- [ ] `repoUrl` / `liveUrl` の遷移が正しい（新規タブで開く）
+- [ ] 画像が表示される（thumb / images）
+- [ ] featured に指定したカードの表示が強調されている
+- [ ] `VITE_SITE_URL` が本番URLになっている（デプロイ環境）
