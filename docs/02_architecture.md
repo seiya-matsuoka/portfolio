@@ -48,3 +48,58 @@
 - `<ProjectModal />`（`selectedSlug !== null` のとき表示）
 
 ---
+
+## 4. 状態管理
+
+外部状態管理ライブラリは使わず、React の `useState` / `useMemo` / `useEffect` で管理します。
+
+### App.tsx が持つ主な状態
+
+- `selectedSlug: string | null`
+  - モーダルの開閉と対象プロジェクトを決める
+- `status: 'ALL' | 'DONE' | 'WIP'`
+  - Status フィルタ
+- `selectedKinds: Set<ProjectKind>`
+  - Kind フィルタ（複数選択）
+- `openedViaClickRef: boolean (ref)`
+  - クリックで開いたか / 直リンクで開いたか を判定し、閉じ方を変える
+
+### Filters.tsx が持つ状態
+
+- `open: boolean`
+  - 折りたたみの開閉（デフォルトは閉）
+
+---
+
+## 5. データフロー（projects.ts → 画面）
+
+- `projects`（全件）を `App.tsx` が import
+- `filtered`（status/kind 適用）を `useMemo` で生成
+- `sorted`（featured → updatedAt → title）を `useMemo` で生成
+- `sorted.map(...)` で `<ProjectCard />` を描画
+- カードクリック or キーボードで `selectedSlug` をセット → `<ProjectModal />` 表示
+
+---
+
+## 6. URL 同期（共有できる状態）
+
+### 6-1. 反映するクエリ
+
+- `p=<slug>`：モーダル直リンク
+- `status=DONE|WIP`（ALL は付けない）
+- `?kind=Game%2CWeb+0App...`（未選択なら付けない）
+
+### 6-2. URL → 状態（復元）
+
+`App.tsx` 初期化時に `window.location.search` を読み、
+
+- `p` が妥当なら `selectedSlug` をセット
+- `status/kind` をパースして state を初期化
+
+### 6-3. 状態 → URL（同期）
+
+`status` / `selectedKinds` が変わるたびに、
+
+- 既存URLとの差分があるときだけ `pushState` でクエリを更新します
+
+---
