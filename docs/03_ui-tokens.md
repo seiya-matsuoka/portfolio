@@ -59,3 +59,56 @@
 - `--status-wip-fg`
 
 ---
+
+## 5. ボタン規約（CTA）
+
+### 5-1. Primary（Demo等：アクセント系）
+
+**方針：主要CTAは `--color-accent` を使う（背景＋文字色）**
+
+- 背景：`--color-accent`
+- 文字：`--color-accent-contrast`
+- hover：`--color-accent-hover`
+- focus：`--color-ring`
+
+### 5-2. Secondary（GitHub：ニュートラル系）
+
+**方針：GitHub ボタンは primary と誤認しないよう 別系統の色＋トークン化**
+
+`index.css` に secondary 用のトークンがあります：
+
+- `--btn-sec-bg`
+- `--btn-sec-fg`
+- `--btn-sec-border`
+- `--btn-sec-bg-hover`
+
+---
+
+## 6. Featured（控えめな強調）のトークン
+
+featured は「色を増やしすぎず、アクセントを少量混ぜて強調」する方針です。  
+以下のトークンを `ProjectCard` が参照します。
+
+- `--featured-card-bg`：カード背景（accent を数%だけ混ぜる）
+- `--featured-card-border`：枠線色（accent を混ぜる）
+- `--featured-badge-bg`：サムネ左上のバッジ背景
+- `--featured-badge-fg`：バッジ文字色
+
+> featured の視覚要素は「色」だけでなく、**影を+1段・hoverの持ち上がり**なども併用して強調します。
+
+---
+
+## 7. トークンの変更手順
+
+1. `src/index.css` の `:root`（ライト）で調整
+2. `.theme-dark`（ダーク）も同じ意図で追従調整
+3. 変更後に確認する箇所
+   - 一覧カード（通常/featured）
+   - モーダル（本文/ボタン/矢印）
+   - フィルタとテーマセレクト
+
+---
+
+## 8. 注意点（デザインの一貫性）
+
+- `--color-accent` は Demo ボタンやフィルタ等で使っているため、**ここを変えるとサイト全体の印象が変わります**
