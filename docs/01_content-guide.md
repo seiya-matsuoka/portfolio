@@ -71,3 +71,39 @@
 「上に出したい」なら `featured: true` または `updatedAt` を最新にしてください。
 
 ---
+
+## 2. 画像の追加（thumb / images）
+
+### 2-1. 置き場所（ルール）
+
+画像は `public/` 配下に置きます。
+
+- サムネ：`public/images/projects/<slug>/thumb.webp`
+- 追加スクショ：`public/images/projects/<slug>/1.webp`, `2.webp` ...
+
+`projects.ts` には `public/` からの相対パスとして指定します。
+
+例：
+
+- `thumb: 'images/projects/reading-log-app/thumb.webp'`
+- `images: ['images/projects/reading-log-app/1.webp', 'images/projects/reading-log-app/2.webp']`
+
+---
+
+### 2-2. 推奨サイズ / 形式
+
+- 推奨アスペクト比：**16:9**
+- 推奨解像度：**1200×675** もしくは **1600×900**
+- 推奨形式：**WebP（.webp）**
+
+---
+
+### 2-3. 画像がモーダルでどう表示されるか
+
+- `thumb` は **1枚目**として表示
+- `images` は **2枚目以降**としてスライド表示
+- 複数枚ある場合：
+  - 左右矢印でスライド
+  - スワイプ操作でもスライド可能
+
+---
