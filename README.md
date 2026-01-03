@@ -39,3 +39,28 @@
    ![dark](docs/screenshots/03-dark-mode.png)
 
 ---
+
+## 主な機能
+
+- **プロジェクト一覧**
+  - Status（DONE / WIP）と Kind（Game / Web App / Tool）で絞り込み
+  - 「注目（featured）」プロジェクトの強調表示（バッジ / 見た目 / 並び順）
+- **URL共有（状態をURLに反映）**
+  - フィルタ条件をURLに反映
+  - `?p=<slug>` でモーダル直リンク
+- **詳細モーダル**
+  - 画像ギャラリー（矢印コントロール + スワイプ操作）
+  - 見切れないようにスクロール可能
+  - キーボード操作
+- **テーマ**
+  - Light / Dark / Auto
+
+---
+
+## 技術スタック
+
+- TypeScript / React / Vite
+- Tailwind CSS v4
+- react-icons（アイコン）
+
+---
