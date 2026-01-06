@@ -107,3 +107,24 @@ npm run dev
 - `preview`：プレビュー
 
 ---
+
+## 環境変数
+
+- `VITE_SITE_URL`：サイトのベースURL（例：`https://seiya-matsuoka-dev.vercel.app`）
+
+> Vercel では Environment Variables に設定。
+
+---
+
+## ドキュメント
+
+- 更新ガイド：[`docs/01_content-guide.md`](docs/01_content-guide.md)
+- アーキテクチャ概要：[`docs/02_architecture.md`](docs/02_architecture.md)
+- UIトークン：[`docs/03_ui-tokens.md`](docs/03_ui-tokens.md)
+
+---
+
+## デプロイ
+
+- Vercel にデプロイ
+- 環境変数 `VITE_SITE_URL` を設定してビルド
