@@ -64,3 +64,46 @@
 - react-icons（アイコン）
 
 ---
+
+## ディレクトリ構成（抜粋）
+
+```txt
+src/
+  components/
+    Filters.tsx
+    Header.tsx
+    ProjectCard.tsx
+    ProjectModal.tsx
+    ThemeControls.tsx
+  data/
+    projects.ts
+  lib/
+    asset.ts
+    theme.ts
+  App.tsx
+  index.css
+  main.tsx
+public/
+  images/
+    projects/
+      <slug>/
+        thumb.webp
+        01.webp
+        02.webp
+index.html
+```
+
+---
+
+## セットアップ
+
+```bash
+npm i
+npm run dev
+```
+
+- `dev`：開発サーバ
+- `build`：本番ビルド
+- `preview`：プレビュー
+
+---
