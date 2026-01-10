@@ -21,6 +21,17 @@ export type Project = {
 // 暫定データ
 export const projects: Project[] = [
   {
+    slug: 'interactive-log-masking-cli',
+    title: 'Interactive Log Masking CLI',
+    summary: 'TODO。',
+    status: 'DONE',
+    kind: 'Tool',
+    tech: ['Java', 'Gradle', 'Jackson', 'JUnit', 'CLI'],
+    repoUrl: 'https://github.com/seiya-matsuoka/interactive-log-masking-cli',
+    featured: false,
+    updatedAt: '2026-1-6',
+  },
+  {
     slug: 'media-gallery-generator-cli',
     title: 'Media Gallery Generator CLI',
     summary:
