@@ -23,12 +23,24 @@ export const projects: Project[] = [
   {
     slug: 'interactive-log-masking-cli',
     title: 'Interactive Log Masking CLI',
-    summary: 'TODO。',
+    summary:
+      'ログ/テキストファイルを指定したルールに従ってマスキング（置換）して出力する対話型 CLI ツール。',
     status: 'DONE',
     kind: 'Tool',
     tech: ['Java', 'Gradle', 'Jackson', 'JUnit', 'CLI'],
     repoUrl: 'https://github.com/seiya-matsuoka/interactive-log-masking-cli',
+    liveUrl: 'https://github.com/seiya-matsuoka/interactive-log-masking-cli/releases/latest',
     thumb: 'images/projects/interactive-log-masking-cli/thumb.webp',
+    description:
+      'ログ/テキストファイルを指定したルールに従ってマスキング（置換）して出力する対話型 CLI ツール。\n' +
+      '個人情報（メール/電話/ID 等）に限らず、任意の文字列・トークン・識別子を対象にできる。\n' +
+      '※Demoボタンの遷移先は配布物を提供している GitHub の Releases ページとなります。',
+    features: [
+      '入力パス（ファイル or ディレクトリ）を受け取り、ディレクトリは再帰的にファイルを列挙して処理',
+      'マスキングルールは、 JSON設定ファイル か 対話でルールを作成（JSON として保存可能） から選択',
+      '出力は out/ 配下に構造維持して生成、出力ファイル名にサフィックス付与（例: _masked）が可能',
+      '件数集計のみでファイル生成なしの dryRun も可能、実行結果レポートも JSONファイルとして出力（dryRun でも出力）',
+    ],
     images: [
       'images/projects/interactive-log-masking-cli/01.webp',
       'images/projects/interactive-log-masking-cli/02.webp',
