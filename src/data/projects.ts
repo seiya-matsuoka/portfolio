@@ -21,6 +21,27 @@ export type Project = {
 // 暫定データ
 export const projects: Project[] = [
   {
+    slug: 'multi-opponent-rps',
+    title: 'Multi Opponent RPS',
+    summary: 'TODO。',
+    status: 'DONE',
+    kind: 'Web App',
+    tech: ['Java', 'Gradle', 'JUnit', 'TODO'],
+    repoUrl: 'https://github.com/seiya-matsuoka/multi-opponent-rps',
+    liveUrl: 'https://multi-opponent-rps.vercel.app/',
+    thumb: 'images/projects/multi-opponent-rps/thumb.webp',
+    description: 'TODO。\n' + 'TODO',
+    features: ['TODO', 'TODO', 'TODO'],
+    images: [
+      'images/projects/multi-opponent-rps/01.webp',
+      'images/projects/multi-opponent-rps/02.webp',
+      'images/projects/multi-opponent-rps/03.webp',
+      'images/projects/multi-opponent-rps/04.webp',
+    ],
+    featured: false,
+    updatedAt: '2026-1-23',
+  },
+  {
     slug: 'interactive-log-masking-cli',
     title: 'Interactive Log Masking CLI',
     summary:
