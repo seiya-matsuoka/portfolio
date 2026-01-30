@@ -21,6 +21,28 @@ export type Project = {
 // 暫定データ
 export const projects: Project[] = [
   {
+    slug: 'csv-to-insert-generator',
+    title: 'CSV to INSERT Generator',
+    summary: 'TODO。',
+    status: 'WIP',
+    kind: 'Tool',
+    tech: ['Java', 'Maven', 'JUnit', 'TODO'],
+    repoUrl: 'https://github.com/seiya-matsuoka/csv-to-insert-generator',
+    // liveUrl: 'TODO',
+    // thumb: 'images/projects/csv-to-insert-generator/thumb.webp',
+    // description: 'TODO。\n' + 'TODO。\n' + 'TODO。',
+    // features: ['TODO', 'TODO', 'TODO', 'TODO'],
+    // images: [
+    //   'images/projects/csv-to-insert-generator/01.webp',
+    //   'images/projects/csv-to-insert-generator/02.webp',
+    //   'images/projects/csv-to-insert-generator/03.webp',
+    //   'images/projects/csv-to-insert-generator/04.webp',
+    //   'images/projects/csv-to-insert-generator/05.webp',
+    // ],
+    featured: true,
+    // updatedAt: '2026-1-24',
+  },
+  {
     slug: 'multi-opponent-rps',
     title: 'Multi Opponent RPS',
     summary: '指定した人数（1〜10）の相手（CPU）と、まとめてじゃんけんを行うミニアプリ。',
