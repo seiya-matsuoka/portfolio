@@ -23,15 +23,33 @@ export const projects: Project[] = [
   {
     slug: 'multi-opponent-rps',
     title: 'Multi Opponent RPS',
-    summary: 'TODO。',
+    summary: '指定した人数（1〜10）の相手（CPU）と、まとめてじゃんけんを行うミニアプリ。',
     status: 'DONE',
     kind: 'Web App',
-    tech: ['Java', 'Gradle', 'JUnit', 'TODO'],
+    tech: [
+      'Java',
+      'Spring Boot',
+      'Gradle',
+      'JUnit',
+      'TypeScript',
+      'React',
+      'Vite',
+      'Material UI（MUI）',
+      'Tailwind',
+      'Vitest',
+      'Docker',
+    ],
     repoUrl: 'https://github.com/seiya-matsuoka/multi-opponent-rps',
     liveUrl: 'https://multi-opponent-rps.vercel.app/',
     thumb: 'images/projects/multi-opponent-rps/thumb.webp',
-    description: 'TODO。\n' + 'TODO',
-    features: ['TODO', 'TODO', 'TODO'],
+    description:
+      '指定した人数（1〜10）の相手（CPU）と、まとめてじゃんけんを行うミニアプリ。\n' +
+      'バックエンドは Spring Boot の REST API、フロントは React + TypeScript（Vite）で実装（別ホスティング）。',
+    features: [
+      '自分の手（ROCK / PAPER / SCISSORS）と相手人数（1〜10）を選んで実行',
+      '相手ごとの結果一覧（WIN / LOSE / DRAW）と勝敗集計を表示',
+      '1画面完結 UI（結果一覧のみスクロール）',
+    ],
     images: [
       'images/projects/multi-opponent-rps/01.webp',
       'images/projects/multi-opponent-rps/02.webp',
