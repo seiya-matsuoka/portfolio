@@ -360,4 +360,31 @@ export const projects: Project[] = [
     featured: false,
     updatedAt: '2025-09-14',
   },
+  {
+    slug: 'picky',
+    title: 'Picky',
+    summary:
+      'サッカー選手とスポンサーを繋ぐプラットフォームをイメージしたWebアプリ。※初回の読み込みに数十秒かかります。',
+    status: 'DONE',
+    kind: 'Web App',
+    tech: ['JavaScript', 'EJS', 'CSS', 'Bootstrap', 'Node.js', 'Express', 'MongoDB'],
+    repoUrl: 'https://github.com/seiya-matsuoka/Picky',
+    liveUrl: 'https://picky-acjj.onrender.com/',
+    thumb: 'images/projects/picky/thumb.webp',
+    description:
+      'サッカー選手とスポンサーを繋ぐプラットフォームをイメージして作成したWebアプリケーション。\n' +
+      '※サーバー起動のため初回の読み込みに数十秒かかります。',
+    features: [
+      'ユーザー登録と認証認可、プロフィール登録・編集',
+      'プレイヤーとスポンサーの一覧表示画面',
+      'プレイヤー ⇔ スポンサー 間でメッセージの送受信が可能',
+    ],
+    images: [
+      'images/projects/picky/01.webp',
+      'images/projects/picky/02.webp',
+      'images/projects/picky/03.webp',
+    ],
+    featured: false,
+    updatedAt: '2025-03-3',
+  },
 ];
