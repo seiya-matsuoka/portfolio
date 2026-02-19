@@ -143,7 +143,7 @@ export const projects: Project[] = [
     slug: 'reading-log-app',
     title: 'Reading Log App',
     summary: '読書中の書籍を登録し、累計ページをベースに読書ログを追加して進捗管理できるアプリ。',
-    status: 'WIP',
+    status: 'DONE',
     kind: 'Web App',
     tech: ['JavaScript', 'React', 'Vite', 'Tailwind', 'Node.js', 'Express', 'SQL', 'Postgres'],
     repoUrl: 'https://github.com/seiya-matsuoka/reading-log-app',
