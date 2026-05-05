@@ -23,24 +23,30 @@ export const projects: Project[] = [
   {
     slug: 'csv-to-insert-generator',
     title: 'CSV to INSERT Generator',
-    summary: 'TODO。',
-    status: 'WIP',
+    summary: 'CSV ファイルから PostgreSQL 向けの INSERT 文 SQL を生成する Web ツール。',
+    status: 'DONE',
     kind: 'Tool',
-    tech: ['Java', 'Maven', 'JUnit', 'TODO'],
+    tech: ['Java', 'Maven', 'JUnit', 'TypeScript', 'React', 'Vite', 'Tailwind', 'Docker'],
     repoUrl: 'https://github.com/seiya-matsuoka/csv-to-insert-generator',
-    // liveUrl: 'TODO',
-    // thumb: 'images/projects/csv-to-insert-generator/thumb.webp',
-    // description: 'TODO。\n' + 'TODO。\n' + 'TODO。',
-    // features: ['TODO', 'TODO', 'TODO', 'TODO'],
-    // images: [
-    //   'images/projects/csv-to-insert-generator/01.webp',
-    //   'images/projects/csv-to-insert-generator/02.webp',
-    //   'images/projects/csv-to-insert-generator/03.webp',
-    //   'images/projects/csv-to-insert-generator/04.webp',
-    //   'images/projects/csv-to-insert-generator/05.webp',
-    // ],
-    featured: true,
-    // updatedAt: '2026-1-24',
+    liveUrl: 'https://csv-to-insert-generator.vercel.app/',
+    thumb: 'images/projects/csv-to-insert-generator/thumb.webp',
+    description:
+      'CSV ファイルから PostgreSQL 向けの INSERT 文 SQL を生成する Web ツール。\n' +
+      '画面からテーブル名と CSV ファイルを指定して変換を実行し、生成された SQL を画面表示・コピー・.sql ダウンロードできる。\n' +
+      '入力値に不備がある場合は SQL を生成せず、行番号・列名・型・入力値・理由を一覧表示する。',
+    features: [
+      'テンプレートCSV・サンプルCSV のダウンロード',
+      'テーブル名と CSVファイルを指定して実行。PostgreSQL 向けの INSERT 文 SQL を生成',
+      '生成SQL の画面表示 / クリップボードにコピー / .sql ファイルとしてダウンロード',
+      '入力不正時にエラー一覧を表示',
+    ],
+    images: [
+      'images/projects/csv-to-insert-generator/01.webp',
+      'images/projects/csv-to-insert-generator/02.webp',
+      'images/projects/csv-to-insert-generator/03.webp',
+    ],
+    featured: false,
+    updatedAt: '2026-5-5',
   },
   {
     slug: 'multi-opponent-rps',
