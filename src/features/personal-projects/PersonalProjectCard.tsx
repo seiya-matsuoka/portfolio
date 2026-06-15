@@ -1,8 +1,10 @@
-import type { MouseEventHandler } from 'react';
-import type { PersonalProject } from '../data/personalProjects';
-import { asset } from '../lib/asset';
-import { SiGithub } from 'react-icons/si';
+import type { KeyboardEventHandler, MouseEventHandler } from 'react';
 import { FaPlayCircle } from 'react-icons/fa';
+import { SiGithub } from 'react-icons/si';
+import { LinkButton } from '../../components/common/LinkButton';
+import { TagList } from '../../components/common/TagList';
+import type { PersonalProject } from '../../data/personalProjects';
+import { asset } from '../../lib/asset';
 
 type Props = {
   personalProject: PersonalProject;
@@ -37,7 +39,7 @@ export function PersonalProjectCard({ personalProject, onOpen, priority = false 
     e.stopPropagation();
   };
 
-  const onKeyDown: React.KeyboardEventHandler<HTMLElement> = (e) => {
+  const onKeyDown: KeyboardEventHandler<HTMLElement> = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleOpen();
@@ -55,6 +57,7 @@ export function PersonalProjectCard({ personalProject, onOpen, priority = false 
     'border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] hover:-translate-y-0.5 hover:shadow-md';
 
   const articleClass = `${baseClass} ${isFeatured ? featuredClass : normalClass}`;
+  const tagItems = [personalProject.kind, ...personalProject.tech];
 
   return (
     <article
@@ -118,67 +121,20 @@ export function PersonalProjectCard({ personalProject, onOpen, priority = false 
           {personalProject.summary}
         </p>
 
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span
-            className="rounded border px-1.5 py-0.5 text-[11px]"
-            style={{
-              borderColor: 'var(--color-border)',
-              background: 'var(--color-surface)',
-              color: 'var(--color-fg)',
-            }}
-          >
-            {personalProject.kind}
-          </span>
-          {personalProject.tech.slice(0, 4).map((t) => (
-            <span
-              key={t}
-              className="rounded border px-1.5 py-0.5 text-[11px]"
-              style={{
-                borderColor: 'var(--color-border)',
-                background: 'var(--color-surface)',
-                color: 'var(--color-fg)',
-              }}
-            >
-              {t}
-            </span>
-          ))}
-          {personalProject.tech.length > 4 && (
-            <span className="text-[11px] text-slate-500">+{personalProject.tech.length - 4}</span>
-          )}
-        </div>
+        <TagList items={tagItems} maxVisible={5} />
 
         {/* CTA */}
         <div className="mt-1 flex items-center gap-2">
           {personalProject.liveUrl && (
-            <a
-              onClick={onCtaClick}
-              href={personalProject.liveUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-              style={{
-                backgroundColor: 'var(--color-accent)',
-                color: 'var(--color-accent-contrast)',
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
-            >
+            <LinkButton href={personalProject.liveUrl} variant="primary" onClick={onCtaClick}>
               <FaPlayCircle className="h-4 w-4" aria-hidden="true" />
               <span>Demo</span>
-            </a>
+            </LinkButton>
           )}
-          <a
-            onClick={onCtaClick}
-            href={personalProject.repoUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-          >
+          <LinkButton href={personalProject.repoUrl} onClick={onCtaClick}>
             <SiGithub className="h-4 w-4" aria-hidden="true" />
             <span>GitHub</span>
-          </a>
+          </LinkButton>
         </div>
       </div>
     </article>

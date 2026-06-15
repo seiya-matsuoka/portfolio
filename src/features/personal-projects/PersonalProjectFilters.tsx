@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { PersonalProjectKind, PersonalProjectStatus } from '../data/personalProjects';
+import type { PersonalProjectKind, PersonalProjectStatus } from '../../data/personalProjects';
 
 type StatusOption = 'ALL' | PersonalProjectStatus;
 

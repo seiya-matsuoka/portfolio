@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { PersonalProjectFilters } from '../components/PersonalProjectFilters';
-import { PersonalProjectCard } from '../components/PersonalProjectCard';
-import { PersonalProjectModal } from '../components/PersonalProjectModal';
+import { EmptyState } from '../components/common/EmptyState';
+import { SectionHeader } from '../components/common/SectionHeader';
 import { personalProjects } from '../data/personalProjects';
+import { PersonalProjectCard } from '../features/personal-projects/PersonalProjectCard';
+import { PersonalProjectFilters } from '../features/personal-projects/PersonalProjectFilters';
+import { PersonalProjectModal } from '../features/personal-projects/PersonalProjectModal';
 import type {
   PersonalProject,
   PersonalProjectKind,
@@ -187,15 +189,10 @@ export function PersonalProjectsPage() {
 
   return (
     <>
-      {/* ヒーロー */}
-      <section className="py-10 md:py-14">
-        <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Personal Projects</h1>
-        <p className="mt-3 max-w-2xl leading-7" style={{ color: 'var(--color-muted)' }}>
-          学習目的の個人開発で作成した成果物の一覧。
-          {/* <br />
-          React / TypeScript / JavaScript を中心に学習中。 */}
-        </p>
-      </section>
+      <SectionHeader
+        title="Personal Projects"
+        description="学習目的の個人開発で作成した成果物の一覧。"
+      />
 
       {/* フィルタ */}
       <section className="mb-6">
@@ -217,16 +214,7 @@ export function PersonalProjectsPage() {
       {/* グリッド */}
       <section className="pb-16" aria-label="プロジェクト一覧">
         {sorted.length === 0 ? (
-          <div
-            className="rounded-md border p-6"
-            style={{
-              borderColor: 'var(--color-border)',
-              background: 'var(--color-surface)',
-              color: 'var(--color-muted)',
-            }}
-          >
-            条件に一致する項目がありません。
-          </div>
+          <EmptyState message="条件に一致する項目がありません。" />
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
             {sorted.map((p, i) => (
