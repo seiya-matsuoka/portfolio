@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import type { ProjectKind, ProjectStatus } from '../data/projects';
+import type { PersonalProjectKind, PersonalProjectStatus } from '../data/personalProjects';
 
-type StatusOption = 'ALL' | ProjectStatus;
+type StatusOption = 'ALL' | PersonalProjectStatus;
 
 type Props = {
   status: StatusOption;
   onChangeStatus: (next: StatusOption) => void;
 
-  kindOptions: ProjectKind[];
-  selectedKinds: Set<ProjectKind>;
-  onToggleKind: (k: ProjectKind) => void;
+  kindOptions: PersonalProjectKind[];
+  selectedKinds: Set<PersonalProjectKind>;
+  onToggleKind: (k: PersonalProjectKind) => void;
   onResetKinds: () => void;
 };
 
-export function Filters({
+export function PersonalProjectFilters({
   status,
   onChangeStatus,
   kindOptions,
@@ -46,7 +46,7 @@ export function Filters({
       {/* サマリ + 開閉トグル */}
       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
-          {hasAnyFilter ? summaryText : 'すべてのプロジェクトを表示中'}
+          {hasAnyFilter ? summaryText : 'すべての個人開発を表示中'}
         </p>
         <button
           type="button"

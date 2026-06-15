@@ -1,17 +1,17 @@
 import type { MouseEventHandler } from 'react';
-import type { Project } from '../data/projects';
+import type { PersonalProject } from '../data/personalProjects';
 import { asset } from '../lib/asset';
 import { SiGithub } from 'react-icons/si';
 import { FaPlayCircle } from 'react-icons/fa';
 
 type Props = {
-  project: Project;
+  personalProject: PersonalProject;
   onOpen: (slug: string) => void;
   priority?: boolean;
 };
 
-function StatusBadge({ status }: { status: Project['status'] }) {
-  const map: Record<Project['status'], { color: string }> = {
+function StatusBadge({ status }: { status: PersonalProject['status'] }) {
+  const map: Record<PersonalProject['status'], { color: string }> = {
     DONE: { color: 'var(--status-done-fg)' },
     WIP: { color: 'var(--status-wip-fg)' },
   };
@@ -29,8 +29,8 @@ function StatusBadge({ status }: { status: Project['status'] }) {
   );
 }
 
-export function ProjectCard({ project, onOpen, priority = false }: Props) {
-  const handleOpen = () => onOpen(project.slug);
+export function PersonalProjectCard({ personalProject, onOpen, priority = false }: Props) {
+  const handleOpen = () => onOpen(personalProject.slug);
 
   const onCtaClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     // モーダルと干渉させない
@@ -44,7 +44,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
     }
   };
 
-  const isFeatured = project.featured === true;
+  const isFeatured = personalProject.featured === true;
 
   const baseClass = 'group cursor-pointer rounded-lg border transition-transform duration-150';
 
@@ -62,7 +62,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
       onKeyDown={onKeyDown}
       role="button"
       tabIndex={0}
-      aria-label={`「${project.title}」の詳細を開く`}
+      aria-label={`「${personalProject.title}」の詳細を開く`}
       className={articleClass}
     >
       {/* サムネ */}
@@ -70,10 +70,10 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
         className="relative aspect-[16/9] w-full overflow-hidden rounded-t-lg"
         style={{ background: 'var(--color-surface)' }}
       >
-        {project.thumb ? (
+        {personalProject.thumb ? (
           <img
-            src={asset(project.thumb)}
-            alt={`${project.title} thumbnail`}
+            src={asset(personalProject.thumb)}
+            alt={`${personalProject.title} thumbnail`}
             className="h-full w-full object-cover"
             loading={priority ? 'eager' : 'lazy'}
             fetchPriority={priority ? 'high' : 'auto'}
@@ -86,7 +86,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
           </div>
         )}
 
-        {project.featured && (
+        {personalProject.featured && (
           <span
             className="absolute top-3 left-3 inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium"
             style={{
@@ -107,15 +107,15 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
               className="line-clamp-1 text-sm leading-tight font-semibold md:text-base"
               style={{ color: 'var(--color-fg)' }}
             >
-              {project.title}
+              {personalProject.title}
             </h3>
           </div>
 
-          <StatusBadge status={project.status} />
+          <StatusBadge status={personalProject.status} />
         </div>
 
         <p className="text-[13px] leading-6" style={{ color: 'var(--color-muted)' }}>
-          {project.summary}
+          {personalProject.summary}
         </p>
 
         <div className="flex flex-wrap items-center gap-1.5">
@@ -127,9 +127,9 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
               color: 'var(--color-fg)',
             }}
           >
-            {project.kind}
+            {personalProject.kind}
           </span>
-          {project.tech.slice(0, 4).map((t) => (
+          {personalProject.tech.slice(0, 4).map((t) => (
             <span
               key={t}
               className="rounded border px-1.5 py-0.5 text-[11px]"
@@ -142,17 +142,17 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
               {t}
             </span>
           ))}
-          {project.tech.length > 4 && (
-            <span className="text-[11px] text-slate-500">+{project.tech.length - 4}</span>
+          {personalProject.tech.length > 4 && (
+            <span className="text-[11px] text-slate-500">+{personalProject.tech.length - 4}</span>
           )}
         </div>
 
         {/* CTA */}
         <div className="mt-1 flex items-center gap-2">
-          {project.liveUrl && (
+          {personalProject.liveUrl && (
             <a
               onClick={onCtaClick}
-              href={project.liveUrl}
+              href={personalProject.liveUrl}
               target="_blank"
               rel="noreferrer noopener"
               className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
@@ -171,7 +171,7 @@ export function ProjectCard({ project, onOpen, priority = false }: Props) {
           )}
           <a
             onClick={onCtaClick}
-            href={project.repoUrl}
+            href={personalProject.repoUrl}
             target="_blank"
             rel="noreferrer noopener"
             className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"

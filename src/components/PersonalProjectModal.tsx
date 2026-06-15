@@ -1,15 +1,15 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import type { Project } from '../data/projects';
+import type { PersonalProject } from '../data/personalProjects';
 import { asset } from '../lib/asset';
 import { SiGithub } from 'react-icons/si';
 import { FaPlayCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 type Props = {
-  project: Project;
+  personalProject: PersonalProject;
   onClose: () => void;
 };
 
-export function ProjectModal({ project, onClose }: Props) {
+export function PersonalProjectModal({ personalProject, onClose }: Props) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
@@ -18,17 +18,17 @@ export function ProjectModal({ project, onClose }: Props) {
   // ギャラリー（thumb + images）
   const gallery = useMemo(() => {
     const arr: string[] = [];
-    if (project.thumb) arr.push(asset(project.thumb)!);
-    if (project.images?.length) arr.push(...project.images.map((p) => asset(p)!));
+    if (personalProject.thumb) arr.push(asset(personalProject.thumb)!);
+    if (personalProject.images?.length) arr.push(...personalProject.images.map((p) => asset(p)!));
     return arr;
-  }, [project.thumb, project.images]);
+  }, [personalProject.thumb, personalProject.images]);
 
   const [idx, setIdx] = useState(0);
   const hasGallery = gallery.length > 0;
 
   useEffect(() => {
     setIdx(0);
-  }, [project.slug]);
+  }, [personalProject.slug]);
 
   const go = (next: number) => {
     if (!hasGallery) return;
@@ -187,9 +187,9 @@ export function ProjectModal({ project, onClose }: Props) {
     if (e.target === e.currentTarget) onClose();
   };
 
-  const titleId = `proj-modal-title-${project.slug}`;
-  const descId = `proj-modal-desc-${project.slug}`;
-  const bodyText = project.description ?? project.summary;
+  const titleId = `personal-project-modal-title-${personalProject.slug}`;
+  const descId = `personal-project-modal-desc-${personalProject.slug}`;
+  const bodyText = personalProject.description ?? personalProject.summary;
 
   return (
     <div
@@ -211,7 +211,7 @@ export function ProjectModal({ project, onClose }: Props) {
             className="text-lg font-semibold md:text-xl"
             style={{ color: 'var(--color-fg)' }}
           >
-            {project.title}
+            {personalProject.title}
           </h2>
           <button
             ref={closeBtnRef}
@@ -235,7 +235,7 @@ export function ProjectModal({ project, onClose }: Props) {
             className="relative w-full overflow-hidden"
             style={{ background: 'var(--color-surface)' }}
             aria-roledescription="carousel"
-            aria-label="Project previews"
+            aria-label="Personal project previews"
           >
             <div
               className="relative aspect-[16/9] w-full touch-pan-y"
@@ -249,7 +249,7 @@ export function ProjectModal({ project, onClose }: Props) {
                   <img
                     key={`${src}-${i}`}
                     src={src}
-                    alt={`${project.title} preview ${i + 1}`}
+                    alt={`${personalProject.title} preview ${i + 1}`}
                     className={`absolute inset-0 h-full w-full object-cover ${
                       i === idx ? 'opacity-100' : 'opacity-0'
                     } transition-opacity duration-200 motion-reduce:transition-none`}
@@ -331,9 +331,9 @@ export function ProjectModal({ project, onClose }: Props) {
           <div className="space-y-4 p-4">
             {/* CTA */}
             <div className="flex items-center gap-2">
-              {project.liveUrl && (
+              {personalProject.liveUrl && (
                 <a
-                  href={project.liveUrl}
+                  href={personalProject.liveUrl}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
@@ -353,7 +353,7 @@ export function ProjectModal({ project, onClose }: Props) {
                 </a>
               )}
               <a
-                href={project.repoUrl}
+                href={personalProject.repoUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
@@ -373,7 +373,7 @@ export function ProjectModal({ project, onClose }: Props) {
             </p>
 
             {/* 機能リスト */}
-            {project.features?.length ? (
+            {personalProject.features?.length ? (
               <div>
                 <h3 className="mb-1 text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
                   主な機能
@@ -382,7 +382,7 @@ export function ProjectModal({ project, onClose }: Props) {
                   className="list-disc space-y-1 pl-5 text-sm"
                   style={{ color: 'var(--color-muted)' }}
                 >
-                  {project.features.map((f, i) => (
+                  {personalProject.features.map((f, i) => (
                     <li key={i}>{f}</li>
                   ))}
                 </ul>
@@ -399,9 +399,9 @@ export function ProjectModal({ project, onClose }: Props) {
                   color: 'var(--color-fg)',
                 }}
               >
-                {project.kind}
+                {personalProject.kind}
               </span>
-              {project.tech.map((t) => (
+              {personalProject.tech.map((t) => (
                 <span
                   key={t}
                   className="rounded border px-1.5 py-0.5 text-[11px]"

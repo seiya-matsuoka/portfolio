@@ -1,12 +1,12 @@
-export type ProjectStatus = 'DONE' | 'WIP';
-export type ProjectKind = 'Game' | 'Web App' | 'Tool';
+export type PersonalProjectStatus = 'DONE' | 'WIP';
+export type PersonalProjectKind = 'Game' | 'Web App' | 'Tool';
 
-export type Project = {
+export type PersonalProject = {
   slug: string;
   title: string;
   summary: string; // 短い説明
-  status: ProjectStatus;
-  kind: ProjectKind;
+  status: PersonalProjectStatus;
+  kind: PersonalProjectKind;
   tech: string[];
   repoUrl: string; // GitHub
   liveUrl?: string; // デモURL
@@ -18,8 +18,8 @@ export type Project = {
   updatedAt?: string;
 };
 
-// 暫定データ
-export const projects: Project[] = [
+// 個人開発データ
+export const personalProjects: PersonalProject[] = [
   {
     slug: 'csv-to-insert-generator',
     title: 'CSV to INSERT Generator',
