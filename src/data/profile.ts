@@ -52,7 +52,8 @@ export const profile = {
 
   contact: {
     email: 'seiya.matsuoka.contact@gmail.com',
-    github: 'https://github.com/seiya-matsuoka',
+    githubLabel: 'seiya-matsuoka',
+    githubUrl: 'https://github.com/seiya-matsuoka',
   },
 
   englishSummary: [
