@@ -11,6 +11,7 @@ export type ProfilePortfolioLink = {
 
 export const profile = {
   name: 'Seiya Matsuoka',
+  updatedAt: '2026-06-18',
 
   about: [
     'Java をメインに、バックエンド領域を主に扱うソフトウェアエンジニア。',
@@ -45,11 +46,6 @@ export const profile = {
     },
   ] satisfies ProfilePortfolioLink[],
 
-  currentFocus: [
-    '個人開発での Web アプリケーション設計・実装',
-    'JavaScript / TypeScript / React によるフロントエンド開発',
-  ],
-
   contact: {
     email: 'seiya.matsuoka.contact@gmail.com',
     githubLabel: 'seiya-matsuoka',
@@ -57,9 +53,9 @@ export const profile = {
   },
 
   englishSummary: [
-    'Software engineer mainly working on backend development with Java.',
+    'After gaining work experience outside the IT field, I started my career as a software engineer in January 2025.',
+    'I mainly work on backend development with Java.',
     'In personal projects, I build web applications primarily with TypeScript and React.',
-    'My portfolio site showcases personal projects and learning repositories.',
-    'Current focus includes designing and implementing web applications, and frontend development with JavaScript, TypeScript, and React.',
+    'I am working to improve my ability to design and implement web applications as a whole.',
   ],
 };
