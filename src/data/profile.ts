@@ -14,8 +14,10 @@ export const profile = {
   updatedAt: '2026-06-18',
 
   about: [
-    'Java をメインに、バックエンド領域を主に扱うソフトウェアエンジニア。',
-    '個人開発では、TypeScript, React を中心に Web アプリケーションを開発。',
+    'IT業界以外での社会人経験を経て、2024年1月よりエンジニアとしてのキャリアを開始。',
+    'Java をメインに、バックエンド領域を主に扱うソフトウェアエンジニアとして企業に勤務。',
+    '個人開発では、TypeScript / React を中心にWebアプリケーションを開発。',
+    'フロントエンド開発 / Webアプリケーション全体の設計・実装のスキル向上に取り組む。',
   ],
 
   techStacks: [
@@ -36,7 +38,7 @@ export const profile = {
   portfolioLinks: [
     {
       title: 'Personal Projects',
-      description: '個人開発で作成した Web アプリケーション / ツールを掲載。',
+      description: '個人開発で作成したWebアプリケーション / ツールを掲載。',
       href: '/personal-projects',
     },
     {
