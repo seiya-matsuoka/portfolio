@@ -50,7 +50,21 @@ export function ProfilePage() {
               <h3 className="text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
                 {group.title}
               </h3>
-              <TagList items={group.items} className="mt-2" />
+
+              {group.groups ? (
+                <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
+                  {group.groups.map((itemGroup) => (
+                    <div key={itemGroup.title} className="min-w-0">
+                      <h4 className="text-xs font-semibold" style={{ color: 'var(--color-muted)' }}>
+                        {itemGroup.title}
+                      </h4>
+                      <TagList items={itemGroup.items} className="mt-2" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <TagList items={group.items ?? []} className="mt-2" />
+              )}
             </div>
           ))}
         </div>

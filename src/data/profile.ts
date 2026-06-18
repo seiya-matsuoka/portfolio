@@ -1,6 +1,12 @@
-export type ProfileTechStackGroup = {
+export type ProfileTechStackItemGroup = {
   title: string;
   items: string[];
+};
+
+export type ProfileTechStackGroup = {
+  title: string;
+  items?: string[];
+  groups?: ProfileTechStackItemGroup[];
 };
 
 export type ProfilePortfolioLink = {
@@ -22,8 +28,17 @@ export const profile = {
 
   techStacks: [
     {
-      title: 'Primary Work Stack',
-      items: ['Java', 'SQL', 'HTML', 'CSS', 'JavaScript'],
+      title: 'Work',
+      groups: [
+        {
+          title: 'Main',
+          items: ['Java', 'SQL', 'HTML', 'CSS', 'JavaScript'],
+        },
+        {
+          title: 'Also used',
+          items: ['Python', 'Shell Script', 'Bootstrap', 'jQuery'],
+        },
+      ],
     },
     {
       title: 'Personal Development & Learning',
@@ -55,9 +70,9 @@ export const profile = {
   },
 
   englishSummary: [
-    'After gaining work experience outside the IT field, I started my career as a software engineer in January 2025.',
-    'I mainly work on backend development with Java.',
+    'After gaining work experience outside the IT industry, I started my career as an engineer in January 2024.',
+    'I work at a company as a software engineer mainly handling backend development with Java.',
     'In personal projects, I build web applications primarily with TypeScript and React.',
-    'I am working to improve my ability to design and implement web applications as a whole.',
+    'I am working to improve my frontend development skills and my ability to design and implement web applications as a whole.',
   ],
 };
