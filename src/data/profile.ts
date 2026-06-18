@@ -31,22 +31,18 @@ export const profile = {
       title: 'Work',
       groups: [
         {
-          title: 'Main',
+          title: 'Primary',
           items: ['Java', 'SQL', 'HTML', 'CSS', 'JavaScript'],
         },
         {
-          title: 'Also used',
+          title: 'Also Used',
           items: ['Python', 'Shell Script', 'Bootstrap', 'jQuery'],
         },
       ],
     },
     {
-      title: 'Personal Development & Learning',
+      title: 'Personal Development',
       items: ['Java', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Node.js'],
-    },
-    {
-      title: 'Development Tools',
-      items: ['VS Code', 'Git', 'GitHub'],
     },
   ] satisfies ProfileTechStackGroup[],
 
