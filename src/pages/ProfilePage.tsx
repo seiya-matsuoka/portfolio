@@ -25,8 +25,14 @@ function ProfileSection({ title, children }: ProfileSectionProps) {
 export function ProfilePage() {
   return (
     <div className="py-10 md:py-14">
-      <header className="pb-4 md:pb-6">
+      <header className="flex items-start justify-between gap-4 pb-4 md:pb-6">
         <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">{profile.name}</h1>
+        <p
+          className="shrink-0 pt-1 text-right text-xs leading-5 md:text-sm"
+          style={{ color: 'var(--color-muted)' }}
+        >
+          Last updated: {profile.updatedAt}
+        </p>
       </header>
 
       <ProfileSection title="About">
@@ -48,17 +54,6 @@ export function ProfilePage() {
             </div>
           ))}
         </div>
-      </ProfileSection>
-
-      <ProfileSection title="Current Focus">
-        <ul
-          className="list-disc space-y-2 pl-5 text-sm leading-7"
-          style={{ color: 'var(--color-muted)' }}
-        >
-          {profile.currentFocus.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
       </ProfileSection>
 
       <ProfileSection title="Portfolio">
