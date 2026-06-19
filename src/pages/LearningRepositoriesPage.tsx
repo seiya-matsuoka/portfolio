@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { EmptyState } from '../components/common/EmptyState';
 import { SectionHeader } from '../components/common/SectionHeader';
-import { learningRepositories } from '../data/learningRepositories';
+import { learningRepositories, learningRepositoriesUpdatedAt } from '../data/learningRepositories';
 import { LearningRepositoryCard } from '../features/learning-repositories/LearningRepositoryCard';
 import { LearningRepositoryFilters } from '../features/learning-repositories/LearningRepositoryFilters';
 import { LearningRepositoryModal } from '../features/learning-repositories/LearningRepositoryModal';
@@ -195,6 +195,7 @@ export function LearningRepositoriesPage() {
       <SectionHeader
         title="Learning Repositories"
         description="学習のために作成したリポジトリの一覧。"
+        lastUpdated={learningRepositoriesUpdatedAt}
       />
 
       {/* フィルタ */}

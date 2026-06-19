@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { EmptyState } from '../components/common/EmptyState';
 import { SectionHeader } from '../components/common/SectionHeader';
-import { personalProjects } from '../data/personalProjects';
+import { personalProjects, personalProjectsUpdatedAt } from '../data/personalProjects';
 import { PersonalProjectCard } from '../features/personal-projects/PersonalProjectCard';
 import { PersonalProjectFilters } from '../features/personal-projects/PersonalProjectFilters';
 import { PersonalProjectModal } from '../features/personal-projects/PersonalProjectModal';
@@ -192,6 +192,7 @@ export function PersonalProjectsPage() {
       <SectionHeader
         title="Personal Projects"
         description="学習目的の個人開発で作成した成果物の一覧。"
+        lastUpdated={personalProjectsUpdatedAt}
       />
 
       {/* フィルタ */}
