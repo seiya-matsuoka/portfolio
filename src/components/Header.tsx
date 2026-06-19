@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { FiMail, FiMenu, FiX } from 'react-icons/fi';
 import { SiGithub } from 'react-icons/si';
@@ -27,9 +27,16 @@ function getNavLinkStyle(isActive: boolean) {
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -37,8 +44,13 @@ export function Header() {
       }
     };
 
+    document.addEventListener('pointerdown', onPointerDown);
     document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
@@ -57,8 +69,11 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)]/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)]/80 backdrop-blur"
+    >
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <div className="flex min-w-0 items-center gap-5">
           <Link
             to="/"
@@ -128,30 +143,30 @@ export function Header() {
             )}
           </button>
         </div>
-      </div>
 
-      {isMobileMenuOpen ? (
-        <nav
-          id="mobile-navigation"
-          className="border-t border-[color:var(--color-border)] md:hidden"
-          aria-label="Mobile main"
-        >
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
-            {navigationItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) => `${getNavLinkClass(isActive)} px-3 py-2`}
-                style={({ isActive }) => getNavLinkStyle(isActive)}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
-        </nav>
-      ) : null}
+        {isMobileMenuOpen ? (
+          <nav
+            id="mobile-navigation"
+            className="absolute inset-x-0 top-full z-20 border-y border-[color:var(--color-border)] bg-[color:var(--color-surface)]/95 shadow-lg backdrop-blur md:hidden"
+            aria-label="Mobile main"
+          >
+            <div className="flex flex-col gap-1 px-4 py-3">
+              {navigationItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.end}
+                  className={({ isActive }) => `${getNavLinkClass(isActive)} px-3 py-2`}
+                  style={({ isActive }) => getNavLinkStyle(isActive)}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          </nav>
+        ) : null}
+      </div>
     </header>
   );
 }
