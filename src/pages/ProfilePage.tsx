@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router';
+import { PageLinkCard } from '../components/common/PageLinkCard';
 import { SectionHeader } from '../components/common/SectionHeader';
 import { TagList } from '../components/common/TagList';
 import { profile } from '../data/profile';
@@ -88,24 +88,12 @@ export function ProfilePage() {
         <ProfileSection title="Portfolio">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {profile.portfolioLinks.map((section) => (
-              <Link
+              <PageLinkCard
                 key={section.href}
-                to={section.href}
-                className="group rounded-lg border p-4 outline-offset-2 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-                style={{
-                  borderColor: 'var(--color-border)',
-                  background: 'var(--color-card)',
-                  color: 'var(--color-fg)',
-                }}
-              >
-                <span className="text-sm font-semibold">{section.title}</span>
-                <p className="mt-2 text-sm leading-6" style={{ color: 'var(--color-muted)' }}>
-                  {section.description}
-                </p>
-                <span className="mt-3 inline-flex text-sm font-medium group-hover:underline">
-                  View page →
-                </span>
-              </Link>
+                title={section.title}
+                description={section.description}
+                href={section.href}
+              />
             ))}
           </div>
         </ProfileSection>
