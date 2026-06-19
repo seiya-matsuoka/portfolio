@@ -65,9 +65,9 @@ export const profile = {
     githubUrl: 'https://github.com/seiya-matsuoka',
   },
 
-  englishSummary: [
+  aboutEnglish: [
     'After gaining work experience outside the IT industry, I started my career as an engineer in January 2024.',
-    'I work at a company as a software engineer mainly handling backend development with Java.',
+    'I work as a software engineer, mainly handling backend development with Java.',
     'In personal projects, I build web applications primarily with TypeScript and React.',
     'I am working to improve my frontend development skills and my ability to design and implement web applications as a whole.',
   ],
