@@ -28,7 +28,7 @@ export function ProfilePage() {
     <>
       <SectionHeader
         title={profile.name}
-        description="プロフィールページ。"
+        description="プロフィールページ"
         lastUpdated={profile.updatedAt}
       />
 

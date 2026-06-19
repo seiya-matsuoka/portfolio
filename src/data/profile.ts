@@ -49,12 +49,12 @@ export const profile = {
   portfolioLinks: [
     {
       title: 'Personal Projects',
-      description: '個人開発で作成したWebアプリケーション / ツールを掲載。',
+      description: '個人開発で作成したWebアプリケーション / ツールを掲載',
       href: '/personal-projects',
     },
     {
       title: 'Learning Repositories',
-      description: '学習用に作成したリポジトリを掲載。',
+      description: '学習用に作成したリポジトリを掲載',
       href: '/learning-repositories',
     },
   ] satisfies ProfilePortfolioLink[],

@@ -191,7 +191,7 @@ export function PersonalProjectsPage() {
     <>
       <SectionHeader
         title="Personal Projects"
-        description="学習目的の個人開発で作成した成果物の一覧。"
+        description="学習目的の個人開発で作成した成果物の一覧"
         lastUpdated={personalProjectsUpdatedAt}
       />
 
