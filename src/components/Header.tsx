@@ -11,7 +11,7 @@ type NavigationItem = {
   to: string;
   label: string;
   end?: boolean;
-  iconCandidates: IconType[];
+  icon: IconType;
   count?: number;
 };
 
@@ -20,20 +20,20 @@ const navigationItems: NavigationItem[] = [
     to: '/',
     label: 'Profile',
     end: true,
-    iconCandidates: [FiUser],
+    icon: FiUser,
   },
   {
     to: '/personal-projects',
     label: 'Personal Projects',
-    iconCandidates: [FiMonitor],
-    // iconCandidates: [FiGrid, FiCode, FiMonitor],
+    icon: FiMonitor,
+    // Icon candidates: FiGrid / FiCode / FiMonitor
     count: personalProjects.length,
   },
   {
     to: '/learning-repositories',
     label: 'Learning Repositories',
-    iconCandidates: [FiLayers],
-    // iconCandidates: [FiBookOpen, FiLayers, FiMonitor],
+    icon: FiLayers,
+    // Icon candidates: FiBookOpen / FiLayers / FiMonitor
     count: learningRepositories.length,
   },
 ];
@@ -53,14 +53,8 @@ function getNavLinkStyle(isActive: boolean) {
   };
 }
 
-function NavigationIconCandidates({ icons }: { icons: IconType[] }) {
-  return (
-    <span className="inline-flex shrink-0 items-center gap-1" aria-hidden="true">
-      {icons.map((Icon, index) => (
-        <Icon key={index} className="h-4 w-4" />
-      ))}
-    </span>
-  );
+function NavigationIcon({ Icon }: { Icon: IconType }) {
+  return <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />;
 }
 
 function NavigationCountBadge({ count }: { count: number }) {
@@ -77,7 +71,7 @@ function NavigationCountBadge({ count }: { count: number }) {
 function NavigationLinkContent({ item }: { item: NavigationItem }) {
   return (
     <span className="inline-flex items-center gap-1.5">
-      <NavigationIconCandidates icons={item.iconCandidates} />
+      <NavigationIcon Icon={item.icon} />
       <span>{item.label}</span>
       {typeof item.count === 'number' ? <NavigationCountBadge count={item.count} /> : null}
     </span>
