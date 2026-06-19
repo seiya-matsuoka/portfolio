@@ -18,6 +18,9 @@ export type PersonalProject = {
   updatedAt?: string;
 };
 
+// 個人開発ページの最終更新日
+export const personalProjectsUpdatedAt = '2026-06-18';
+
 // 個人開発データ
 export const personalProjects: PersonalProject[] = [
   {

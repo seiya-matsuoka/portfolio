@@ -21,6 +21,9 @@ export type LearningRepository = {
   updatedAt?: string;
 };
 
+// 学習リポジトリページの最終更新日
+export const learningRepositoriesUpdatedAt = '2026-06-18';
+
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
   {
