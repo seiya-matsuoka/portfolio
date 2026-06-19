@@ -1,13 +1,41 @@
 import { useEffect, useRef, useState } from 'react';
+import type { IconType } from 'react-icons';
 import { Link, NavLink } from 'react-router';
-import { FiMail, FiMenu, FiX } from 'react-icons/fi';
+import { FiLayers, FiMail, FiMenu, FiMonitor, FiUser, FiX } from 'react-icons/fi';
 import { SiGithub } from 'react-icons/si';
+import { personalProjects } from '../data/personalProjects';
+import { learningRepositories } from '../data/learningRepositories';
 import { ThemeControls } from './ThemeControls';
 
-const navigationItems = [
-  { to: '/', label: 'Profile', end: true },
-  { to: '/personal-projects', label: 'Personal Projects' },
-  { to: '/learning-repositories', label: 'Learning Repositories' },
+type NavigationItem = {
+  to: string;
+  label: string;
+  end?: boolean;
+  iconCandidates: IconType[];
+  count?: number;
+};
+
+const navigationItems: NavigationItem[] = [
+  {
+    to: '/',
+    label: 'Profile',
+    end: true,
+    iconCandidates: [FiUser],
+  },
+  {
+    to: '/personal-projects',
+    label: 'Personal Projects',
+    iconCandidates: [FiMonitor],
+    // iconCandidates: [FiGrid, FiCode, FiMonitor],
+    count: personalProjects.length,
+  },
+  {
+    to: '/learning-repositories',
+    label: 'Learning Repositories',
+    iconCandidates: [FiLayers],
+    // iconCandidates: [FiBookOpen, FiLayers, FiMonitor],
+    count: learningRepositories.length,
+  },
 ];
 
 function getNavLinkClass(isActive: boolean) {
@@ -23,6 +51,37 @@ function getNavLinkStyle(isActive: boolean) {
       ? 'color-mix(in oklab, var(--color-accent), transparent 88%)'
       : 'transparent',
   };
+}
+
+function NavigationIconCandidates({ icons }: { icons: IconType[] }) {
+  return (
+    <span className="inline-flex shrink-0 items-center gap-1" aria-hidden="true">
+      {icons.map((Icon, index) => (
+        <Icon key={index} className="h-4 w-4" />
+      ))}
+    </span>
+  );
+}
+
+function NavigationCountBadge({ count }: { count: number }) {
+  return (
+    <span
+      className="inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-0.5 text-xs leading-none font-semibold"
+      style={{ background: 'color-mix(in oklab, currentColor, transparent 88%)' }}
+    >
+      {count}
+    </span>
+  );
+}
+
+function NavigationLinkContent({ item }: { item: NavigationItem }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <NavigationIconCandidates icons={item.iconCandidates} />
+      <span>{item.label}</span>
+      {typeof item.count === 'number' ? <NavigationCountBadge count={item.count} /> : null}
+    </span>
+  );
 }
 
 export function Header() {
@@ -74,10 +133,10 @@ export function Header() {
       className="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)]/80 backdrop-blur"
     >
       <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <div className="flex min-w-0 items-center gap-5">
+        <div className="flex min-w-0 items-center gap-6">
           <Link
             to="/"
-            className="shrink-0 text-base font-semibold tracking-tight md:text-lg"
+            className="shrink-0 text-base font-bold tracking-tight md:text-lg"
             style={{ color: 'var(--color-fg)' }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -93,7 +152,7 @@ export function Header() {
                 className={({ isActive }) => getNavLinkClass(isActive)}
                 style={({ isActive }) => getNavLinkStyle(isActive)}
               >
-                {item.label}
+                <NavigationLinkContent item={item} />
               </NavLink>
             ))}
           </nav>
@@ -160,7 +219,7 @@ export function Header() {
                   style={({ isActive }) => getNavLinkStyle(isActive)}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item.label}
+                  <NavigationLinkContent item={item} />
                 </NavLink>
               ))}
             </div>
