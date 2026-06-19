@@ -11,7 +11,7 @@ type ProfileSectionProps = {
 
 function ProfileSection({ title, children }: ProfileSectionProps) {
   return (
-    <section className="py-6 md:py-8">
+    <section className="py-6 first:pt-0 md:py-8 md:first:pt-0">
       <h2
         className="border-b pb-2 text-xl font-semibold tracking-tight md:text-2xl"
         style={{ borderColor: 'var(--color-border)', color: 'var(--color-fg)' }}
