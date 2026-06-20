@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @source "../index.html";
 @source "./**/*.{ts,tsx,js,jsx}";
@@ -45,6 +45,12 @@
   --featured-badge-bg: color-mix(in oklab, var(--color-accent), white 10%);
   --featured-badge-fg: var(--color-accent-contrast);
 
+  /* learning repository icons */
+  --learning-icon-panel-bg: color-mix(in oklab, var(--color-bg), var(--color-accent) 3%);
+  --learning-icon-tile-bg: color-mix(in oklab, white, var(--color-bg) 8%);
+  --learning-icon-tile-border: theme(colors.slate.200);
+  --learning-icon-tile-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+
   /* radius / shadow */
   --radius-md: 0.5rem;
   /* 8px */
@@ -84,6 +90,11 @@
   --featured-card-border: color-mix(in oklab, var(--color-border), var(--color-accent) 40%);
   --featured-badge-bg: color-mix(in oklab, var(--color-accent), black 15%);
   --featured-badge-fg: var(--color-accent-contrast);
+
+  --learning-icon-panel-bg: color-mix(in oklab, var(--color-card), white 5%);
+  --learning-icon-tile-bg: color-mix(in oklab, var(--color-card), white 24%);
+  --learning-icon-tile-border: color-mix(in oklab, var(--color-border), white 18%);
+  --learning-icon-tile-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
 }
 
 /* アクセント差し替え */
@@ -116,7 +127,7 @@
   border: 1px solid var(--btn-sec-border);
   background: var(--btn-sec-bg);
   color: var(--btn-sec-fg);
-  transition: background-color .15s ease;
+  transition: background-color 0.15s ease;
 }
 
 .btn-secondary:hover,
