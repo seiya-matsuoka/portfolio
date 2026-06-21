@@ -27,6 +27,98 @@ export const learningRepositoriesUpdatedAt = '2026-06-21';
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
   {
+    slug: 'javascript-practical-foundations-study',
+    title: 'JavaScript Practical Foundations Study',
+    summary:
+      'JavaScript の基礎を、コードリーディング中心で体系的に学習するためのリポジトリ。TypeScript や React の前提になる JavaScript の土台を、コードを読みながら確認できる。',
+    status: 'DONE',
+    kind: 'Reading',
+    tech: ['JavaScript', 'Node.js', 'npm', 'ESLint'],
+    repoUrl: 'https://github.com/seiya-matsuoka/javascript-practical-foundations-study',
+    icons: [
+      {
+        name: 'JavaScript',
+        src: 'icons/learning-repositories/javascript-original.svg',
+      },
+      {
+        name: 'Node.js',
+        src: 'icons/learning-repositories/nodejs-original-wordmark.svg',
+      },
+    ],
+    description:
+      'JavaScript の基礎を、コードリーディング中心で体系的に学習するためのリポジトリ。\n' +
+      '基本構文だけでなく、値・型 / スコープ / 参照 / 関数 / オブジェクト / 配列 / 標準組み込み object / エラー処理 / 非同期処理 / class / DOM / Node.js / JSON を扱う。\n' +
+      '各 Unit ごとにソースコードとドキュメントを用意し、コード、コメント、出力、確認用の assert、ドキュメントを対応づけながら見返せる形で整理している。',
+    learningItems: [
+      'TypeScript や React の前提になる JavaScript の土台を、コードを読みながら確認できる形で残すことを目的とする。',
+      'JavaScript の基礎、JavaScript らしい書き方、実務で頻出する標準機能を整理する',
+      'Unit 01: JavaScript の実行環境・リポジトリ基礎・モジュール入門 / Unit 02: 値・型・比較・型変換',
+      'Unit 03: 変数宣言・スコープ・巻き上げ・参照 / Unit 04: 関数・コールバック・高階関数・クロージャ',
+      'Unit 05: オブジェクト・分割代入・スプレッド・非破壊更新 / Unit 06: 配列操作・データ変換・実務的なコレクション処理',
+      'Unit 07: Map・Set・文字列・正規表現・数値・Date・Intl / Unit 08: エラー処理・バリデーション・失敗の扱い',
+      'Unit 09: Promise・async/await・イベントループ・fetch / Unit 10: class・prototype・this・iterable・generator',
+      'Unit 11: ブラウザ JavaScript・DOM・イベント・フォーム・ストレージ / Unit 12: Node.js 基本 API・JSON・実務的な小さな設計パターン・落とし穴まとめ',
+    ],
+    featured: true,
+    updatedAt: '2026-6-3',
+  },
+  {
+    slug: 'python-foundations-study-part2',
+    title: 'Python Foundations Study - Part 2',
+    summary:
+      'Python の基礎を、コードリーディング中心で学習するためのリポジトリ。Part 2 では、Part 1 で扱った内容を前提に、より実用的な基礎要素を扱う。',
+    status: 'DONE',
+    kind: 'Reading',
+    tech: ['Python'],
+    repoUrl: 'https://github.com/seiya-matsuoka/python-foundations-study-part2',
+    icons: [
+      {
+        name: 'Python',
+        src: 'icons/learning-repositories/python-original-wordmark.svg',
+      },
+    ],
+    description:
+      'Python の基礎を、コードリーディング中心で学習するためのリポジトリ。\n' +
+      'Part 2 では、例外処理 / ファイル入出力 / モジュール分割 / 文字列処理 / 標準データ形式 / 標準ライブラリ / クラス / 型ヒント / テスト / ログ / CLI基礎 を扱う。\n' +
+      '各 Unit ごとにソースコードとドキュメントを用意し、コード、コメント、出力、確認用の assert を対応づけながら見返せる形で整理している。',
+    learningItems: [
+      'Unit 07: 例外処理・ファイル入出力・パス操作 / Unit 08: モジュール・import・コード分割',
+      'Unit 09: 文字列処理・データ変換・標準データ形式 / Unit 10: 標準ライブラリの重要機能',
+      'Unit 11: クラス・オブジェクト・オブジェクト指向 / Unit 12: イテレータ・ジェネレータ・型ヒント・テスト・ログ・CLI基礎',
+      '使用環境: Python 3.13.13 / Pylance / Ruff / uv',
+    ],
+    featured: false,
+    updatedAt: '2026-5-16',
+  },
+  {
+    slug: 'python-foundations-study-part1',
+    title: 'Python Foundations Study - Part 1',
+    summary:
+      'Python の基礎を、コードリーディング中心で学習するためのリポジトリ。Part 1 では、Python の言語基礎と、コードリーディングで頻出する書き方に慣れることを目的とする。',
+    status: 'DONE',
+    kind: 'Reading',
+    tech: ['Python'],
+    repoUrl: 'https://github.com/seiya-matsuoka/python-foundations-study-part1',
+    icons: [
+      {
+        name: 'Python',
+        src: 'icons/learning-repositories/python-original-wordmark.svg',
+      },
+    ],
+    description:
+      'Python の基礎を、コードリーディング中心で学習するためのリポジトリ。\n' +
+      'Part 1 では、基本構文 / 条件分岐 / 繰り返し / 基本コレクション / 代入・参照・コピー / 関数 / Pythonらしい書き方 を扱う。\n' +
+      '各 Unit ごとにソースコードとドキュメントを用意し、コード、コメント、出力、確認用の assert を対応づけながら見返せる形で整理している。',
+    learningItems: [
+      'Unit 01: Pythonの基本構文・値・文字列 / Unit 02: 条件分岐・繰り返し・比較',
+      'Unit 03: 基本コレクション / Unit 04: 代入・参照・コピー',
+      'Unit 05: 関数・引数・スコープ / Unit 06: Pythonらしい書き方',
+      '使用環境: Python 3.13.13 / Pylance / Ruff / venv / pip',
+    ],
+    featured: false,
+    updatedAt: '2026-5-10',
+  },
+  {
     slug: 'tree-heap-graph-java',
     title: 'Tree / Heap / Graph - Java',
     summary:
