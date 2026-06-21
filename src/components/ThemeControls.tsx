@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { FiCheck, FiMonitor, FiMoon, FiSun } from 'react-icons/fi';
 import type { ThemeMode } from '../lib/theme';
-import { applyTheme, getStoredTheme, initThemeFromStorage } from '../lib/theme';
+import { applyTheme, DEFAULT_THEME_MODE, getStoredTheme, initThemeFromStorage } from '../lib/theme';
 
 const themeOptions = [
   { value: 'light', label: 'Light', Icon: FiSun },
@@ -10,7 +10,7 @@ const themeOptions = [
 ] satisfies { value: ThemeMode; label: string; Icon: typeof FiSun }[];
 
 export function ThemeControls() {
-  const [theme, setTheme] = useState<ThemeMode>('light');
+  const [theme, setTheme] = useState<ThemeMode>(DEFAULT_THEME_MODE);
   const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
@@ -46,7 +46,10 @@ export function ThemeControls() {
     };
   }, [isOpen]);
 
-  const currentTheme = themeOptions.find((option) => option.value === theme) ?? themeOptions[0];
+  const currentTheme =
+    themeOptions.find((option) => option.value === theme) ??
+    themeOptions.find((option) => option.value === DEFAULT_THEME_MODE) ??
+    themeOptions[0];
   const CurrentThemeIcon = currentTheme.Icon;
 
   const onThemeSelect = (next: ThemeMode) => {

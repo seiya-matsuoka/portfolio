@@ -4,6 +4,12 @@ export type Accent = 'indigo' | 'emerald' | 'rose';
 const THEME_KEY = 'theme-mode';
 const ACCENT_KEY = 'theme-accent';
 
+export const DEFAULT_THEME_MODE: ThemeMode = 'system';
+
+function isThemeMode(value: string | null): value is ThemeMode {
+  return value === 'light' || value === 'dark' || value === 'system';
+}
+
 export function detectSystemTheme(): 'light' | 'dark' {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     ? 'dark'
@@ -21,7 +27,7 @@ export function applyTheme(mode: ThemeMode) {
 
 // 初期化（保存値から適用 & system変化の監視）
 export function initThemeFromStorage() {
-  const stored = (localStorage.getItem(THEME_KEY) as ThemeMode) || 'light';
+  const stored = getStoredTheme();
   applyTheme(stored);
 
   // system の場合のみ OS テーマ変化を追随
@@ -35,7 +41,8 @@ export function initThemeFromStorage() {
 }
 
 export function getStoredTheme(): ThemeMode {
-  return (localStorage.getItem(THEME_KEY) as ThemeMode) || 'light';
+  const stored = localStorage.getItem(THEME_KEY);
+  return isThemeMode(stored) ? stored : DEFAULT_THEME_MODE;
 }
 
 // アクセント適用
