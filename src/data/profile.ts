@@ -42,7 +42,7 @@ export const profile = {
     },
     {
       title: 'Personal Development',
-      items: ['Java', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Node.js'],
+      items: ['Java', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Node.js', 'Express'],
     },
   ] satisfies ProfileTechStackGroup[],
 
