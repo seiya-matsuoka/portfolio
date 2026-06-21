@@ -27,6 +27,52 @@ export const learningRepositoriesUpdatedAt = '2026-06-21';
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
   {
+    slug: 'typescript-foundations-study',
+    title: 'TypeScript Foundations Study',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Reading',
+    tech: ['TypeScript', 'Node.js', 'npm', 'ESLint'],
+    repoUrl: 'https://github.com/seiya-matsuoka/typescript-foundations-study',
+    icons: [
+      {
+        name: 'TypeScript',
+        src: 'icons/learning-repositories/typescript-original.svg',
+      },
+      {
+        name: 'Node.js',
+        src: 'icons/learning-repositories/nodejs-original-wordmark.svg',
+      },
+    ],
+    description: 'In progress...',
+    learningItems: ['In progress...'],
+    featured: false,
+    updatedAt: '2026-6-14',
+  },
+  {
+    slug: 'git-github-practice-drills',
+    title: 'Git / Github Practice Drills',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Hands-on',
+    tech: ['Git', 'GitHub', 'Git Bash'],
+    repoUrl: 'https://github.com/seiya-matsuoka/git-github-practice-drills',
+    icons: [
+      {
+        name: 'Git',
+        src: 'icons/learning-repositories/git-original.svg',
+      },
+      {
+        name: 'GitHub',
+        src: 'icons/learning-repositories/github-original.svg',
+      },
+    ],
+    description: 'In progress...',
+    learningItems: ['In progress...'],
+    featured: false,
+    updatedAt: '2026-6-7',
+  },
+  {
     slug: 'javascript-practical-foundations-study',
     title: 'JavaScript Practical Foundations Study',
     summary:
