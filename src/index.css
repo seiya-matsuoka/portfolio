@@ -116,6 +116,35 @@
   color: var(--color-accent-contrast);
 }
 
+/* モーダルの表示領域を、スマホブラウザの実表示領域に合わせる */
+.modal-overlay {
+  box-sizing: border-box;
+  height: 100vh;
+  height: 100dvh;
+  padding: 1rem;
+  padding-top: max(1rem, env(safe-area-inset-top));
+  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  padding-left: max(1rem, env(safe-area-inset-left));
+}
+
+.modal-dialog {
+  max-height: calc(100vh - 2rem);
+  max-height: calc(
+    100dvh - max(1rem, env(safe-area-inset-top)) - max(1rem, env(safe-area-inset-bottom))
+  );
+}
+
+@supports not (height: 100dvh) {
+  .modal-overlay {
+    height: 100vh;
+  }
+
+  .modal-dialog {
+    max-height: calc(100vh - 2rem);
+  }
+}
+
 /* フォーカスリングを変数で統一 */
 .focus-ring {
   outline: 2px solid var(--color-ring);

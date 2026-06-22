@@ -197,7 +197,7 @@ export function PersonalProjectModal({ personalProject, onClose }: Props) {
   return (
     <div
       onClick={onOverlayClick}
-      className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4 backdrop-blur-sm"
+      className="modal-overlay fixed inset-x-0 top-0 z-50 grid place-items-center overflow-y-auto bg-black/50 backdrop-blur-sm"
       aria-labelledby={titleId}
       role="dialog"
       aria-modal="true"
@@ -205,7 +205,7 @@ export function PersonalProjectModal({ personalProject, onClose }: Props) {
     >
       <div
         ref={dialogRef}
-        className="animate-in fade-in zoom-in-95 flex max-h-[calc(100vh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
+        className="modal-dialog animate-in fade-in zoom-in-95 flex w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
       >
         {/* ヘッダー */}
         <div className="flex shrink-0 items-center justify-between border-b border-[color:var(--color-border)] p-4">
