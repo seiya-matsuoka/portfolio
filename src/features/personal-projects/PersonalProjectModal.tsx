@@ -1,15 +1,17 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import type { Project } from '../data/projects';
-import { asset } from '../lib/asset';
+import type { PersonalProject } from '../../data/personalProjects';
+import { asset } from '../../lib/asset';
+import { FaChevronLeft, FaChevronRight, FaPlayCircle } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
-import { FaPlayCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { LinkButton } from '../../components/common/LinkButton';
+import { TagList } from '../../components/common/TagList';
 
 type Props = {
-  project: Project;
+  personalProject: PersonalProject;
   onClose: () => void;
 };
 
-export function ProjectModal({ project, onClose }: Props) {
+export function PersonalProjectModal({ personalProject, onClose }: Props) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
@@ -18,17 +20,17 @@ export function ProjectModal({ project, onClose }: Props) {
   // ギャラリー（thumb + images）
   const gallery = useMemo(() => {
     const arr: string[] = [];
-    if (project.thumb) arr.push(asset(project.thumb)!);
-    if (project.images?.length) arr.push(...project.images.map((p) => asset(p)!));
+    if (personalProject.thumb) arr.push(asset(personalProject.thumb)!);
+    if (personalProject.images?.length) arr.push(...personalProject.images.map((p) => asset(p)!));
     return arr;
-  }, [project.thumb, project.images]);
+  }, [personalProject.thumb, personalProject.images]);
 
   const [idx, setIdx] = useState(0);
   const hasGallery = gallery.length > 0;
 
   useEffect(() => {
     setIdx(0);
-  }, [project.slug]);
+  }, [personalProject.slug]);
 
   const go = (next: number) => {
     if (!hasGallery) return;
@@ -187,14 +189,15 @@ export function ProjectModal({ project, onClose }: Props) {
     if (e.target === e.currentTarget) onClose();
   };
 
-  const titleId = `proj-modal-title-${project.slug}`;
-  const descId = `proj-modal-desc-${project.slug}`;
-  const bodyText = project.description ?? project.summary;
+  const titleId = `personal-project-modal-title-${personalProject.slug}`;
+  const descId = `personal-project-modal-desc-${personalProject.slug}`;
+  const bodyText = personalProject.description ?? personalProject.summary;
+  const tagItems = [personalProject.kind, ...personalProject.tech];
 
   return (
     <div
       onClick={onOverlayClick}
-      className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4 backdrop-blur-sm"
+      className="modal-overlay fixed inset-x-0 top-0 z-50 grid place-items-center overflow-y-auto bg-black/50 backdrop-blur-sm"
       aria-labelledby={titleId}
       role="dialog"
       aria-modal="true"
@@ -202,7 +205,7 @@ export function ProjectModal({ project, onClose }: Props) {
     >
       <div
         ref={dialogRef}
-        className="animate-in fade-in zoom-in-95 flex max-h-[calc(100vh-2rem)] w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
+        className="modal-dialog animate-in fade-in zoom-in-95 flex w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-lg duration-150 motion-reduce:transform-none motion-reduce:transition-none"
       >
         {/* ヘッダー */}
         <div className="flex shrink-0 items-center justify-between border-b border-[color:var(--color-border)] p-4">
@@ -211,7 +214,7 @@ export function ProjectModal({ project, onClose }: Props) {
             className="text-lg font-semibold md:text-xl"
             style={{ color: 'var(--color-fg)' }}
           >
-            {project.title}
+            {personalProject.title}
           </h2>
           <button
             ref={closeBtnRef}
@@ -235,7 +238,7 @@ export function ProjectModal({ project, onClose }: Props) {
             className="relative w-full overflow-hidden"
             style={{ background: 'var(--color-surface)' }}
             aria-roledescription="carousel"
-            aria-label="Project previews"
+            aria-label="Personal project previews"
           >
             <div
               className="relative aspect-[16/9] w-full touch-pan-y"
@@ -249,7 +252,7 @@ export function ProjectModal({ project, onClose }: Props) {
                   <img
                     key={`${src}-${i}`}
                     src={src}
-                    alt={`${project.title} preview ${i + 1}`}
+                    alt={`${personalProject.title} preview ${i + 1}`}
                     className={`absolute inset-0 h-full w-full object-cover ${
                       i === idx ? 'opacity-100' : 'opacity-0'
                     } transition-opacity duration-200 motion-reduce:transition-none`}
@@ -331,36 +334,16 @@ export function ProjectModal({ project, onClose }: Props) {
           <div className="space-y-4 p-4">
             {/* CTA */}
             <div className="flex items-center gap-2">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-                  style={{
-                    backgroundColor: 'var(--color-accent)',
-                    color: 'var(--color-accent-contrast)',
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = 'var(--color-accent)')
-                  }
-                >
+              {personalProject.liveUrl && (
+                <LinkButton href={personalProject.liveUrl} variant="primary">
                   <FaPlayCircle className="h-4 w-4" aria-hidden="true" />
                   <span>Demo</span>
-                </a>
+                </LinkButton>
               )}
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-              >
+              <LinkButton href={personalProject.repoUrl}>
                 <SiGithub className="h-4 w-4" aria-hidden="true" />
                 <span>GitHub</span>
-              </a>
+              </LinkButton>
             </div>
 
             {/* 概要 */}
@@ -373,7 +356,7 @@ export function ProjectModal({ project, onClose }: Props) {
             </p>
 
             {/* 機能リスト */}
-            {project.features?.length ? (
+            {personalProject.features?.length ? (
               <div>
                 <h3 className="mb-1 text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
                   主な機能
@@ -382,7 +365,7 @@ export function ProjectModal({ project, onClose }: Props) {
                   className="list-disc space-y-1 pl-5 text-sm"
                   style={{ color: 'var(--color-muted)' }}
                 >
-                  {project.features.map((f, i) => (
+                  {personalProject.features.map((f, i) => (
                     <li key={i}>{f}</li>
                   ))}
                 </ul>
@@ -390,31 +373,7 @@ export function ProjectModal({ project, onClose }: Props) {
             ) : null}
 
             {/* 技術タグ */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span
-                className="rounded border px-1.5 py-0.5 text-[11px]"
-                style={{
-                  borderColor: 'var(--color-border)',
-                  background: 'var(--color-surface)',
-                  color: 'var(--color-fg)',
-                }}
-              >
-                {project.kind}
-              </span>
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="rounded border px-1.5 py-0.5 text-[11px]"
-                  style={{
-                    borderColor: 'var(--color-border)',
-                    background: 'var(--color-surface)',
-                    color: 'var(--color-fg)',
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+            <TagList items={tagItems} className="gap-2" />
           </div>
         </div>
       </div>

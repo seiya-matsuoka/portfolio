@@ -1,0 +1,239 @@
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { EmptyState } from '../components/common/EmptyState';
+import { SectionHeader } from '../components/common/SectionHeader';
+import { personalProjects, personalProjectsUpdatedAt } from '../data/personalProjects';
+import { PersonalProjectCard } from '../features/personal-projects/PersonalProjectCard';
+import { PersonalProjectFilters } from '../features/personal-projects/PersonalProjectFilters';
+import { PersonalProjectModal } from '../features/personal-projects/PersonalProjectModal';
+import type {
+  PersonalProject,
+  PersonalProjectKind,
+  PersonalProjectStatus,
+} from '../data/personalProjects';
+
+function useQueryParam(name: string) {
+  const get = () => new URLSearchParams(window.location.search).get(name);
+  const set = (value: string | null, mode: 'push' | 'replace' = 'push') => {
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
+    if (value === null) params.delete(name);
+    else params.set(name, value);
+    url.search = params.toString();
+    if (mode === 'push') window.history.pushState(null, '', url.toString());
+    else window.history.replaceState(null, '', url.toString());
+  };
+  return { get, set };
+}
+
+type StatusOption = 'ALL' | PersonalProjectStatus;
+
+// URL <-> 状態 のヘルパ
+const STATUS_SET = new Set<StatusOption>(['ALL', 'DONE', 'WIP']);
+const ALL_KINDS: PersonalProjectKind[] = Array.from(new Set(personalProjects.map((p) => p.kind)));
+
+function parseStatusFromURL(sp: URLSearchParams): StatusOption {
+  const s = sp.get('status')?.toUpperCase() as StatusOption | undefined;
+  return s && STATUS_SET.has(s) ? s : 'ALL';
+}
+
+function parseKindsFromURL(
+  sp: URLSearchParams,
+  validKinds: PersonalProjectKind[]
+): Set<PersonalProjectKind> {
+  const raw = sp.get('kind');
+  if (!raw) return new Set();
+  const want = raw.split(',').map((s) => s.trim());
+  const filtered = want.filter((x): x is PersonalProjectKind =>
+    validKinds.includes(x as PersonalProjectKind)
+  );
+  return new Set(filtered);
+}
+
+function equalSet<A>(a: Set<A>, b: Set<A>) {
+  if (a.size !== b.size) return false;
+  for (const v of a) if (!b.has(v)) return false;
+  return true;
+}
+
+export function PersonalProjectsPage() {
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const selectedPersonalProject = useMemo(
+    () => personalProjects.find((p) => p.slug === selectedSlug) ?? null,
+    [selectedSlug]
+  );
+  const openedViaClickRef = useRef(false);
+  const qp = useQueryParam('p');
+
+  // フィルタ状態（URLから遅延初期化）
+  const [status, setStatus] = useState<StatusOption>(() =>
+    parseStatusFromURL(new URLSearchParams(window.location.search))
+  );
+  const [selectedKinds, setSelectedKinds] = useState<Set<PersonalProjectKind>>(() =>
+    parseKindsFromURL(new URLSearchParams(window.location.search), ALL_KINDS)
+  );
+  const kindOptions: PersonalProjectKind[] = ALL_KINDS;
+
+  const suppressSyncRef = useRef(false);
+
+  // 起動時：?p を反映。戻る/進むはURL→状態に復元
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+
+    // モーダル
+    const p = sp.get('p');
+    if (p && personalProjects.some((x) => x.slug === p)) setSelectedSlug(p);
+
+    const onPop = () => {
+      const sp2 = new URLSearchParams(window.location.search);
+      suppressSyncRef.current = true;
+
+      // モーダル
+      const val = sp2.get('p');
+      if (val && personalProjects.some((x) => x.slug === val)) setSelectedSlug(val);
+      else setSelectedSlug(null);
+
+      // フィルタ
+      setStatus(parseStatusFromURL(sp2));
+      setSelectedKinds(parseKindsFromURL(sp2, ALL_KINDS));
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // 状態 -> URL 同期
+  useEffect(() => {
+    if (suppressSyncRef.current) {
+      suppressSyncRef.current = false;
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    const sp = url.searchParams;
+
+    const curStatus = parseStatusFromURL(sp);
+    const curKinds = parseKindsFromURL(sp, ALL_KINDS);
+
+    const statusChanged = curStatus !== status;
+    const kindsChanged = !equalSet(curKinds, selectedKinds);
+
+    if (!statusChanged && !kindsChanged) return; // 一致している
+
+    if (status === 'ALL') sp.delete('status');
+    else sp.set('status', status);
+
+    if (selectedKinds.size === 0) sp.delete('kind');
+    else sp.set('kind', Array.from(selectedKinds).join(','));
+
+    url.search = sp.toString();
+    window.history.pushState(null, '', url.toString());
+  }, [status, selectedKinds]);
+
+  // フィルタ操作
+  const toggleKind = (k: PersonalProjectKind) => {
+    setSelectedKinds((prev) => {
+      const next = new Set(prev);
+      if (next.has(k)) next.delete(k);
+      else next.add(k);
+      return next;
+    });
+  };
+
+  const resetKinds = () => setSelectedKinds(new Set());
+
+  // モーダル操作
+  const openModal = (slug: string) => {
+    setSelectedSlug(slug);
+    openedViaClickRef.current = true;
+    qp.set(slug, 'push');
+  };
+
+  const closeModal = () => {
+    if (openedViaClickRef.current) {
+      openedViaClickRef.current = false;
+      window.history.back();
+    } else {
+      qp.set(null, 'replace');
+    }
+    setSelectedSlug(null);
+  };
+
+  // フィルタ + ソート
+  const filtered = useMemo(() => {
+    const matchStatus = (p: PersonalProject) => (status === 'ALL' ? true : p.status === status);
+    const matchKind = (p: PersonalProject) =>
+      selectedKinds.size === 0 ? true : selectedKinds.has(p.kind);
+
+    return personalProjects.filter((p) => matchStatus(p) && matchKind(p));
+  }, [status, selectedKinds]);
+
+  const sorted = useMemo(() => {
+    const toTS = (s?: string) => (s ? new Date(s).getTime() : 0);
+
+    return [...filtered].sort((a, b) => {
+      // featured の有無でソート
+      const aFeat = a.featured ? 1 : 0;
+      const bFeat = b.featured ? 1 : 0;
+      if (aFeat !== bFeat) {
+        // featured === true が前に来る
+        return bFeat - aFeat;
+      }
+
+      // 更新日降順
+      const byDate = toTS(b.updatedAt) - toTS(a.updatedAt);
+      if (byDate !== 0) return byDate;
+
+      // タイトルの辞書順
+      return a.title.localeCompare(b.title);
+    });
+  }, [filtered]);
+
+  return (
+    <>
+      <SectionHeader
+        title="Personal Projects"
+        description="学習目的の個人開発で作成した成果物の一覧"
+        lastUpdated={personalProjectsUpdatedAt}
+      />
+
+      {/* フィルタ */}
+      <section className="mb-6">
+        <PersonalProjectFilters
+          status={status}
+          onChangeStatus={setStatus}
+          kindOptions={kindOptions}
+          selectedKinds={selectedKinds}
+          onToggleKind={toggleKind}
+          onResetKinds={resetKinds}
+        />
+      </section>
+
+      {/* ライブリージョン */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {sorted.length}件に絞り込みました
+      </div>
+
+      {/* グリッド */}
+      <section className="pb-16" aria-label="プロジェクト一覧">
+        {sorted.length === 0 ? (
+          <EmptyState message="条件に一致する項目がありません。" />
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
+            {sorted.map((p, i) => (
+              <PersonalProjectCard
+                key={p.slug}
+                personalProject={p}
+                onOpen={openModal}
+                priority={i === 0}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* モーダル */}
+      {selectedPersonalProject && (
+        <PersonalProjectModal personalProject={selectedPersonalProject} onClose={closeModal} />
+      )}
+    </>
+  );
+}

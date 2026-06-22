@@ -1,19 +1,22 @@
 import { useState } from 'react';
-import type { ProjectKind, ProjectStatus } from '../data/projects';
+import type {
+  LearningRepositoryKind,
+  LearningRepositoryStatus,
+} from '../../data/learningRepositories';
 
-type StatusOption = 'ALL' | ProjectStatus;
+type StatusOption = 'ALL' | LearningRepositoryStatus;
 
 type Props = {
   status: StatusOption;
   onChangeStatus: (next: StatusOption) => void;
 
-  kindOptions: ProjectKind[];
-  selectedKinds: Set<ProjectKind>;
-  onToggleKind: (k: ProjectKind) => void;
+  kindOptions: LearningRepositoryKind[];
+  selectedKinds: Set<LearningRepositoryKind>;
+  onToggleKind: (k: LearningRepositoryKind) => void;
   onResetKinds: () => void;
 };
 
-export function Filters({
+export function LearningRepositoryFilters({
   status,
   onChangeStatus,
   kindOptions,
@@ -46,14 +49,14 @@ export function Filters({
       {/* サマリ + 開閉トグル */}
       <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
-          {hasAnyFilter ? summaryText : 'すべてのプロジェクトを表示中'}
+          {hasAnyFilter ? summaryText : 'すべての学習リポジトリを表示中'}
         </p>
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="self-start rounded-md border px-2.5 py-1 text-xs outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
           aria-expanded={open}
-          aria-controls="filters-panel"
+          aria-controls="learning-repositories-filters-panel"
           style={{
             borderColor: 'var(--color-border)',
             background: 'var(--color-surface)',
@@ -66,7 +69,7 @@ export function Filters({
 
       {/* パネル本体 */}
       {open && (
-        <div id="filters-panel" className="mt-3 flex flex-col gap-4">
+        <div id="learning-repositories-filters-panel" className="mt-3 flex flex-col gap-4">
           {/* Status */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm" style={{ color: 'var(--color-muted)' }}>

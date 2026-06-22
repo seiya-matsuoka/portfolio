@@ -7,15 +7,15 @@
 </p>
 
 <p>
-  <img alt="TypeScript" src="https://img.shields.io/badge/typescript-5%2B-3178C6?logo=typescript">
-  <img alt="Vite" src="https://img.shields.io/badge/Vite-5%2B-646CFF?logo=vite&logoColor=ffffff">
-  <img alt="React" src="https://img.shields.io/badge/React-18%2B-61DAFB?logo=react&logoColor=000000">
-  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-4%2B-06B6D4?logo=tailwindcss&logoColor=ffffff">
+  <img alt="TypeScript" src="https://img.shields.io/badge/typescript-5.9-3178C6?logo=typescript">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=ffffff">
+  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=000000">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=ffffff">
   <img alt="Vercel" src="https://img.shields.io/badge/Vercel-Frontend-000000?logo=vercel&logoColor=ffffff">
 </p>
 
-学習目的の個人開発で作成した成果物をまとめて紹介するポートフォリオサイトです。  
-プロジェクト情報は `src/data/projects.ts` でデータ管理し、カード一覧＋詳細モーダルで閲覧できます。
+プロフィール、個人開発で作成した Webアプリケーション / ツール、学習に使用したリポジトリを紹介するポートフォリオサイト。  
+React / TypeScript / Vite / Tailwind CSS v4 を使用し、プロフィールページ、個人開発一覧、学習リポジトリ一覧を1つのサイトとして管理する。
 
 ---
 
@@ -29,31 +29,42 @@
 
 ## スクリーンショット
 
-1. プロジェクト一覧画面
-   ![list](docs/screenshots/01-project-list.png)
+現在、UI の改善・更新作業中のため、スクリーンショットは未掲載。
 
-2. 詳細モーダル表示
-   ![modal](docs/screenshots/02-project-modal.png)
+<!-- 画像追加時は、README 用画像として `assets/readme/` 配下に配置する。 -->
 
-3. ダークモード表示
-   ![dark](docs/screenshots/03-dark-mode.png)
+<!-- 1. プロフィール画面
+   ![Profile](assets/readme/profile.png)
+
+2. 個人開発一覧画面
+   ![Personal Projects](assets/readme/personal-projects.png)
+
+3. 学習リポジトリ一覧画面
+   ![Learning Repositories](assets/readme/learning-repositories.png) -->
 
 ---
 
-## 主な機能
+## 掲載内容
 
-- **プロジェクト一覧**
-  - Status（DONE / WIP）と Kind（Game / Web App / Tool）で絞り込み
-  - 「注目（featured）」プロジェクトの強調表示（バッジ / 見た目 / 並び順）
-- **URL共有（状態をURLに反映）**
-  - フィルタ条件をURLに反映
-  - `?p=<slug>` でモーダル直リンク
-- **詳細モーダル**
-  - 画像ギャラリー（矢印コントロール + スワイプ操作）
-  - 見切れないようにスクロール可能
-  - キーボード操作
-- **テーマ**
-  - Light / Dark / Auto
+- **Profile**
+  - エンジニアとしての概要、使用技術、ポートフォリオ内コンテンツへの導線、連絡先を掲載
+- **Personal Projects**
+  - 個人開発で作成した Webアプリケーション / ツールを掲載
+  - カード一覧、フィルタ、詳細モーダル、GitHub / デプロイ先へのリンクを提供
+- **Learning Repositories**
+  - 学習に使用したリポジトリを掲載
+  - 使用技術、学習範囲、主な学習内容、GitHubリポジトリへのリンクを提供
+
+---
+
+## 主な実装内容
+
+- React Router によるページ分割
+- Profile / Personal Projects / Learning Repositories / 404ページの構成
+- Personal Projects / Learning Repositories のカード一覧と詳細モーダル
+- URL クエリによるフィルタ条件・モーダル直リンクの共有
+- Light / Dark / System のテーマ切り替え
+- レスポンシブ対応の Header / ナビゲーション
 
 ---
 
@@ -61,7 +72,8 @@
 
 - TypeScript / React / Vite
 - Tailwind CSS v4
-- react-icons（アイコン）
+- React Router
+- react-icons
 
 ---
 
@@ -70,16 +82,26 @@
 ```txt
 src/
   components/
-    Filters.tsx
+    common/
     Header.tsx
-    ProjectCard.tsx
-    ProjectModal.tsx
     ThemeControls.tsx
   data/
-    projects.ts
+    profile.ts
+    personalProjects.ts
+    learningRepositories.ts
+  features/
+    personal-projects/
+    learning-repositories/
+  layouts/
+    AppLayout.tsx
   lib/
     asset.ts
     theme.ts
+  pages/
+    ProfilePage.tsx
+    PersonalProjectsPage.tsx
+    LearningRepositoriesPage.tsx
+    NotFoundPage.tsx
   App.tsx
   index.css
   main.tsx
@@ -90,6 +112,9 @@ public/
         thumb.webp
         01.webp
         02.webp
+  icons/
+    learning-repositories/
+      *.svg
 index.html
 ```
 
@@ -104,7 +129,7 @@ npm run dev
 
 - `dev`：開発サーバ
 - `build`：本番ビルド
-- `preview`：プレビュー
+- `preview`：ビルド結果のプレビュー
 
 ---
 
@@ -116,11 +141,11 @@ npm run dev
 
 ---
 
-## ドキュメント
+## 使用素材・ライセンス
 
-- 更新ガイド：[`docs/01_content-guide.md`](docs/01_content-guide.md)
-- アーキテクチャ概要：[`docs/02_architecture.md`](docs/02_architecture.md)
-- UIトークン：[`docs/03_ui-tokens.md`](docs/03_ui-tokens.md)
+- 学習リポジトリ一覧の技術アイコンには Devicon の SVG を使用
+- Devicon のライセンス情報は `public/icons/learning-repositories/README.md` と `public/icons/learning-repositories/DEVICON_LICENSE.txt` に記載
+- プロダクト名、ロゴ、ブランドは各所有者に帰属
 
 ---
 
@@ -128,3 +153,4 @@ npm run dev
 
 - Vercel にデプロイ
 - 環境変数 `VITE_SITE_URL` を設定してビルド
+- SPA ルーティング用の rewrites を `vercel.json` で管理
