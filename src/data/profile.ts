@@ -52,7 +52,7 @@ export const profile = {
     },
     {
       title: 'Learning Repositories',
-      description: '学習用に作成したリポジトリを掲載',
+      description: '学習に使用したリポジトリを掲載',
       href: '/learning-repositories',
     },
   ] satisfies ProfilePortfolioLink[],

@@ -194,7 +194,7 @@ export function LearningRepositoriesPage() {
     <>
       <SectionHeader
         title="Learning Repositories"
-        description="学習のために作成したリポジトリの一覧"
+        description="学習に使用したリポジトリの一覧"
         lastUpdated={learningRepositoriesUpdatedAt}
       />
 
