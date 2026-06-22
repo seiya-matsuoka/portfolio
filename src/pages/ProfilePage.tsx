@@ -25,7 +25,7 @@ function ProfileSection({ title, children }: ProfileSectionProps) {
 
 export function ProfilePage() {
   return (
-    <>
+    <div className="mx-auto max-w-4xl">
       <SectionHeader
         title={profile.name}
         description="プロフィールページ"
@@ -129,6 +129,6 @@ export function ProfilePage() {
           </div>
         </ProfileSection>
       </div>
-    </>
+    </div>
   );
 }
