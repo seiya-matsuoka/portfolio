@@ -47,7 +47,7 @@ export const profile = {
   portfolioLinks: [
     {
       title: 'Personal Projects',
-      description: '個人開発で作成したWebアプリケーション / ツールを掲載',
+      description: '個人開発で作成した成果物を掲載',
       href: '/personal-projects',
     },
     {
