@@ -9,9 +9,13 @@ const themeOptions = [
   { value: 'system', label: 'System', Icon: FiMonitor },
 ] satisfies { value: ThemeMode; label: string; Icon: typeof FiSun }[];
 
-export function ThemeControls() {
+type Props = {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+};
+
+export function ThemeControls({ isOpen, onOpenChange }: Props) {
   const [theme, setTheme] = useState<ThemeMode>(DEFAULT_THEME_MODE);
-  const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
 
@@ -25,26 +29,26 @@ export function ThemeControls() {
   useEffect(() => {
     if (!isOpen) return;
 
-    const onPointerDown = (event: PointerEvent) => {
+    const onDocumentClick = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) {
-        setIsOpen(false);
+        onOpenChange(false);
       }
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIsOpen(false);
+        onOpenChange(false);
       }
     };
 
-    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('click', onDocumentClick);
     document.addEventListener('keydown', onKeyDown);
 
     return () => {
-      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('click', onDocumentClick);
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, onOpenChange]);
 
   const currentTheme =
     themeOptions.find((option) => option.value === theme) ??
@@ -55,7 +59,7 @@ export function ThemeControls() {
   const onThemeSelect = (next: ThemeMode) => {
     setTheme(next);
     applyTheme(next);
-    setIsOpen(false);
+    onOpenChange(false);
   };
 
   return (
@@ -73,7 +77,7 @@ export function ThemeControls() {
         aria-expanded={isOpen}
         aria-haspopup="menu"
         title="Theme mode"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => onOpenChange(!isOpen)}
       >
         <CurrentThemeIcon className="h-4 w-4" aria-hidden="true" />
       </button>

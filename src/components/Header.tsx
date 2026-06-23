@@ -80,12 +80,35 @@ function NavigationLinkContent({ item }: { item: NavigationItem }) {
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  const closeHeaderMenus = () => {
+    setIsMobileMenuOpen(false);
+    setIsThemeMenuOpen(false);
+  };
+
+  const onMobileMenuButtonClick = () => {
+    const nextIsOpen = !isMobileMenuOpen;
+    setIsMobileMenuOpen(nextIsOpen);
+
+    if (nextIsOpen) {
+      setIsThemeMenuOpen(false);
+    }
+  };
+
+  const onThemeMenuOpenChange = (nextIsOpen: boolean) => {
+    setIsThemeMenuOpen(nextIsOpen);
+
+    if (nextIsOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
 
-    const onPointerDown = (event: PointerEvent) => {
+    const onDocumentClick = (event: MouseEvent) => {
       if (!headerRef.current?.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
       }
@@ -97,11 +120,11 @@ export function Header() {
       }
     };
 
-    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('click', onDocumentClick);
     document.addEventListener('keydown', onKeyDown);
 
     return () => {
-      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('click', onDocumentClick);
       document.removeEventListener('keydown', onKeyDown);
     };
   }, [isMobileMenuOpen]);
@@ -132,7 +155,7 @@ export function Header() {
             to="/"
             className="shrink-0 text-base font-bold tracking-tight md:text-lg"
             style={{ color: 'var(--color-fg)' }}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={closeHeaderMenus}
           >
             Seiya Matsuoka
           </Link>
@@ -158,6 +181,7 @@ export function Header() {
             className="inline-flex h-9 w-9 items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
             style={{ color: 'var(--color-fg)' }}
             aria-label="Email"
+            onClick={closeHeaderMenus}
           >
             <FiMail className="h-4 w-4" aria-hidden="true" />
             <span className="hidden md:inline">Email</span>
@@ -169,12 +193,13 @@ export function Header() {
             className="inline-flex h-9 w-9 items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
             style={{ color: 'var(--color-fg)' }}
             aria-label="GitHub"
+            onClick={closeHeaderMenus}
           >
             <SiGithub className="h-4 w-4" aria-hidden="true" />
             <span className="hidden md:inline">GitHub</span>
           </a>
 
-          <ThemeControls />
+          <ThemeControls isOpen={isThemeMenuOpen} onOpenChange={onThemeMenuOpenChange} />
 
           <button
             type="button"
@@ -187,7 +212,7 @@ export function Header() {
             aria-label={isMobileMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
             aria-controls="mobile-navigation"
             aria-expanded={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            onClick={onMobileMenuButtonClick}
           >
             {isMobileMenuOpen ? (
               <FiX className="h-5 w-5" aria-hidden="true" />
@@ -200,7 +225,7 @@ export function Header() {
         {isMobileMenuOpen ? (
           <nav
             id="mobile-navigation"
-            className="absolute inset-x-0 top-full z-20 border-y border-[color:var(--color-border)] bg-[color:var(--color-surface)]/95 shadow-lg backdrop-blur md:hidden"
+            className="absolute inset-x-0 top-full z-20 border-y border-[color:var(--color-border)] bg-[color:var(--color-surface)] shadow-lg md:hidden"
             aria-label="Mobile main"
           >
             <div className="flex flex-col gap-1 px-4 py-3">
@@ -211,7 +236,7 @@ export function Header() {
                   end={item.end}
                   className={({ isActive }) => `${getNavLinkClass(isActive)} px-3 py-2`}
                   style={({ isActive }) => getNavLinkStyle(isActive)}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeHeaderMenus}
                 >
                   <NavigationLinkContent item={item} />
                 </NavLink>
