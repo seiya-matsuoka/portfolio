@@ -54,7 +54,7 @@ function getNavLinkStyle(isActive: boolean) {
 }
 
 function NavigationIcon({ Icon }: { Icon: IconType }) {
-  return <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />;
+  return <Icon className="pointer-events-none h-4 w-4 shrink-0" aria-hidden="true" />;
 }
 
 function NavigationCountBadge({ count }: { count: number }) {
@@ -147,7 +147,7 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)]/80 backdrop-blur"
+      className="sticky top-0 z-10 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)]"
     >
       <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <div className="flex min-w-0 items-center gap-6">
@@ -178,24 +178,24 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
           <a
             href="mailto:seiya.matsuoka.contact@gmail.com"
-            className="inline-flex h-9 w-9 items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
+            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
             style={{ color: 'var(--color-fg)' }}
             aria-label="Email"
             onClick={closeHeaderMenus}
           >
-            <FiMail className="h-4 w-4" aria-hidden="true" />
+            <FiMail className="pointer-events-none h-4 w-4" aria-hidden="true" />
             <span className="hidden md:inline">Email</span>
           </a>
           <a
             href="https://github.com/seiya-matsuoka"
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex h-9 w-9 items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
+            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
             style={{ color: 'var(--color-fg)' }}
             aria-label="GitHub"
             onClick={closeHeaderMenus}
           >
-            <SiGithub className="h-4 w-4" aria-hidden="true" />
+            <SiGithub className="pointer-events-none h-4 w-4" aria-hidden="true" />
             <span className="hidden md:inline">GitHub</span>
           </a>
 
@@ -203,7 +203,7 @@ export function Header() {
 
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border text-sm outline-offset-2 transition hover:opacity-80 focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:hidden"
+            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center rounded-md border text-sm outline-offset-2 transition hover:opacity-80 focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:hidden"
             style={{
               borderColor: 'var(--color-border)',
               background: 'var(--color-surface)',
@@ -215,9 +215,9 @@ export function Header() {
             onClick={onMobileMenuButtonClick}
           >
             {isMobileMenuOpen ? (
-              <FiX className="h-5 w-5" aria-hidden="true" />
+              <FiX className="pointer-events-none h-5 w-5" aria-hidden="true" />
             ) : (
-              <FiMenu className="h-5 w-5" aria-hidden="true" />
+              <FiMenu className="pointer-events-none h-5 w-5" aria-hidden="true" />
             )}
           </button>
         </div>
