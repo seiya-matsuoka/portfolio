@@ -22,7 +22,7 @@ export function LearningRepositoryIconPanel({
 
   const iconImageClass = isModal
     ? isSingleIcon
-      ? 'h-36 w-36'
+      ? 'h-28 w-28 sm:h-36 sm:w-36'
       : 'h-28 w-28'
     : isSingleIcon
       ? 'h-28 w-28'
@@ -30,7 +30,7 @@ export function LearningRepositoryIconPanel({
 
   const iconTileClass = isModal
     ? isSingleIcon
-      ? 'rounded-3xl p-7'
+      ? 'rounded-3xl p-5 sm:p-7'
       : 'rounded-3xl p-5'
     : isSingleIcon
       ? 'rounded-2xl p-6'
