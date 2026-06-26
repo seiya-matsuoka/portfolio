@@ -14,7 +14,7 @@ export type LearningRepository = {
   kind: LearningRepositoryKind;
   tech: string[];
   repoUrl: string; // GitHub
-  icons: LearningRepositoryIcon[]; // 技術アイコン / 形式：icons/learning-repositories/<icon>.svg
+  icons: LearningRepositoryIcon[]; // 技術アイコン / 形式：icons/technologies/<icon>.svg
   description?: string; // モーダル用の詳しい説明
   learningItems?: string[]; // 主な学習内容・要点
   featured?: boolean; // 強調したいリポジトリ
@@ -37,11 +37,11 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'TypeScript',
-        src: 'icons/learning-repositories/typescript-original.svg',
+        src: 'icons/technologies/typescript-original.svg',
       },
       {
         name: 'Node.js',
-        src: 'icons/learning-repositories/nodejs-original-wordmark.svg',
+        src: 'icons/technologies/nodejs-original-wordmark.svg',
       },
     ],
     description: 'In progress...',
@@ -60,11 +60,11 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Git',
-        src: 'icons/learning-repositories/git-original.svg',
+        src: 'icons/technologies/git-original.svg',
       },
       {
         name: 'GitHub',
-        src: 'icons/learning-repositories/github-original.svg',
+        src: 'icons/technologies/github-original.svg',
       },
     ],
     description: 'In progress...',
@@ -84,11 +84,11 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'JavaScript',
-        src: 'icons/learning-repositories/javascript-original.svg',
+        src: 'icons/technologies/javascript-original.svg',
       },
       {
         name: 'Node.js',
-        src: 'icons/learning-repositories/nodejs-original-wordmark.svg',
+        src: 'icons/technologies/nodejs-original-wordmark.svg',
       },
     ],
     description:
@@ -120,7 +120,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Python',
-        src: 'icons/learning-repositories/python-original-wordmark.svg',
+        src: 'icons/technologies/python-original-wordmark.svg',
       },
     ],
     description:
@@ -148,7 +148,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Python',
-        src: 'icons/learning-repositories/python-original-wordmark.svg',
+        src: 'icons/technologies/python-original-wordmark.svg',
       },
     ],
     description:
@@ -176,7 +176,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Java',
-        src: 'icons/learning-repositories/java-original-wordmark.svg',
+        src: 'icons/technologies/java-original-wordmark.svg',
       },
     ],
     description:
@@ -205,7 +205,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Java',
-        src: 'icons/learning-repositories/java-original-wordmark.svg',
+        src: 'icons/technologies/java-original-wordmark.svg',
       },
     ],
     description:
@@ -234,7 +234,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Java',
-        src: 'icons/learning-repositories/java-original-wordmark.svg',
+        src: 'icons/technologies/java-original-wordmark.svg',
       },
     ],
     description:
@@ -263,7 +263,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Java',
-        src: 'icons/learning-repositories/java-original-wordmark.svg',
+        src: 'icons/technologies/java-original-wordmark.svg',
       },
     ],
     description:
@@ -290,11 +290,11 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Git',
-        src: 'icons/learning-repositories/git-original.svg',
+        src: 'icons/technologies/git-original.svg',
       },
       {
         name: 'GitHub',
-        src: 'icons/learning-repositories/github-original.svg',
+        src: 'icons/technologies/github-original.svg',
       },
     ],
     description:
@@ -318,11 +318,11 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'Linux',
-        src: 'icons/learning-repositories/linux-original.svg',
+        src: 'icons/technologies/linux-original.svg',
       },
       {
         name: 'Bash',
-        src: 'icons/learning-repositories/bash-original.svg',
+        src: 'icons/technologies/bash-original.svg',
       },
     ],
     description:
@@ -348,7 +348,7 @@ export const learningRepositories: LearningRepository[] = [
     icons: [
       {
         name: 'PostgreSQL',
-        src: 'icons/learning-repositories/postgresql-original-wordmark.svg',
+        src: 'icons/technologies/postgresql-original-wordmark.svg',
       },
     ],
     description:
