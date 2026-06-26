@@ -396,4 +396,33 @@ export const personalProjects: PersonalProject[] = [
     featured: false,
     updatedAt: '2025-03-3',
   },
+  // {
+  //   slug: 'portfolio',
+  //   title: 'Portfolio',
+  //   summary:
+  //     'プロフィール、個人開発で作成した Webアプリケーション / ツール、学習に使用したリポジトリを紹介するポートフォリオサイト。',
+  //   status: 'DONE',
+  //   kind: 'Web App',
+  //   tech: ['TypeScript', 'React', 'Vite', 'Tailwind'],
+  //   repoUrl: 'https://github.com/seiya-matsuoka/portfolio',
+  //   liveUrl: 'https://seiya-matsuoka-dev.vercel.app/',
+  //   thumb: 'images/projects/portfolio/thumb.webp',
+  //   description:
+  //     'プロフィール、個人開発で作成した Webアプリケーション / ツール、学習に使用したリポジトリを紹介するポートフォリオサイト。\n' +
+  //     'React / TypeScript / Vite / Tailwind CSS v4 を使用し、プロフィールページ、個人開発一覧、学習リポジトリ一覧を1つのサイトとして管理する。\n' +
+  //     'このサイト。',
+  //   features: [
+  //     'React Router によるページ分割',
+  //     'Profile / Personal Projects / Learning Repositories / 404ページの構成',
+  //     'Personal Projects / Learning Repositories のカード一覧と詳細モーダル',
+  //     'レスポンシブ対応の Header / ナビゲーション',
+  //   ],
+  //   images: [
+  //     'images/projects/portfolio/01.webp',
+  //     'images/projects/portfolio/02.webp',
+  //     'images/projects/portfolio/03.webp',
+  //   ],
+  //   featured: false,
+  //   updatedAt: '',
+  // },
 ];
