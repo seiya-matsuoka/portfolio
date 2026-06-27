@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { SiGithub } from 'react-icons/si';
 import { LinkButton } from '../../components/common/LinkButton';
-import { TagList } from '../../components/common/TagList';
+import { KindBadge } from '../../components/common/KindBadge';
+import { TechTagList } from '../../components/common/TechTagList';
 import type { LearningRepository } from '../../data/learningRepositories';
 import { LearningRepositoryIconPanel } from './LearningRepositoryIconPanel';
 
@@ -78,7 +79,6 @@ export function LearningRepositoryModal({ learningRepository, onClose }: Props) 
   const titleId = `learning-repository-modal-title-${learningRepository.slug}`;
   const descId = `learning-repository-modal-desc-${learningRepository.slug}`;
   const bodyText = learningRepository.description ?? learningRepository.summary;
-  const tagItems = [learningRepository.kind, ...learningRepository.tech];
 
   return (
     <div
@@ -163,7 +163,10 @@ export function LearningRepositoryModal({ learningRepository, onClose }: Props) 
             ) : null}
 
             {/* 技術タグ */}
-            <TagList items={tagItems} className="gap-2" />
+            <div className="flex flex-wrap items-center gap-2">
+              <KindBadge>{learningRepository.kind}</KindBadge>
+              <TechTagList items={learningRepository.tech} className="gap-2" />
+            </div>
           </div>
         </div>
       </div>

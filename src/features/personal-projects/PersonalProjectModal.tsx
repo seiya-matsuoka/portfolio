@@ -4,7 +4,8 @@ import { asset } from '../../lib/asset';
 import { FaChevronLeft, FaChevronRight, FaPlayCircle } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import { LinkButton } from '../../components/common/LinkButton';
-import { TagList } from '../../components/common/TagList';
+import { KindBadge } from '../../components/common/KindBadge';
+import { TechTagList } from '../../components/common/TechTagList';
 
 type Props = {
   personalProject: PersonalProject;
@@ -192,7 +193,6 @@ export function PersonalProjectModal({ personalProject, onClose }: Props) {
   const titleId = `personal-project-modal-title-${personalProject.slug}`;
   const descId = `personal-project-modal-desc-${personalProject.slug}`;
   const bodyText = personalProject.description ?? personalProject.summary;
-  const tagItems = [personalProject.kind, ...personalProject.tech];
 
   return (
     <div
@@ -373,7 +373,10 @@ export function PersonalProjectModal({ personalProject, onClose }: Props) {
             ) : null}
 
             {/* 技術タグ */}
-            <TagList items={tagItems} className="gap-2" />
+            <div className="flex flex-wrap items-center gap-2">
+              <KindBadge>{personalProject.kind}</KindBadge>
+              <TechTagList items={personalProject.tech} className="gap-2" />
+            </div>
           </div>
         </div>
       </div>

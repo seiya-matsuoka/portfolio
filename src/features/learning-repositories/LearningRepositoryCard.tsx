@@ -1,7 +1,8 @@
 import type { KeyboardEventHandler, MouseEventHandler } from 'react';
 import { SiGithub } from 'react-icons/si';
 import { LinkButton } from '../../components/common/LinkButton';
-import { TagList } from '../../components/common/TagList';
+import { KindBadge } from '../../components/common/KindBadge';
+import { TechTagList } from '../../components/common/TechTagList';
 import type { LearningRepository } from '../../data/learningRepositories';
 import { LearningRepositoryIconPanel } from './LearningRepositoryIconPanel';
 
@@ -56,7 +57,6 @@ export function LearningRepositoryCard({ learningRepository, onOpen, priority = 
     'border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-[0_1px_0_0_rgba(0,0,0,0.03)] hover:-translate-y-0.5 hover:shadow-md';
 
   const articleClass = `${baseClass} ${isFeatured ? featuredClass : normalClass}`;
-  const tagItems = [learningRepository.kind, ...learningRepository.tech];
 
   return (
     <article
@@ -108,7 +108,10 @@ export function LearningRepositoryCard({ learningRepository, onOpen, priority = 
           {learningRepository.summary}
         </p>
 
-        <TagList items={tagItems} maxVisible={5} />
+        <div className="flex flex-wrap items-center gap-1.5">
+          <KindBadge>{learningRepository.kind}</KindBadge>
+          <TechTagList items={learningRepository.tech} maxVisible={5} />
+        </div>
 
         {/* CTA */}
         <div className="mt-1 flex items-center gap-2">
