@@ -1,6 +1,7 @@
 export type FilterOption = {
   label: string;
   value: string;
+  iconSrc?: string;
 };
 
 export function toFilterValue(label: string) {

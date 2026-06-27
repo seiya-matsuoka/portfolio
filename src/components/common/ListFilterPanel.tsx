@@ -42,11 +42,10 @@ export function ListFilterPanel({
   const countText = hasAnyFilter
     ? `Showing ${filteredCount} of ${totalCount} ${itemLabel}`
     : `Showing all ${totalCount} ${itemLabel}`;
-
-  const activeFilterLabels = [
-    hasKindFilter ? `Kind: ${selectedKindLabels.join(', ')}` : null,
-    hasTechFilter ? `Tech: ${selectedTechLabels.join(', ')}` : null,
-  ].filter((label): label is string => label !== null);
+  const filterSummary = [
+    `Kind: ${hasKindFilter ? selectedKindLabels.join(', ') : 'All'}`,
+    `Tech: ${hasTechFilter ? selectedTechLabels.join(', ') : 'All'}`,
+  ].join(' / ');
 
   return (
     <div className="flex flex-col gap-3">
@@ -55,17 +54,15 @@ export function ListFilterPanel({
           {countText}
         </p>
 
-        {activeFilterLabels.length > 0 && (
-          <p className="text-xs leading-5" style={{ color: 'var(--color-muted)' }}>
-            {activeFilterLabels.join(' / ')}
-          </p>
-        )}
+        <p className="text-xs leading-5" style={{ color: 'var(--color-muted)' }}>
+          {filterSummary}
+        </p>
 
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => setOpen((current) => !current)}
-            className="rounded-md border px-2.5 py-1 text-xs outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+            className="w-28 rounded-md border px-2.5 py-1 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
             aria-expanded={open}
             aria-controls={panelId}
             aria-label={open ? 'Close filters' : 'Open filters'}
@@ -75,23 +72,22 @@ export function ListFilterPanel({
               color: 'var(--color-fg)',
             }}
           >
-            {open ? 'Close' : 'Filters'}
+            {open ? 'Close filters' : 'Open filters'}
           </button>
 
-          {hasAnyFilter && (
-            <button
-              type="button"
-              onClick={onClear}
-              className="rounded-md border px-2.5 py-1 text-xs outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-              style={{
-                borderColor: 'var(--color-border)',
-                background: 'var(--color-surface)',
-                color: 'var(--color-muted)',
-              }}
-            >
-              Clear
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={onClear}
+            disabled={!hasAnyFilter}
+            className="rounded-md border px-2.5 py-1 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-45"
+            style={{
+              borderColor: 'var(--color-border)',
+              background: 'var(--color-surface)',
+              color: hasAnyFilter ? 'var(--color-muted)' : 'var(--color-muted)',
+            }}
+          >
+            Clear
+          </button>
         </div>
       </div>
 

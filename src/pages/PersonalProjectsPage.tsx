@@ -12,6 +12,7 @@ import {
   toFilterValue,
   writeSelectedSearchParamValues,
 } from '../lib/filterOptions';
+import { createTechnologyFilterOptions } from '../lib/technologyFilterOptions';
 import type { PersonalProject } from '../data/personalProjects';
 
 function useQueryParam(name: string) {
@@ -28,7 +29,9 @@ function useQueryParam(name: string) {
 }
 
 const KIND_OPTIONS = createFilterOptions(personalProjects.map((project) => project.kind));
-const TECH_OPTIONS = createFilterOptions(personalProjects.flatMap((project) => project.tech));
+const TECH_OPTIONS = createTechnologyFilterOptions(
+  personalProjects.flatMap((project) => project.tech)
+);
 
 function parseKindsFromURL(searchParams: URLSearchParams) {
   return readSelectedSearchParamValues(searchParams, 'kind', KIND_OPTIONS);

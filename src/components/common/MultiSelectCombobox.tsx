@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { FilterOption } from '../../lib/filterOptions';
+import { asset } from '../../lib/asset';
 
 type Props = {
   label: string;
@@ -9,6 +10,29 @@ type Props = {
   placeholder?: string;
   emptyMessage?: string;
 };
+
+type OptionIconProps = {
+  option: FilterOption;
+  className: string;
+};
+
+function OptionIcon({ option, className }: OptionIconProps) {
+  if (!option.iconSrc) return null;
+
+  return (
+    <img
+      src={asset(option.iconSrc)}
+      alt=""
+      className={`${className} shrink-0 object-contain`}
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+      onError={(event) => {
+        event.currentTarget.style.display = 'none';
+      }}
+    />
+  );
+}
 
 export function MultiSelectCombobox({
   label,
@@ -63,7 +87,7 @@ export function MultiSelectCombobox({
               key={option.value}
               type="button"
               onClick={() => onToggle(option.value)}
-              className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+              className="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
               aria-label={`Remove ${option.label}`}
               style={{
                 borderColor: 'var(--color-border)',
@@ -71,6 +95,7 @@ export function MultiSelectCombobox({
                 color: 'var(--color-fg)',
               }}
             >
+              <OptionIcon option={option} className="h-3 w-3" />
               <span>{option.label}</span>
               <span aria-hidden="true">×</span>
             </button>
@@ -155,9 +180,10 @@ export function MultiSelectCombobox({
                     color: 'var(--color-fg)',
                   }}
                 >
-                  <span className="w-4 text-xs" aria-hidden="true">
+                  <span className="w-4 shrink-0 text-xs" aria-hidden="true">
                     {active ? '✓' : ''}
                   </span>
+                  <OptionIcon option={option} className="h-4 w-4" />
                   <span>{option.label}</span>
                 </button>
               );

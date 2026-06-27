@@ -12,6 +12,7 @@ import {
   toFilterValue,
   writeSelectedSearchParamValues,
 } from '../lib/filterOptions';
+import { createTechnologyFilterOptions } from '../lib/technologyFilterOptions';
 import type { LearningRepository } from '../data/learningRepositories';
 
 function useQueryParam(name: string) {
@@ -28,7 +29,9 @@ function useQueryParam(name: string) {
 }
 
 const KIND_OPTIONS = createFilterOptions(learningRepositories.map((repo) => repo.kind));
-const TECH_OPTIONS = createFilterOptions(learningRepositories.flatMap((repo) => repo.tech));
+const TECH_OPTIONS = createTechnologyFilterOptions(
+  learningRepositories.flatMap((repo) => repo.tech)
+);
 
 function parseKindsFromURL(searchParams: URLSearchParams) {
   return readSelectedSearchParamValues(searchParams, 'kind', KIND_OPTIONS);
