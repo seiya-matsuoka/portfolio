@@ -4,7 +4,6 @@ import { asset } from '../../lib/asset';
 import { FaChevronLeft, FaChevronRight, FaPlayCircle } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import { LinkButton } from '../../components/common/LinkButton';
-import { KindBadge } from '../../components/common/KindBadge';
 import { TechTagList } from '../../components/common/TechTagList';
 
 type Props = {
@@ -373,10 +372,7 @@ export function PersonalProjectModal({ personalProject, onClose }: Props) {
             ) : null}
 
             {/* 技術タグ */}
-            <div className="flex flex-wrap items-center gap-2">
-              <KindBadge>{personalProject.kind}</KindBadge>
-              <TechTagList items={personalProject.tech} className="gap-2" />
-            </div>
+            <TechTagList items={personalProject.tech} className="gap-2" />
           </div>
         </div>
       </div>

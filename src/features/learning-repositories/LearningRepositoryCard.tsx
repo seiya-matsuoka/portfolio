@@ -77,48 +77,48 @@ export function LearningRepositoryCard({ learningRepository, onOpen, priority = 
         />
 
         {learningRepository.featured && (
-          <span
-            className="absolute top-3 left-3 inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium"
-            style={{
-              backgroundColor: 'var(--featured-badge-bg)',
-              color: 'var(--featured-badge-fg)',
-            }}
-          >
-            Featured
-          </span>
+          <div className="absolute top-3 left-3">
+            <span
+              className="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium"
+              style={{
+                backgroundColor: 'var(--featured-badge-bg)',
+                color: 'var(--featured-badge-fg)',
+              }}
+            >
+              Featured
+            </span>
+          </div>
         )}
       </div>
 
       {/* 本文 */}
       <div className="flex flex-col gap-3 p-4">
-        <div className="flex items-center justify-between gap-2">
-          <div className="min-w-0 flex-1">
-            <h3
-              className="line-clamp-1 text-sm leading-tight font-semibold md:text-base"
-              style={{ color: 'var(--color-fg)' }}
-            >
-              {learningRepository.title}
-            </h3>
-          </div>
-
-          <StatusBadge status={learningRepository.status} />
-        </div>
+        <h3
+          className="line-clamp-1 text-sm leading-tight font-semibold md:text-base"
+          style={{ color: 'var(--color-fg)' }}
+        >
+          {learningRepository.title}
+        </h3>
 
         <p className="text-[13px] leading-6" style={{ color: 'var(--color-muted)' }}>
           {learningRepository.summary}
         </p>
 
-        <div className="flex flex-wrap items-center gap-1.5">
-          <KindBadge>{learningRepository.kind}</KindBadge>
-          <TechTagList items={learningRepository.tech} maxVisible={5} />
-        </div>
+        <TechTagList items={learningRepository.tech} maxVisible={4} />
 
-        {/* CTA */}
-        <div className="mt-1 flex items-center gap-2">
-          <LinkButton href={learningRepository.repoUrl} onClick={onCtaClick}>
-            <SiGithub className="h-4 w-4" aria-hidden="true" />
-            <span>GitHub</span>
-          </LinkButton>
+        {/* CTA / Meta */}
+        <div className="mt-1 flex flex-wrap items-end justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <LinkButton href={learningRepository.repoUrl} onClick={onCtaClick}>
+              <SiGithub className="h-4 w-4" aria-hidden="true" />
+              <span>GitHub</span>
+            </LinkButton>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-1.5 self-end">
+            <KindBadge>{learningRepository.kind}</KindBadge>
+            <StatusBadge status={learningRepository.status} />
+          </div>
         </div>
       </div>
     </article>
