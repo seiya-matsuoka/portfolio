@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { FilterOption } from '../../lib/filterOptions';
 import { asset } from '../../lib/asset';
+import { TechTag } from './TechTag';
 
 type Props = {
   label: string;
@@ -131,7 +132,7 @@ export function MultiSelectCombobox({
             id={listboxId}
             role="listbox"
             aria-label={`${label} options`}
-            className="absolute top-full z-20 mt-1 max-h-64 w-full overflow-auto rounded-lg border p-1 shadow-lg"
+            className="absolute top-full z-20 mt-1 max-h-64 w-full overflow-auto rounded-lg border py-1 shadow-lg"
             style={{
               borderColor: 'var(--color-border)',
               background: 'var(--color-card)',
@@ -157,15 +158,12 @@ export function MultiSelectCombobox({
                       setQuery('');
                       setOpen(true);
                     }}
-                    className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm outline-offset-2 transition hover:bg-[color:var(--color-surface)] focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+                    className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm outline-offset-2 transition hover:bg-[color:var(--color-surface)] focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
                     style={{
                       background: active
                         ? 'color-mix(in oklab, var(--color-accent), transparent 92%)'
                         : 'transparent',
                       color: active ? 'var(--color-accent)' : 'var(--color-fg)',
-                      boxShadow: active
-                        ? 'inset 0 0 0 1px color-mix(in oklab, var(--color-accent), var(--color-border) 45%)'
-                        : 'none',
                     }}
                   >
                     <span className="w-4 shrink-0 text-xs" aria-hidden="true">
@@ -197,22 +195,12 @@ export function MultiSelectCombobox({
           {selectedOptions.length > 0 ? (
             <div className="flex min-w-0 flex-wrap gap-1.5">
               {selectedOptions.map((option) => (
-                <button
+                <TechTag
                   key={option.value}
-                  type="button"
-                  onClick={() => onToggle(option.value)}
-                  className="inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-                  aria-label={`Remove ${option.label}`}
-                  style={{
-                    borderColor: 'var(--color-border)',
-                    background: 'var(--color-surface)',
-                    color: 'var(--color-fg)',
-                  }}
-                >
-                  <OptionIcon option={option} className="h-3 w-3" />
-                  <span>{option.label}</span>
-                  <span aria-hidden="true">×</span>
-                </button>
+                  name={option.label}
+                  onRemove={() => onToggle(option.value)}
+                  removeLabel={`Remove ${option.label}`}
+                />
               ))}
             </div>
           ) : (
