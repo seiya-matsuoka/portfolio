@@ -104,7 +104,7 @@ export function LearningRepositoryCard({ learningRepository, onOpen, priority = 
           {learningRepository.summary}
         </p>
 
-        <TechTagList items={learningRepository.tech} maxVisible={4} />
+        <TechTagList items={learningRepository.tech} maxVisible={7} />
 
         {/* CTA / Meta */}
         <div className="mt-1 flex flex-wrap items-end justify-between gap-2">

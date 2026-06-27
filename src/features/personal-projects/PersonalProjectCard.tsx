@@ -117,7 +117,7 @@ export function PersonalProjectCard({ personalProject, onOpen, priority = false 
           {personalProject.summary}
         </p>
 
-        <TechTagList items={personalProject.tech} maxVisible={4} />
+        <TechTagList items={personalProject.tech} maxVisible={7} />
 
         {/* CTA / Meta */}
         <div className="mt-1 flex flex-wrap items-end justify-between gap-2">
