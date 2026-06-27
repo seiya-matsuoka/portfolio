@@ -343,7 +343,7 @@ export const learningRepositories: LearningRepository[] = [
       'PostgreSQL を使って SQL / データベースを体系的に学習した記録と成果物をまとめたリポジトリ。',
     status: 'DONE',
     kind: 'Hands-on',
-    tech: ['SQL', 'PostgreSQL', 'Docker'],
+    tech: ['PostgreSQL', 'Docker'],
     repoUrl: 'https://github.com/seiya-matsuoka/sql-postgresql-study',
     icons: [
       {
