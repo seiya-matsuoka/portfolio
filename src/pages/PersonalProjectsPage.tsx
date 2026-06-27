@@ -5,14 +5,16 @@ import { personalProjects, personalProjectsUpdatedAt } from '../data/personalPro
 import { PersonalProjectCard } from '../features/personal-projects/PersonalProjectCard';
 import { PersonalProjectFilters } from '../features/personal-projects/PersonalProjectFilters';
 import { PersonalProjectModal } from '../features/personal-projects/PersonalProjectModal';
-import type {
-  PersonalProject,
-  PersonalProjectKind,
-  PersonalProjectStatus,
-} from '../data/personalProjects';
+import {
+  createFilterOptions,
+  equalSet,
+  readSelectedSearchParamValues,
+  toFilterValue,
+  writeSelectedSearchParamValues,
+} from '../lib/filterOptions';
+import type { PersonalProject } from '../data/personalProjects';
 
 function useQueryParam(name: string) {
-  const get = () => new URLSearchParams(window.location.search).get(name);
   const set = (value: string | null, mode: 'push' | 'replace' = 'push') => {
     const url = new URL(window.location.href);
     const params = url.searchParams;
@@ -22,58 +24,36 @@ function useQueryParam(name: string) {
     if (mode === 'push') window.history.pushState(null, '', url.toString());
     else window.history.replaceState(null, '', url.toString());
   };
-  return { get, set };
+  return { set };
 }
 
-type StatusOption = 'ALL' | PersonalProjectStatus;
+const KIND_OPTIONS = createFilterOptions(personalProjects.map((project) => project.kind));
+const TECH_OPTIONS = createFilterOptions(personalProjects.flatMap((project) => project.tech));
 
-// URL <-> 状態 のヘルパ
-const STATUS_SET = new Set<StatusOption>(['ALL', 'DONE', 'WIP']);
-const ALL_KINDS: PersonalProjectKind[] = Array.from(new Set(personalProjects.map((p) => p.kind)));
-
-function parseStatusFromURL(sp: URLSearchParams): StatusOption {
-  const s = sp.get('status')?.toUpperCase() as StatusOption | undefined;
-  return s && STATUS_SET.has(s) ? s : 'ALL';
+function parseKindsFromURL(searchParams: URLSearchParams) {
+  return readSelectedSearchParamValues(searchParams, 'kind', KIND_OPTIONS);
 }
 
-function parseKindsFromURL(
-  sp: URLSearchParams,
-  validKinds: PersonalProjectKind[]
-): Set<PersonalProjectKind> {
-  const raw = sp.get('kind');
-  if (!raw) return new Set();
-  const want = raw.split(',').map((s) => s.trim());
-  const filtered = want.filter((x): x is PersonalProjectKind =>
-    validKinds.includes(x as PersonalProjectKind)
-  );
-  return new Set(filtered);
-}
-
-function equalSet<A>(a: Set<A>, b: Set<A>) {
-  if (a.size !== b.size) return false;
-  for (const v of a) if (!b.has(v)) return false;
-  return true;
+function parseTechsFromURL(searchParams: URLSearchParams) {
+  return readSelectedSearchParamValues(searchParams, 'tech', TECH_OPTIONS);
 }
 
 export function PersonalProjectsPage() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const selectedPersonalProject = useMemo(
-    () => personalProjects.find((p) => p.slug === selectedSlug) ?? null,
+    () => personalProjects.find((project) => project.slug === selectedSlug) ?? null,
     [selectedSlug]
   );
   const openedViaClickRef = useRef(false);
   const qp = useQueryParam('p');
 
   // フィルタ状態（URLから遅延初期化）
-  const [status, setStatus] = useState<StatusOption>(() =>
-    parseStatusFromURL(new URLSearchParams(window.location.search))
+  const [selectedKindValues, setSelectedKindValues] = useState<Set<string>>(() =>
+    parseKindsFromURL(new URLSearchParams(window.location.search))
   );
-  const [selectedKinds, setSelectedKinds] = useState<Set<PersonalProjectKind>>(() =>
-    parseKindsFromURL(new URLSearchParams(window.location.search), ALL_KINDS)
+  const [selectedTechValues, setSelectedTechValues] = useState<Set<string>>(() =>
+    parseTechsFromURL(new URLSearchParams(window.location.search))
   );
-  const kindOptions: PersonalProjectKind[] = ALL_KINDS;
-
-  const suppressSyncRef = useRef(false);
 
   // 起動時：?p を反映。戻る/進むはURL→状態に復元
   useEffect(() => {
@@ -81,20 +61,19 @@ export function PersonalProjectsPage() {
 
     // モーダル
     const p = sp.get('p');
-    if (p && personalProjects.some((x) => x.slug === p)) setSelectedSlug(p);
+    if (p && personalProjects.some((project) => project.slug === p)) setSelectedSlug(p);
 
     const onPop = () => {
       const sp2 = new URLSearchParams(window.location.search);
-      suppressSyncRef.current = true;
 
       // モーダル
       const val = sp2.get('p');
-      if (val && personalProjects.some((x) => x.slug === val)) setSelectedSlug(val);
+      if (val && personalProjects.some((project) => project.slug === val)) setSelectedSlug(val);
       else setSelectedSlug(null);
 
       // フィルタ
-      setStatus(parseStatusFromURL(sp2));
-      setSelectedKinds(parseKindsFromURL(sp2, ALL_KINDS));
+      setSelectedKindValues(parseKindsFromURL(sp2));
+      setSelectedTechValues(parseTechsFromURL(sp2));
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
@@ -102,43 +81,49 @@ export function PersonalProjectsPage() {
 
   // 状態 -> URL 同期
   useEffect(() => {
-    if (suppressSyncRef.current) {
-      suppressSyncRef.current = false;
-      return;
-    }
-
     const url = new URL(window.location.href);
     const sp = url.searchParams;
 
-    const curStatus = parseStatusFromURL(sp);
-    const curKinds = parseKindsFromURL(sp, ALL_KINDS);
+    const curKinds = parseKindsFromURL(sp);
+    const curTechs = parseTechsFromURL(sp);
 
-    const statusChanged = curStatus !== status;
-    const kindsChanged = !equalSet(curKinds, selectedKinds);
+    const kindsChanged = !equalSet(curKinds, selectedKindValues);
+    const techsChanged = !equalSet(curTechs, selectedTechValues);
+    const hasLegacyStatusFilter = sp.has('status');
 
-    if (!statusChanged && !kindsChanged) return; // 一致している
+    if (!kindsChanged && !techsChanged && !hasLegacyStatusFilter) return;
 
-    if (status === 'ALL') sp.delete('status');
-    else sp.set('status', status);
-
-    if (selectedKinds.size === 0) sp.delete('kind');
-    else sp.set('kind', Array.from(selectedKinds).join(','));
+    writeSelectedSearchParamValues(sp, 'kind', selectedKindValues, KIND_OPTIONS);
+    writeSelectedSearchParamValues(sp, 'tech', selectedTechValues, TECH_OPTIONS);
+    sp.delete('status');
 
     url.search = sp.toString();
     window.history.pushState(null, '', url.toString());
-  }, [status, selectedKinds]);
+  }, [selectedKindValues, selectedTechValues]);
 
   // フィルタ操作
-  const toggleKind = (k: PersonalProjectKind) => {
-    setSelectedKinds((prev) => {
+  const toggleKind = (value: string) => {
+    setSelectedKindValues((prev) => {
       const next = new Set(prev);
-      if (next.has(k)) next.delete(k);
-      else next.add(k);
+      if (next.has(value)) next.delete(value);
+      else next.add(value);
       return next;
     });
   };
 
-  const resetKinds = () => setSelectedKinds(new Set());
+  const toggleTech = (value: string) => {
+    setSelectedTechValues((prev) => {
+      const next = new Set(prev);
+      if (next.has(value)) next.delete(value);
+      else next.add(value);
+      return next;
+    });
+  };
+
+  const clearFilters = () => {
+    setSelectedKindValues(new Set());
+    setSelectedTechValues(new Set());
+  };
 
   // モーダル操作
   const openModal = (slug: string) => {
@@ -159,12 +144,15 @@ export function PersonalProjectsPage() {
 
   // フィルタ + ソート
   const filtered = useMemo(() => {
-    const matchStatus = (p: PersonalProject) => (status === 'ALL' ? true : p.status === status);
-    const matchKind = (p: PersonalProject) =>
-      selectedKinds.size === 0 ? true : selectedKinds.has(p.kind);
+    const matchKind = (project: PersonalProject) =>
+      selectedKindValues.size === 0 ? true : selectedKindValues.has(toFilterValue(project.kind));
+    const matchTech = (project: PersonalProject) =>
+      selectedTechValues.size === 0
+        ? true
+        : project.tech.some((tech) => selectedTechValues.has(toFilterValue(tech)));
 
-    return personalProjects.filter((p) => matchStatus(p) && matchKind(p));
-  }, [status, selectedKinds]);
+    return personalProjects.filter((project) => matchKind(project) && matchTech(project));
+  }, [selectedKindValues, selectedTechValues]);
 
   const sorted = useMemo(() => {
     const toTS = (s?: string) => (s ? new Date(s).getTime() : 0);
@@ -198,12 +186,15 @@ export function PersonalProjectsPage() {
       {/* フィルタ */}
       <section className="mb-6">
         <PersonalProjectFilters
-          status={status}
-          onChangeStatus={setStatus}
-          kindOptions={kindOptions}
-          selectedKinds={selectedKinds}
+          totalCount={personalProjects.length}
+          filteredCount={sorted.length}
+          kindOptions={KIND_OPTIONS}
+          selectedKindValues={selectedKindValues}
+          techOptions={TECH_OPTIONS}
+          selectedTechValues={selectedTechValues}
           onToggleKind={toggleKind}
-          onResetKinds={resetKinds}
+          onToggleTech={toggleTech}
+          onClear={clearFilters}
         />
       </section>
 
@@ -218,12 +209,12 @@ export function PersonalProjectsPage() {
           <EmptyState message="条件に一致する項目がありません。" />
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
-            {sorted.map((p, i) => (
+            {sorted.map((project, index) => (
               <PersonalProjectCard
-                key={p.slug}
-                personalProject={p}
+                key={project.slug}
+                personalProject={project}
                 onOpen={openModal}
-                priority={i === 0}
+                priority={index === 0}
               />
             ))}
           </div>
