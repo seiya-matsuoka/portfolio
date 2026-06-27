@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { FilterOption } from '../../lib/filterOptions';
-import { getSelectedLabels } from '../../lib/filterOptions';
 import { FilterChipGroup } from './FilterChipGroup';
 import { MultiSelectCombobox } from './MultiSelectCombobox';
 
@@ -31,36 +30,20 @@ export function ListFilterPanel({
   onToggleTech,
   onClear,
 }: Props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
-  const selectedKindLabels = getSelectedLabels(kindOptions, selectedKindValues);
-  const selectedTechLabels = getSelectedLabels(techOptions, selectedTechValues);
-  const hasKindFilter = selectedKindLabels.length > 0;
-  const hasTechFilter = selectedTechLabels.length > 0;
-  const hasAnyFilter = hasKindFilter || hasTechFilter;
+  const hasAnyFilter = selectedKindValues.size > 0 || selectedTechValues.size > 0;
 
   const countText = hasAnyFilter
     ? `Showing ${filteredCount} of ${totalCount} ${itemLabel}`
     : `Showing all ${totalCount} ${itemLabel}`;
-  const filterSummary = [
-    `Kind: ${hasKindFilter ? selectedKindLabels.join(', ') : 'All'}`,
-    `Tech: ${hasTechFilter ? selectedTechLabels.join(', ') : 'All'}`,
-  ].join(' / ');
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-1 md:flex-row md:items-end md:gap-3">
-          <p
-            className="text-sm font-medium md:w-72 md:shrink-0"
-            style={{ color: 'var(--color-fg)' }}
-          >
-            {countText}
-          </p>
-          <p className="min-w-0 text-xs leading-5" style={{ color: 'var(--color-muted)' }}>
-            {filterSummary}
-          </p>
-        </div>
+        <p className="text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
+          {countText}
+        </p>
 
         <div className="flex shrink-0 flex-wrap items-center gap-2">
           <button
@@ -87,7 +70,7 @@ export function ListFilterPanel({
             style={{
               borderColor: 'var(--color-border)',
               background: 'var(--color-surface)',
-              color: hasAnyFilter ? 'var(--color-muted)' : 'var(--color-muted)',
+              color: 'var(--color-muted)',
             }}
           >
             Clear
@@ -98,13 +81,13 @@ export function ListFilterPanel({
       {open && (
         <div
           id={panelId}
-          className="w-full rounded-xl border p-4"
+          className="w-full rounded-xl border p-3 sm:p-4"
           style={{
             borderColor: 'var(--color-border)',
             background: 'var(--color-surface)',
           }}
         >
-          <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:gap-5">
             <FilterChipGroup
               label="Kind"
               options={kindOptions}
