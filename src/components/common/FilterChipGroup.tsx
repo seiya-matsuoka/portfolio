@@ -9,7 +9,7 @@ type Props = {
 
 export function FilterChipGroup({ label, options, selectedValues, onToggle }: Props) {
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 md:shrink-0">
       <p className="shrink-0 text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
         {label}
       </p>
@@ -25,9 +25,13 @@ export function FilterChipGroup({ label, options, selectedValues, onToggle }: Pr
               onClick={() => onToggle(option.value)}
               className="inline-flex items-center rounded-full border px-2.5 py-1 text-sm outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
               style={{
-                background: active ? 'var(--color-fg)' : 'var(--color-surface)',
-                color: active ? 'var(--color-bg)' : 'var(--color-fg)',
-                borderColor: 'var(--color-border)',
+                background: active
+                  ? 'color-mix(in oklab, var(--color-accent), transparent 88%)'
+                  : 'var(--color-surface)',
+                color: active ? 'var(--color-accent)' : 'var(--color-fg)',
+                borderColor: active
+                  ? 'color-mix(in oklab, var(--color-accent), var(--color-border) 35%)'
+                  : 'var(--color-border)',
               }}
             >
               {option.label}

@@ -77,11 +77,11 @@ export function MultiSelectCombobox({
   return (
     <div
       ref={rootRef}
-      className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3 gap-y-2 md:flex md:min-w-0 md:flex-1 md:items-start md:gap-3"
+      className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-3 gap-y-2 md:flex md:min-w-0 md:flex-1 md:items-center md:gap-3"
     >
       <label
         htmlFor={inputId}
-        className="pt-2 text-sm font-medium md:shrink-0"
+        className="text-sm font-medium md:shrink-0"
         style={{ color: 'var(--color-fg)' }}
       >
         {label}
@@ -181,18 +181,14 @@ export function MultiSelectCombobox({
         )}
       </div>
 
-      <div className="col-start-2 min-w-0 md:flex-1" aria-label={`Selected ${label}`}>
+      <div className="col-span-2 min-w-0 md:flex-1" aria-label={`Selected ${label}`}>
         <div
-          className="flex min-h-10 min-w-0 flex-col gap-2 rounded-lg border px-3 py-2 md:flex-row md:items-center"
+          className="flex min-h-10 min-w-0 flex-wrap items-center gap-1.5 rounded-lg border px-3 py-2"
           style={{
             borderColor: 'var(--color-border)',
             background: 'var(--color-card)',
           }}
         >
-          <span className="shrink-0 text-xs font-medium" style={{ color: 'var(--color-muted)' }}>
-            Selected
-          </span>
-
           {selectedOptions.length > 0 ? (
             <div className="flex min-w-0 flex-wrap gap-1.5">
               {selectedOptions.map((option) => (

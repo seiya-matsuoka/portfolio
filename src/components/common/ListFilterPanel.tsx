@@ -50,9 +50,9 @@ export function ListFilterPanel({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-1 md:flex-row md:items-start md:gap-3">
+        <div className="flex flex-col gap-1 md:flex-row md:items-end md:gap-3">
           <p
-            className="text-sm font-medium md:w-64 md:shrink-0"
+            className="text-sm font-medium md:w-56 md:shrink-0"
             style={{ color: 'var(--color-fg)' }}
           >
             {countText}
@@ -104,7 +104,7 @@ export function ListFilterPanel({
             background: 'var(--color-surface)',
           }}
         >
-          <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
             <FilterChipGroup
               label="Kind"
               options={kindOptions}
