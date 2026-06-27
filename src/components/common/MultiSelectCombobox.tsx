@@ -161,7 +161,7 @@ export function MultiSelectCombobox({
                     className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm outline-offset-2 transition hover:bg-[color:var(--color-surface)] focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
                     style={{
                       background: active
-                        ? 'color-mix(in oklab, var(--color-accent), transparent 92%)'
+                        ? 'color-mix(in oklab, var(--color-accent), transparent 88%)'
                         : 'transparent',
                       color: active ? 'var(--color-accent)' : 'var(--color-fg)',
                     }}

@@ -49,7 +49,7 @@ export function ListFilterPanel({
           <button
             type="button"
             onClick={() => setOpen((current) => !current)}
-            className="w-24 rounded-md border px-2.5 py-1 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+            className="w-24 rounded-md border px-3 py-1.5 text-xs font-medium outline-offset-2 transition hover:bg-[color:var(--color-card)] focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
             aria-expanded={open}
             aria-controls={panelId}
             aria-label={open ? 'Close filters' : 'Open filters'}
@@ -66,7 +66,7 @@ export function ListFilterPanel({
             type="button"
             onClick={onClear}
             disabled={!hasAnyFilter}
-            className="rounded-md border px-2.5 py-1 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-45"
+            className="rounded-md border px-3 py-1.5 text-xs font-medium outline-offset-2 transition hover:bg-[color:var(--color-card)] focus-visible:outline focus-visible:outline-[color:var(--color-ring)] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-[color:var(--color-surface)]"
             style={{
               borderColor: 'var(--color-border)',
               background: 'var(--color-surface)',
