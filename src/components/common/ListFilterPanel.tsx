@@ -81,7 +81,7 @@ export function ListFilterPanel({
       {open && (
         <div
           id={panelId}
-          className="w-full rounded-xl border p-3 sm:p-4"
+          className="w-full rounded-xl border px-3 py-2.5 sm:px-4 sm:py-3"
           style={{
             borderColor: 'var(--color-border)',
             background: 'var(--color-surface)',
