@@ -49,20 +49,22 @@ export function ListFilterPanel({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-col gap-2">
-        <p className="text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
-          {countText}
-        </p>
+      <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+        <div className="min-w-0 space-y-1">
+          <p className="text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
+            {countText}
+          </p>
 
-        <p className="text-xs leading-5" style={{ color: 'var(--color-muted)' }}>
-          {filterSummary}
-        </p>
+          <p className="text-xs leading-5" style={{ color: 'var(--color-muted)' }}>
+            {filterSummary}
+          </p>
+        </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 md:justify-self-end">
           <button
             type="button"
             onClick={() => setOpen((current) => !current)}
-            className="w-28 rounded-md border px-2.5 py-1 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+            className="w-24 rounded-md border px-2.5 py-1 text-xs outline-offset-2 transition focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
             aria-expanded={open}
             aria-controls={panelId}
             aria-label={open ? 'Close filters' : 'Open filters'}
@@ -94,13 +96,13 @@ export function ListFilterPanel({
       {open && (
         <div
           id={panelId}
-          className="max-w-3xl rounded-xl border p-4"
+          className="max-w-4xl rounded-xl border p-4"
           style={{
             borderColor: 'var(--color-border)',
             background: 'var(--color-surface)',
           }}
         >
-          <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(16rem,24rem)]">
+          <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(16rem,24rem)] md:items-start">
             <FilterChipGroup
               label="Kind"
               options={kindOptions}

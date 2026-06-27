@@ -9,11 +9,11 @@ type Props = {
 
 export function FilterChipGroup({ label, options, selectedValues, onToggle }: Props) {
   return (
-    <div className="flex flex-col gap-2">
-      <p className="text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+      <p className="shrink-0 text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
         {label}
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex min-w-0 flex-wrap gap-2">
         {options.map((option) => {
           const active = selectedValues.has(option.value);
 
