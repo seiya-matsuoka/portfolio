@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { PageLinkCard } from '../components/common/PageLinkCard';
 import { SectionHeader } from '../components/common/SectionHeader';
-import { TagList } from '../components/common/TagList';
+import { TechTagList } from '../components/common/TechTagList';
 import { profile } from '../data/profile';
 
 type ProfileSectionProps = {
@@ -73,12 +73,12 @@ export function ProfilePage() {
                         >
                           {itemGroup.title}
                         </h4>
-                        <TagList items={itemGroup.items} className="mt-2" />
+                        <TechTagList items={itemGroup.items} variant="profile" className="mt-2" />
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <TagList items={group.items ?? []} className="mt-2" />
+                  <TechTagList items={group.items ?? []} variant="profile" className="mt-2" />
                 )}
               </div>
             ))}

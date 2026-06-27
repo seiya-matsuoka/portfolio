@@ -138,6 +138,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
     label: 'Spring Boot',
     iconSrc: `${iconBasePath}spring-original.svg`,
   },
+  SQL: {
+    label: 'SQL',
+    iconSrc: `${iconBasePath}postgresql-original.svg`,
+  },
   'Tailwind CSS': {
     label: 'Tailwind CSS',
     iconSrc: `${iconBasePath}tailwindcss-original.svg`,
