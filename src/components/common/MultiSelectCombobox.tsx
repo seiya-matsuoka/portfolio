@@ -77,11 +77,11 @@ export function MultiSelectCombobox({
   return (
     <div
       ref={rootRef}
-      className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-3 gap-y-2 md:flex md:min-w-0 md:flex-1 md:items-center md:gap-3"
+      className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-3 gap-y-2 md:flex md:min-w-0 md:flex-1 md:items-start md:gap-3"
     >
       <label
         htmlFor={inputId}
-        className="text-sm font-medium md:shrink-0"
+        className="text-sm font-medium md:flex md:h-10 md:shrink-0 md:items-center"
         style={{ color: 'var(--color-fg)' }}
       >
         {label}

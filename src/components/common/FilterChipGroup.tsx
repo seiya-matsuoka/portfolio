@@ -9,7 +9,7 @@ type Props = {
 
 export function FilterChipGroup({ label, options, selectedValues, onToggle }: Props) {
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 md:shrink-0">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 md:min-h-10 md:shrink-0">
       <p className="shrink-0 text-sm font-medium" style={{ color: 'var(--color-fg)' }}>
         {label}
       </p>
