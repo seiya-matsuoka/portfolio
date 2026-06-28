@@ -70,10 +70,6 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
     label: 'JavaScript',
     iconSrc: `${iconBasePath}javascript-original.svg`,
   },
-  'JavaScript (Vanilla)': {
-    label: 'JavaScript (Vanilla)',
-    iconSrc: `${iconBasePath}javascript-original.svg`,
-  },
   jQuery: {
     label: 'jQuery',
     iconSrc: `${iconBasePath}jquery-original.svg`,
@@ -125,6 +121,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
   React: {
     label: 'React',
     iconSrc: `${iconBasePath}react-original.svg`,
+  },
+  'React Router': {
+    label: 'React Router',
+    iconSrc: `${iconBasePath}reactrouter-original.svg`,
   },
   'Shell Script': {
     label: 'Shell Script',
