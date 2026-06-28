@@ -8,7 +8,7 @@ type Props = {
 };
 
 const baseClassName =
-  'inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg border px-3.5 py-2 text-sm font-medium shadow-sm transition-colors outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]';
+  'inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-sm transition-colors outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]';
 
 const variantClassNames = {
   primary:
