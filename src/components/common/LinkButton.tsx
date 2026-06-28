@@ -7,34 +7,23 @@ type Props = {
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
-export function LinkButton({ href, variant = 'secondary', children, onClick }: Props) {
-  if (variant === 'primary') {
-    return (
-      <a
-        onClick={onClick}
-        href={href}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="inline-flex items-center gap-1.5 rounded-md border border-transparent px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
-        style={{
-          backgroundColor: 'var(--color-accent)',
-          color: 'var(--color-accent-contrast)',
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')}
-        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
-      >
-        {children}
-      </a>
-    );
-  }
+const baseClassName =
+  'inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-sm transition-colors outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]';
 
+const variantClassNames = {
+  primary:
+    'border-transparent bg-[var(--color-accent)] text-[var(--color-accent-contrast)] hover:bg-[var(--color-accent-hover)] focus-visible:bg-[var(--color-accent-hover)]',
+  secondary: 'btn-secondary',
+};
+
+export function LinkButton({ href, variant = 'secondary', children, onClick }: Props) {
   return (
     <a
       onClick={onClick}
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      className="btn-secondary inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm outline-offset-2 focus-visible:outline focus-visible:outline-[color:var(--color-ring)]"
+      className={`${baseClassName} ${variantClassNames[variant]}`}
     >
       {children}
     </a>
