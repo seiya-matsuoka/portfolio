@@ -175,10 +175,10 @@ export function Header() {
           </nav>
         </div>
 
-        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
+        <div className="flex shrink-0 items-center gap-2 md:gap-2">
           <a
             href="mailto:seiya.matsuoka.contact@gmail.com"
-            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
+            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center gap-1.5 rounded-md text-sm font-medium underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
             style={{ color: 'var(--color-fg)' }}
             aria-label="Email"
             onClick={closeHeaderMenus}
@@ -190,7 +190,7 @@ export function Header() {
             href="https://github.com/seiya-matsuoka"
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center gap-1.5 rounded-md text-sm underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
+            className="inline-flex h-9 w-9 touch-manipulation items-center justify-center gap-1.5 rounded-md text-sm font-medium underline decoration-transparent outline-offset-2 transition hover:decoration-current focus-visible:outline focus-visible:outline-[color:var(--color-ring)] md:w-auto md:px-2"
             style={{ color: 'var(--color-fg)' }}
             aria-label="GitHub"
             onClick={closeHeaderMenus}

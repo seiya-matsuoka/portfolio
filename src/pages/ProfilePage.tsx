@@ -34,7 +34,7 @@ export function ProfilePage() {
 
       <div className="pb-16">
         <ProfileSection title="About">
-          <div className="space-y-2 leading-7" style={{ color: 'var(--color-muted)' }}>
+          <div className="space-y-2 leading-7" style={{ color: 'var(--color-fg)' }}>
             {profile.about.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -47,7 +47,7 @@ export function ProfilePage() {
             >
               English
             </summary>
-            <div lang="en" className="mt-2 space-y-2" style={{ color: 'var(--color-muted)' }}>
+            <div lang="en" className="mt-2 space-y-2" style={{ color: 'var(--color-fg)' }}>
               {profile.aboutEnglish.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -56,7 +56,7 @@ export function ProfilePage() {
         </ProfileSection>
 
         <ProfileSection title="Tech Stack">
-          <div className="space-y-5">
+          <div className="space-y-6">
             {profile.techStacks.map((group) => (
               <div key={group.title}>
                 <h3 className="text-sm font-semibold" style={{ color: 'var(--color-fg)' }}>
@@ -99,7 +99,7 @@ export function ProfilePage() {
         </ProfileSection>
 
         <ProfileSection title="Contact">
-          <div className="space-y-2 text-sm leading-7" style={{ color: 'var(--color-muted)' }}>
+          <div className="space-y-2 text-base leading-7" style={{ color: 'var(--color-muted)' }}>
             <p>
               <span className="font-semibold" style={{ color: 'var(--color-fg)' }}>
                 Email:{' '}
