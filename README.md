@@ -38,10 +38,10 @@ React / TypeScript / Vite / Tailwind CSS v4 を使用し、プロフィールペ
 3. 学習リポジトリ一覧画面
    ![Learning Repositories](assets/readme/learning-repositories.png)
 
-4. 詳細モーダル画面
+4. 詳細モーダル表示
    ![Modal](assets/readme/modal.png)
 
-5. ダークモード画面
+5. ダークモード表示
    ![Dark Mode](assets/readme/dark-mode.png)
 
 ---
