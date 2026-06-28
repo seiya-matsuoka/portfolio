@@ -29,18 +29,20 @@ React / TypeScript / Vite / Tailwind CSS v4 を使用し、プロフィールペ
 
 ## スクリーンショット
 
-現在、UI の改善・更新作業中のため、スクリーンショットは未掲載。
-
-<!-- 画像追加時は、README 用画像として `assets/readme/` 配下に配置する。 -->
-
-<!-- 1. プロフィール画面
+1. プロフィール画面
    ![Profile](assets/readme/profile.png)
 
 2. 個人開発一覧画面
    ![Personal Projects](assets/readme/personal-projects.png)
 
 3. 学習リポジトリ一覧画面
-   ![Learning Repositories](assets/readme/learning-repositories.png) -->
+   ![Learning Repositories](assets/readme/learning-repositories.png)
+
+4. 詳細モーダル画面
+   ![Modal](assets/readme/modal.png)
+
+5. ダークモード画面
+   ![Dark Mode](assets/readme/dark-mode.png)
 
 ---
 
