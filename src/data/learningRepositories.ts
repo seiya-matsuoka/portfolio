@@ -22,15 +22,16 @@ export type LearningRepository = {
 };
 
 // 学習リポジトリページの最終更新日
-export const learningRepositoriesUpdatedAt = '2026-06-21';
+export const learningRepositoriesUpdatedAt = '2026-07-11';
 
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
   {
     slug: 'typescript-foundations-study',
     title: 'TypeScript Foundations Study',
-    summary: 'In progress...',
-    status: 'WIP',
+    summary:
+      'TypeScript の基礎を、コードリーディング中心で体系的に学習するためのリポジトリ。実務コードを読むために必要となる基礎から頻出の型を、多めのサンプルコードで段階的に確認できる。',
+    status: 'DONE',
     kind: 'Reading',
     tech: ['TypeScript', 'Node.js', 'npm', 'ESLint'],
     repoUrl: 'https://github.com/seiya-matsuoka/typescript-foundations-study',
@@ -44,10 +45,22 @@ export const learningRepositories: LearningRepository[] = [
         src: 'icons/technologies/nodejs-original-wordmark.svg',
       },
     ],
-    description: 'In progress...',
-    learningItems: ['In progress...'],
+    description:
+      'TypeScript の基礎を、コードリーディング中心で体系的に学習するためのリポジトリ。\n' +
+      '基本型だけでなく、オブジェクト型 / 関数型 / union 型 / narrowing / generics / 派生型 / utility types / 型付きデータ変換 / API レスポンス / Result 型 / class / module / 型定義ファイル を扱う。\n' +
+      '各 Unit ごとにソースコードとドキュメントを用意し、コード、コメント、出力、確認用の assert、型チェック、ドキュメントを対応づけながら見返せる形で整理している。',
+    learningItems: [
+      '実務コードを読むために必要となる基礎から頻出の型を、多めのサンプルコードで段階的に学習する。',
+      'JavaScript のコードへどのように型を付け、型推論、narrowing、generics などを使って安全に扱うかを中心に確認する。',
+      'Unit 01: TypeScript の位置づけ・型チェック・プロジェクト設定の基本 / Unit 02: 基本型・型注釈・型推論・null / undefined',
+      'Unit 03: オブジェクト型・type / interface・構造的型付け / Unit 04: 関数の型・callback・高階関数',
+      'Unit 05: union 型・narrowing・type guard・discriminated union / Unit 06: generics の基本と実務的な使い方',
+      'Unit 07: keyof / typeof / indexed access・派生型の入口 / Unit 08: utility types・as const・satisfies・型アサーション・enum',
+      'Unit 09: 配列・オブジェクト操作と型付きデータ変換 / Unit 10: 非同期処理・API レスポンス・JSON・エラー処理・Result 型',
+      'Unit 11: class・implements・module・型定義ファイルの基本',
+    ],
     featured: false,
-    updatedAt: '2026-6-14',
+    updatedAt: '2026-7-11',
   },
   {
     slug: 'git-github-practice-drills',
@@ -97,7 +110,7 @@ export const learningRepositories: LearningRepository[] = [
       '各 Unit ごとにソースコードとドキュメントを用意し、コード、コメント、出力、確認用の assert、ドキュメントを対応づけながら見返せる形で整理している。',
     learningItems: [
       'TypeScript や React の前提になる JavaScript の土台を、コードを読みながら確認できる形で残すことを目的とする。',
-      'JavaScript の基礎、JavaScript らしい書き方、実務で頻出する標準機能を整理する',
+      'JavaScript の基礎、JavaScript らしい書き方、実務で頻出する標準機能を整理する。',
       'Unit 01: JavaScript の実行環境・リポジトリ基礎・モジュール入門 / Unit 02: 値・型・比較・型変換',
       'Unit 03: 変数宣言・スコープ・巻き上げ・参照 / Unit 04: 関数・コールバック・高階関数・クロージャ',
       'Unit 05: オブジェクト・分割代入・スプレッド・非破壊更新 / Unit 06: 配列操作・データ変換・実務的なコレクション処理',
