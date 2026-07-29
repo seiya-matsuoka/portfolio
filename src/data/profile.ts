@@ -17,7 +17,7 @@ export type ProfilePortfolioLink = {
 
 export const profile = {
   name: 'Seiya Matsuoka',
-  updatedAt: '2026-06-18',
+  updatedAt: '2026-07-29',
 
   about: [
     'IT業界以外での社会人経験を経て、2024年1月よりエンジニアとしてのキャリアを開始。Java をメインに、バックエンド領域を主に扱うソフトウェアエンジニアとして企業に勤務。',
@@ -40,7 +40,16 @@ export const profile = {
     },
     {
       title: 'Personal Development',
-      items: ['Java', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Node.js', 'Express'],
+      items: [
+        'Java',
+        'JavaScript',
+        'TypeScript',
+        'React',
+        'Next.js',
+        'Tailwind CSS',
+        'Node.js',
+        'Express',
+      ],
     },
   ] satisfies ProfileTechStackGroup[],
 
