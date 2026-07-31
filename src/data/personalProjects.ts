@@ -19,10 +19,31 @@ export type PersonalProject = {
 };
 
 // 個人開発ページの最終更新日
-export const personalProjectsUpdatedAt = '2026-06-18';
+export const personalProjectsUpdatedAt = '2026-07-19';
 
 // 個人開発データ
 export const personalProjects: PersonalProject[] = [
+  {
+    slug: 'football-moment-archive',
+    title: 'Football Moment Archive',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Web App',
+    tech: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'App Router', 'Zod', 'PostgreSQL'],
+    repoUrl: 'https://github.com/seiya-matsuoka/football-moment-archive',
+    // liveUrl: '',
+    // thumb: 'images/projects/football-moment-archive/thumb.webp',
+    description: 'In progress...',
+    features: ['In progress...'],
+    // images: [
+    //   'images/projects/football-moment-archive/01.webp',
+    //   'images/projects/football-moment-archive/02.webp',
+    //   'images/projects/football-moment-archive/03.webp',
+    //   'images/projects/football-moment-archive/04.webp',
+    // ],
+    featured: true,
+    updatedAt: '2026-7-19',
+  },
   {
     slug: 'csv-to-insert-generator',
     title: 'CSV to INSERT Generator',
@@ -226,7 +247,7 @@ export const personalProjects: PersonalProject[] = [
       'images/projects/kanban-task-manager/03.webp',
     ],
     featured: false,
-    updatedAt: '2025-09-28',
+    updatedAt: '2025-10-19',
   },
   {
     slug: 'quick-reaction-game',
@@ -272,7 +293,7 @@ export const personalProjects: PersonalProject[] = [
       'images/projects/json-diff-viewer/02.webp',
     ],
     featured: false,
-    updatedAt: '2025-09-25',
+    updatedAt: '2025-10-16',
   },
   {
     slug: 'shape-trace-game',
