@@ -145,8 +145,11 @@ npm run dev
 
 ## 使用素材・ライセンス
 
+- 本リポジトリのソースコードは MIT License のもとで公開
+  - 詳細は [`LICENSE`](LICENSE) を参照
+- ポートフォリオ内の文章・画像・スクリーンショットは MIT License の対象外
 - 学習リポジトリ一覧の技術アイコンには Devicon の SVG を使用
-- Devicon のライセンス情報は `public/icons/learning-repositories/README.md` と `public/icons/learning-repositories/DEVICON_LICENSE.txt` に記載
+- Devicon のライセンス情報は `public/icons/technologies/README.md` と `public/icons/technologies/DEVICON_LICENSE.txt` に記載
 - プロダクト名、ロゴ、ブランドは各所有者に帰属
 
 ---
