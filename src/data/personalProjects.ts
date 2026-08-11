@@ -19,30 +19,39 @@ export type PersonalProject = {
 };
 
 // 個人開発ページの最終更新日
-export const personalProjectsUpdatedAt = '2026-07-19';
+export const personalProjectsUpdatedAt = '2026-08-12';
 
 // 個人開発データ
 export const personalProjects: PersonalProject[] = [
   {
     slug: 'football-moment-archive',
     title: 'Football Moment Archive',
-    summary: 'In progress...',
-    status: 'WIP',
+    summary: 'サッカーの試合で印象に残った「場面」を、試合情報と紐づけて記録する Web アプリ。',
+    status: 'DONE',
     kind: 'Web App',
     tech: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'App Router', 'Zod', 'PostgreSQL'],
     repoUrl: 'https://github.com/seiya-matsuoka/football-moment-archive',
-    // liveUrl: '',
-    // thumb: 'images/projects/football-moment-archive/thumb.webp',
-    description: 'In progress...',
-    features: ['In progress...'],
-    // images: [
-    //   'images/projects/football-moment-archive/01.webp',
-    //   'images/projects/football-moment-archive/02.webp',
-    //   'images/projects/football-moment-archive/03.webp',
-    //   'images/projects/football-moment-archive/04.webp',
-    // ],
+    liveUrl: 'https://football-moment-archive.vercel.app/',
+    thumb: 'images/projects/football-moment-archive/thumb.webp',
+    description:
+      'サッカーの試合で印象に残った「場面」を、試合情報と紐づけて記録する Web アプリ。\n' +
+      'Next.js App Router を使用し、参照は Server Component、更新は Server Action から Data Access Layer を経由して PostgreSQL へ接続する構成で実装している。\n' +
+      '独立したバックエンド API や ORM を使用せず、Next.js 単体でフルスタックな Web アプリケーションを構成している。',
+    features: [
+      '試合の登録 / 閲覧 / 編集 / 削除、場面の登録 / 閲覧 / 編集 / 削除',
+      '場面のお気に入り登録 / 解除',
+      '試合一覧と場面一覧画面の検索、絞り込み、並び替え、ページネーション',
+      'Loading / Empty / Error / Not Found の状態表示',
+      'PC / スマートフォン向けのレスポンシブ表示',
+    ],
+    images: [
+      'images/projects/football-moment-archive/01.webp',
+      'images/projects/football-moment-archive/02.webp',
+      'images/projects/football-moment-archive/03.webp',
+      'images/projects/football-moment-archive/04.webp',
+    ],
     featured: true,
-    updatedAt: '2026-7-19',
+    updatedAt: '2026-8-11',
   },
   {
     slug: 'csv-to-insert-generator',
