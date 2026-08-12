@@ -22,7 +22,7 @@ export type LearningRepository = {
 };
 
 // 学習リポジトリページの最終更新日
-export const learningRepositoriesUpdatedAt = '2026-07-11';
+export const learningRepositoriesUpdatedAt = '2026-08-12';
 
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
@@ -64,9 +64,10 @@ export const learningRepositories: LearningRepository[] = [
   },
   {
     slug: 'git-github-practice-drills',
-    title: 'Git / Github Practice Drills',
-    summary: 'In progress...',
-    status: 'WIP',
+    title: 'Git / GitHub - Practice Drills',
+    summary:
+      'Git / GitHub の操作を、実務で遭遇する場面を想定したドリル形式で練習するためのリポジトリ。',
+    status: 'DONE',
     kind: 'Hands-on',
     tech: ['Git', 'GitHub', 'Git Bash'],
     repoUrl: 'https://github.com/seiya-matsuoka/git-github-practice-drills',
@@ -80,8 +81,13 @@ export const learningRepositories: LearningRepository[] = [
         src: 'icons/technologies/github-original.svg',
       },
     ],
-    description: 'In progress...',
-    learningItems: ['In progress...'],
+    description:
+      'Git / GitHub の操作を、実務で遭遇する場面を想定したドリル形式で練習するためのリポジトリ。\n' +
+      '単独のコマンドだけを確認するのではなく、複数の操作を組み合わせた課題に取り組み、作業前の確認から変更、コミット、同期、履歴整理、トラブル対応までを一連の流れとして扱う。',
+    learningItems: [
+      'コマンドを覚えることだけでなく、現在の状態を確認し、状況に応じた操作を選べるようになることを重視している。',
+      '各ドリルでは、操作を1つずつ単独で行うのではなく、開発作業を想定した複数の手順として組み合わせている。',
+    ],
     featured: false,
     updatedAt: '2026-6-7',
   },
