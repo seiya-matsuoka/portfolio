@@ -22,10 +22,29 @@ export type LearningRepository = {
 };
 
 // 学習リポジトリページの最終更新日
-export const learningRepositoriesUpdatedAt = '2026-08-12';
+export const learningRepositoriesUpdatedAt = '2026-09-06';
 
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
+  {
+    slug: 'docker-foundations-study',
+    title: 'Docker Foundations Study',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Hands-on',
+    tech: ['Docker', 'Git Bash'],
+    repoUrl: 'https://github.com/seiya-matsuoka/docker-foundations-study',
+    icons: [
+      {
+        name: 'Docker',
+        src: 'icons/technologies/docker-original-wordmark.svg',
+      },
+    ],
+    description: 'In progress...',
+    learningItems: ['In progress...'],
+    featured: false,
+    updatedAt: '2026-9-6',
+  },
   {
     slug: 'typescript-foundations-study',
     title: 'TypeScript Foundations Study',
