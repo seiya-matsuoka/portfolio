@@ -29,8 +29,9 @@ export const learningRepositories: LearningRepository[] = [
   {
     slug: 'docker-foundations-study',
     title: 'Docker Foundations Study',
-    summary: 'In progress...',
-    status: 'WIP',
+    summary:
+      'Docker / Docker Compose の基礎を、ハンズオンを通して体系的に学習するためのリポジトリ。Webアプリケーション開発で Docker を利用するための基礎を、段階的に学習する。',
+    status: 'DONE',
     kind: 'Hands-on',
     tech: ['Docker', 'Git Bash'],
     repoUrl: 'https://github.com/seiya-matsuoka/docker-foundations-study',
@@ -40,10 +41,21 @@ export const learningRepositories: LearningRepository[] = [
         src: 'icons/technologies/docker-original-wordmark.svg',
       },
     ],
-    description: 'In progress...',
-    learningItems: ['In progress...'],
-    featured: false,
-    updatedAt: '2026-9-6',
+    description:
+      'Docker / Docker Compose の基礎を、ハンズオンを通して体系的に学習するためのリポジトリ。\n' +
+      'Image / Container の基本操作から、Port、Volume、Dockerfile、Network、Compose、React / Spring Boot / PostgreSQL を使った複数 Container 構成、基本的な Best Practice までを段階的に扱う。\n' +
+      '各 Unit に学習用ドキュメントと必要な実践ファイルを配置し、概念と実際の操作・構成を対応づけながら見返せる形で整理している。',
+    learningItems: [
+      'Webアプリケーション開発で Docker を利用するための基礎を、段階的に学習する。',
+      'Unit 01: Docker・Container の基本概念と環境確認 / Unit 02: Image・Container の基本操作とライフサイクル',
+      'Unit 03: Port・Bind Mount・Volume / Unit 04: Dockerfile と Image Build',
+      'Unit 05: React / Vite アプリの Docker 化 / Unit 06: Spring Boot アプリの Docker 化',
+      'Unit 07: PostgreSQL Container とデータ永続化 / Unit 08: Docker Network と Container 間通信',
+      'Unit 09: Docker Compose の基本 / Unit 10: Spring Boot + PostgreSQL の 2 Container 構成',
+      'Unit 11: React + Spring Boot + PostgreSQL の 3 Container 構成 / Unit 12: Dockerfile・Compose の改善と基本的な Best Practice',
+    ],
+    featured: true,
+    updatedAt: '2026-9-18',
   },
   {
     slug: 'typescript-foundations-study',
