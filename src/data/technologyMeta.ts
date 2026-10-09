@@ -13,6 +13,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
     label: 'Bash',
     iconSrc: `${iconBasePath}bash-original.svg`,
   },
+  Bats: {
+    label: 'Bats',
+    iconSrc: `${iconBasePath}bash-original.svg`,
+  },
   Bootstrap: {
     label: 'Bootstrap',
     iconSrc: `${iconBasePath}bootstrap-original.svg`,
@@ -50,6 +54,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
   GitHub: {
     label: 'GitHub',
     iconSrc: `${iconBasePath}github-original.svg`,
+  },
+  'GitHub Actions': {
+    label: 'GitHub Actions',
+    iconSrc: `${iconBasePath}githubactions-original.svg`,
   },
   Gradle: {
     label: 'Gradle',
