@@ -22,10 +22,44 @@ export type LearningRepository = {
 };
 
 // 学習リポジトリページの最終更新日
-export const learningRepositoriesUpdatedAt = '2026-09-06';
+export const learningRepositoriesUpdatedAt = '2026-10-09';
 
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
+  {
+    slug: 'shell-script-study',
+    title: 'Shell Script Study',
+    summary:
+      'Shell Script の基礎から、安全な実装、HTTP / API、自動テスト、CI/CD などを体系的に学習するためのリポジトリ。',
+    status: 'DONE',
+    kind: 'Reading',
+    tech: ['Linux', 'Bash', 'Shell Script', 'Bats', 'GitHub Actions'],
+    repoUrl: 'https://github.com/seiya-matsuoka/shell-script-study',
+    icons: [
+      {
+        name: 'Bash',
+        src: 'icons/technologies/bash-original.svg',
+      },
+      {
+        name: 'Linux',
+        src: 'icons/technologies/linux-original.svg',
+      },
+    ],
+    description:
+      'Shell Script の基礎から、安全な実装、ファイル・ログ処理、HTTP / API、定期実行、自動テスト、DB / Docker / Application 連携、CI/CD までを体系的に学習するためのリポジトリ。\n' +
+      '各 Unit に学習用ドキュメントと実行可能なサンプルを配置し、コードを読み、実際に実行し、stdout / stderr、exit status、生成ファイル、process、service などの挙動を確認しながら理解を深める。',
+    learningItems: [
+      'Linux CLI や Shell Script の基本に触れた後、Shell Script をもう一段体系的に学習する。',
+      'Unit 01: Linux / Shell の実行モデル / Unit 02: 標準入出力・パイプ・ファイル・権限',
+      'Unit 03: Bash Script の基本と Shell 展開 / Unit 04: 安全な Shell Script・エラー処理・デバッグ',
+      'Unit 05: ファイル・テキスト・ログ処理の頻出パターン / Unit 06: HTTP / API / JSON の実用パターン',
+      'Unit 07: バッチ・cron・定期実行と運用設計 / Unit 08: shfmt / ShellCheck とコード品質',
+      'Unit 09: Bats による Shell Script の自動テスト / Unit 10: DB / Docker / Application との連携',
+      'Unit 11: CI/CD と Shell Script の実務的な統合',
+    ],
+    featured: true,
+    updatedAt: '2026-10-8',
+  },
   {
     slug: 'docker-foundations-study',
     title: 'Docker Foundations Study',
