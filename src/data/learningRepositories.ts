@@ -27,6 +27,29 @@ export const learningRepositoriesUpdatedAt = '2026-10-09';
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
   {
+    slug: 'java-automated-testing-study',
+    title: 'Java Automated Testing Study',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Reading',
+    tech: ['Java', 'Spring Boot', 'JUnit', 'GitHub Actions'],
+    repoUrl: 'https://github.com/seiya-matsuoka/java-automated-testing-study',
+    icons: [
+      {
+        name: 'JUnit',
+        src: 'icons/technologies/junit-original-wordmark.svg',
+      },
+      {
+        name: 'Spring Boot',
+        src: 'icons/technologies/spring-original-wordmark.svg',
+      },
+    ],
+    description: 'In progress...',
+    learningItems: ['In progress...'],
+    featured: true,
+    updatedAt: '2026-10-9',
+  },
+  {
     slug: 'shell-script-study',
     title: 'Shell Script Study',
     summary:
