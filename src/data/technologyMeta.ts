@@ -21,6 +21,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
     label: 'Bootstrap',
     iconSrc: `${iconBasePath}bootstrap-original.svg`,
   },
+  Codex: {
+    label: 'Codex',
+    iconSrc: `${iconBasePath}codex-original.svg`,
+  },
   CSS: {
     label: 'CSS',
     iconSrc: `${iconBasePath}css3-original.svg`,
@@ -114,6 +118,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
     label: 'npm',
     iconSrc: `${iconBasePath}npm-original.svg`,
   },
+  Playwright: {
+    label: 'Playwright',
+    iconSrc: `${iconBasePath}playwright-original.svg`,
+  },
   PostgreSQL: {
     label: 'PostgreSQL',
     iconSrc: `${iconBasePath}postgresql-original.svg`,
@@ -150,6 +158,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
     label: 'SQL',
     iconSrc: `${iconBasePath}postgresql-original.svg`,
   },
+  Storybook: {
+    label: 'Storybook',
+    iconSrc: `${iconBasePath}storybook-original.svg`,
+  },
   'Tailwind CSS': {
     label: 'Tailwind CSS',
     iconSrc: `${iconBasePath}tailwindcss-original.svg`,
@@ -157,6 +169,10 @@ export const technologyMeta: Record<string, TechnologyMeta> = {
   TypeScript: {
     label: 'TypeScript',
     iconSrc: `${iconBasePath}typescript-original.svg`,
+  },
+  V8: {
+    label: 'V8',
+    iconSrc: `${iconBasePath}v8-original.svg`,
   },
   Vim: {
     label: 'Vim',
