@@ -19,10 +19,47 @@ export type PersonalProject = {
 };
 
 // 個人開発ページの最終更新日
-export const personalProjectsUpdatedAt = '2026-08-12';
+export const personalProjectsUpdatedAt = '2026-11-05';
 
 // 個人開発データ
 export const personalProjects: PersonalProject[] = [
+  {
+    slug: 'random-cool-color-generator',
+    title: 'Random Cool Color Generator',
+    summary:
+      '生成時点の日時を入力に寒色を生成し、カラーコードの確認・コピーと履歴・お気に入りの保存ができる Web ツール。',
+    status: 'DONE',
+    kind: 'Tool',
+    tech: [
+      'TypeScript',
+      'React',
+      'Vite',
+      'Tailwind CSS',
+      'Vitest',
+      'Playwright',
+      'Storybook',
+      'GitHub Actions',
+    ],
+    repoUrl: 'https://github.com/seiya-matsuoka/random-cool-color-generator',
+    liveUrl: 'https://seiya-matsuoka.github.io/random-cool-color-generator/',
+    thumb: 'images/projects/random-cool-color-generator/thumb.webp',
+    description:
+      '生成時点の日時と連番を入力に SHA-256 から寒色を生成する Web ツール。\n' +
+      '小さなアプリを題材に、AI エージェントを活用した開発の流れと技術・開発手法の実践を目的として制作した。\n' +
+      'Vitest による単体テスト、Playwright による E2E、Storybook による UI の状態確認を使い分け、GitHub Actions の品質確認から GitHub Pages の公開へつなぐ構成とした。',
+    features: [
+      '寒色の生成と、色見本・HEX・生成日時の表示',
+      'HEX / RGB / HSL の個別コピーと、Details での RGB / HSL / SHA-256 の確認',
+      '履歴は直近 20 件、お気に入りは最大 20 色を localStorage に保存し、選択した元の生成記録を再表示',
+      '確認ダイアログによる履歴の全件削除・お気に入りの解除',
+    ],
+    images: [
+      'images/projects/random-cool-color-generator/01.webp',
+      'images/projects/random-cool-color-generator/02.webp',
+    ],
+    featured: false,
+    updatedAt: '2026-11-04',
+  },
   {
     slug: 'football-moment-archive',
     title: 'Football Moment Archive',
