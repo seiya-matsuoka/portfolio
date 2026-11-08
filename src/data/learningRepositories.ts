@@ -29,10 +29,11 @@ export const learningRepositories: LearningRepository[] = [
   {
     slug: 'java-automated-testing-study',
     title: 'Java Automated Testing Study',
-    summary: 'In progress...',
-    status: 'WIP',
+    summary:
+      '1 つの注文管理 REST API を題材に、Java / Spring Boot の自動テストをコードリーディングと実行・確認を通して体系的に学習するためのリポジトリ。',
+    status: 'DONE',
     kind: 'Reading',
-    tech: ['Java', 'Spring Boot', 'JUnit', 'GitHub Actions'],
+    tech: ['Java', 'Spring Boot', 'JUnit'],
     repoUrl: 'https://github.com/seiya-matsuoka/java-automated-testing-study',
     icons: [
       {
@@ -44,10 +45,18 @@ export const learningRepositories: LearningRepository[] = [
         src: 'icons/technologies/spring-original-wordmark.svg',
       },
     ],
-    description: 'In progress...',
-    learningItems: ['In progress...'],
-    featured: true,
-    updatedAt: '2026-10-9',
+    description:
+      '1 つの注文管理 REST API を題材に、JUnit の基本から、テストケース設計、Test Double、Web・DB・外部 HTTP のテスト、Test Suite の実行管理と Coverage までを段階的に扱う。\n' +
+      '小さな Java クラスの振る舞い、依存先との連携、Web 層の入出力、DB への永続化、HTTP 通信、API 全体を、それぞれ適した粒度で確認する。',
+    learningItems: [
+      'Unit 01: 自動テストの全体像と JUnit 基本 / Unit 02: テストケース設計と JUnit 実践',
+      'Unit 03: Test Double と Mockito / Unit 04: テストしやすい設計とテスト品質',
+      'Unit 05: Spring Web 層のテスト / Unit 06: SQL・Repository・DB Integration Test',
+      'Unit 07: Spring Boot Integration Test / Unit 08: 外部 HTTP API のテスト',
+      'Unit 09: REST API 全体のテスト / Unit 10: テスト実行管理と Coverage',
+    ],
+    featured: false,
+    updatedAt: '2026-11-8',
   },
   {
     slug: 'shell-script-study',
