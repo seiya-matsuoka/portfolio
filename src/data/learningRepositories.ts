@@ -27,6 +27,25 @@ export const learningRepositoriesUpdatedAt = '2026-10-09';
 // 学習リポジトリデータ
 export const learningRepositories: LearningRepository[] = [
   {
+    slug: 'sql-query-patterns-study',
+    title: 'SQL Query Patterns Study',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Reading',
+    tech: ['PostgreSQL', 'Docker'],
+    repoUrl: 'https://github.com/seiya-matsuoka/sql-query-patterns-study',
+    icons: [
+      {
+        name: 'PostgreSQL',
+        src: 'icons/technologies/postgresql-original-wordmark.svg',
+      },
+    ],
+    description: 'In progress...',
+    learningItems: ['In progress...'],
+    featured: false,
+    updatedAt: '2026-11-26',
+  },
+  {
     slug: 'java-automated-testing-study',
     title: 'Java Automated Testing Study',
     summary:
