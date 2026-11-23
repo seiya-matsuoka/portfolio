@@ -24,6 +24,22 @@ export const personalProjectsUpdatedAt = '2026-11-05';
 // 個人開発データ
 export const personalProjects: PersonalProject[] = [
   {
+    slug: 'web-auth-playground',
+    title: 'Web Auth Playground',
+    summary: 'In progress...',
+    status: 'WIP',
+    kind: 'Web App',
+    tech: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'App Router', 'PostgreSQL'],
+    repoUrl: 'https://github.com/seiya-matsuoka/web-auth-playground',
+    // liveUrl: '',
+    // thumb: 'images/projects/web-auth-playground/thumb.webp',
+    description: 'In progress...',
+    features: ['In progress...'],
+    // images: ['images/projects/web-auth-playground/01.webp'],
+    featured: false,
+    updatedAt: '2026-11-23',
+  },
+  {
     slug: 'random-cool-color-generator',
     title: 'Random Cool Color Generator',
     summary:
